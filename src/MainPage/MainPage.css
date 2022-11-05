@@ -1,0 +1,315 @@
+body {
+    margin: 0;
+}
+
+.MainContainer {
+    position: relative;
+    width: 100%;
+    height: 3630px;
+
+    background: #FFFFFF;
+}
+
+.HelloContainer {
+    width: 100%;
+    height: 1080px;
+    background: url("../Assets/hero_bg.png") no-repeat center center;
+    background-size: 100% 1080px;
+}
+
+.HeroSection {
+    position: absolute;
+    width: 82%;
+    height: 905px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 40px;
+}
+
+.NaviBar {
+    display: flex;
+}
+
+.Logo {
+    display: flex;
+    left: 0%;
+    right: 27.59%;
+    top: 8.33%;
+    bottom: 8.33%;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 100%;
+
+    /* identical to box height, or 20px */
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    color: #122C34;
+}
+
+.LogoIcon {
+    left: 8.33%;
+    right: 8.33%;
+    bottom: 8.33%;
+    top: 0px;
+
+}
+
+.SignButton {
+    position: absolute;
+    width: 100px;
+    height: 25px;
+    top: 0px;
+    right: 0px;
+    background: #122C34;
+    border-radius: 8px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    color: #F5EDF0;
+}
+
+.LogButton {
+    position: absolute;
+    width: 43px;
+    height: 14px;
+    top: 5px;
+    margin-left: 10px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+
+    /* identical to box height, or 14px */
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    color: #122C34;
+}
+
+.NavList {
+    position: relative;
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    top: 0px;
+    margin-top: 4px;
+    width: 85%;
+}
+
+.NavListElement {
+
+    width: 52px;
+    height: 14px;
+    left: 213px;
+    top: 5px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+
+    /* identical to box height, or 14px */
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    color: #122C34;
+}
+
+:hover .NavListElement {
+    cursor: pointer;
+}
+
+.HelloBanner {
+    position: absolute;
+    width: 945px;
+    height: 128px;
+    left: 0px;
+    top: 198px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 100%;
+
+    /* or 64px */
+    letter-spacing: -0.02em;
+
+    color: #122C34;
+}
+
+.HelloBanner2 {
+    position: absolute;
+    width: 743px;
+    height: 36px;
+    left: 0px;
+    top: 344px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 100%;
+
+    /* identical to box height, or 36px */
+    letter-spacing: -0.02em;
+
+    color: rgba(133, 126, 123, 0.8);
+}
+
+.HelloPara {
+    position: absolute;
+    width: 535px;
+    height: 60px;
+    left: 0px;
+    top: 435px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 100%;
+
+    /* or 20px */
+    letter-spacing: -0.02em;
+
+    color: #8B9998;
+}
+
+.StatisticTable {
+    position: absolute;
+    left: 0px;
+    top: 550px;
+}
+
+.StatisticTable>thead {
+    color: #857E7B;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 100%;
+    margin-left: 20px;
+
+    /* identical to box height, or 36px */
+    letter-spacing: -0.02em;
+}
+
+.StatisticTable>tbody {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 100%;
+
+    /* or 24px */
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    color: #8B9998;
+}
+
+.SignButton2 {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 0px;
+    top: 714px;
+
+    background: #122C34;
+    border-radius: 8px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 100%;
+
+    /* identical to box height, or 24px */
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    color: #F5EDF0;
+}
+
+.VectorIcons {
+    position: absolute;
+    width: 424.13px;
+    height: 424.13px;
+    left: 410.89px;
+    top: 414px;
+
+    transform: rotate(24.06deg);
+}
+
+.PointsContainer {
+    position: absolute;
+    width: 100%;
+    height: 595px;
+    left: 0px;
+    top: 1080px;
+    background: #122C34;
+}
+
+.PointsSection {
+    position: absolute;
+    width: 82%;
+    height: 725px;
+    left: 360px;
+    top: 0px;
+}
+
+.Foto {
+    position: absolute;
+    width: 445px;
+    height: 331.1px;
+    left: 0px;
+    top: 172px;
+    border: 5px solid #F5EDF0;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 4px;
+}
+
+.PointsList {
+    list-style: none;
+    position: absolute;
+    width: auto;
+    height: 115px;
+    left: 400px;
+    top: 170px;
+}
+
+.PointsListElement {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+
+    /* identical to box height, or 32px */
+    letter-spacing: -0.02em;
+
+    color: #F5EDF0;
+}
+
+.PointsListElement::before {
+    content: "\25AA";
+    color: #5EBAC3;
+    font-size: 40px;
+    display: inline-block;
+    width: 30px;
+    margin-left: -1em;
+
+}
