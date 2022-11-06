@@ -1,48 +1,47 @@
 import React from "react";
-import style from "./MainPage.css";
+import style from "./HomePage.module.css";
 import { Icon } from "@iconify/react";
 import Icon2 from "../Assets/hero_icon.svg";
 import Foto from "../Assets/section2_photo.jpg";
 
-const MainPage = () => {
+const HomePage = () => {
   return (
-    <div style={style} className={"MainContainer"}>
-      <div style={style} className={"HelloContainer"}>
-        <div style={style} className={"HeroSection"}>
-          <nav style={style} className={"NaviBar"}>
-            <div style={style} className={"Logo"}>
+    <div  className={style.MainContainer}>
+      <div  className={style.HelloContainer}>
+        <div  className={style.HeroSection}>
+          <nav  className={style.NaviBar}>
+            <div  className={style.Logo}>
               Brand <Icon icon="bxs:book-reader" color="#85c9b9" />
             </div>
-            <ul style={style} className={"NavList"}>
-              <li style={style} className={"NavListElement"}>
+            <ul  className={style.NavList}>
+              <li  className={style.NavListElement}>
                 Home
               </li>
-              <li style={style} className={"NavListElement"}>
+              <li  className={style.NavListElement}>
                 Miejsca
               </li>
-              <li style={style} className={"NavListElement"}>
+              <li  className={style.NavListElement}>
                 Wydarzenia
               </li>
-              <li style={style} className={"NavListElement"}>
+              <li  className={style.NavListElement}>
                 Log In
               </li>
             </ul>
-            <button style={style} className={"SignButton"}>
+            <button  className={style.SignButton}>
               Sign Up
             </button>
           </nav>
-          <h1 style={style} className="HelloBanner">
+          <h1  className={style.HelloBanner}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           </h1>
-          <h2 style={style} className="HelloBanner2">
-            {" "}
+          <h2  className={style.HelloBanner2}>
             Lorem ipsum consectetur adipiscing elit.
           </h2>
-          <p style={style} className="HelloPara">
+          <p  className={style.HelloPara}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fusce
             maecenas lacus enim parturient nulla. Ac leo augue fames aliquam.
           </p>
-          <table style={style} className="StatisticTable">
+          <table  className={style.StatisticTable}>
             <thead>
               <tr>
                 <th style={{ width: "100px", textAlign: "left" }}>400+</th>
@@ -58,38 +57,38 @@ const MainPage = () => {
               </tr>
             </tbody>
           </table>
-          <button style={style} className={"SignButton2"}>
+          <button  className={style.SignButton2}>
             Sign Up
           </button>
-          <img className="VectorIcons" src={Icon2} alt="" />
+          <img className={style.VectorIcons} src={Icon2} alt="" />
         </div>
       </div>
-      <div style={style} className="PointsContainer">
-        <div style={style} className="PointsSection">
+      <div  className={style.PointsContainer}>
+        <div  className={style.PointsSection}>
           <div style={{ width: "480px" }}>
-            <img className="Foto" src={Foto} alt="" />
+            <img className={style.Foto} src={Foto} alt="" />
           </div>
           <div>
-            <ul style={style} className="PointsList">
-              <li style={style} className="PointsListElement">
+            <ul  className={style.PointsList}>
+              <li  className={style.PointsListElement}>
                 Znajdź swoją przestrzeń
-                <p style={style} className="ItemDescription">
+                <p  className={style.ItemDescription}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Fringilla massa lorem lorem maecenas sed elit quis ornare.
                   Enim, et nec pharetra dolor libero.
                 </p>
               </li>
-              <li style={style} className="PointsListElement">
+              <li  className={style.PointsListElement}>
                 Kiedy On-line nie wystarcza
-                <p style={style} className="ItemDescription">
+                <p  className={style.ItemDescription}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Fringilla massa lorem lorem maecenas sed elit quis ornare.
                   Enim, et nec pharetra dolor libero.
                 </p>
               </li>
-              <li style={style} className="PointsListElement">
+              <li  className={style.PointsListElement}>
                 Good food=good talk
-                <p style={style} className="ItemDescription">
+                <p  className={style.ItemDescription}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Fringilla massa lorem lorem maecenas sed elit quis ornare.
                   Enim, et nec pharetra dolor libero.
@@ -100,14 +99,14 @@ const MainPage = () => {
         </div>
       </div>
 
-      <div style={style} className="MapContainer">
-        <div style={style} className="Gradient"></div>
-        <div style={style} className="MapInformaton">
-          <h1 style={style} className="MapInformatonHeader">
+      <div  className={style.MapContainer}>
+        <div  className={style.Gradient}></div>
+        <div  className={style.MapInformaton}>
+          <h1  className={style.MapInformatonHeader}>
             Wszystkie miejsca w jednej aplikacji
           </h1>
-          <div style={style} className="PinInteresContainer">
-            <div style={style} className="PinInteres">
+          <div  className={style.PinInteresContainer}>
+            <div  className={style.PinInteres}>
               <Icon
                 icon="game-icons:three-friends"
                 color="#122c34"
@@ -115,20 +114,20 @@ const MainPage = () => {
                 height="40"
               />
             </div>
-            <p style={style} className="DescribePin">
+            <p  className={style.DescribePin}>
               Ciekawe miejsca spotkań
             </p>
           </div>
-          <div style={style} className="PinFriendsContainer">
-            <div style={style} className="PinFriends">
+          <div  className={style.PinFriendsContainer}>
+            <div  className={style.PinFriends}>
               <Icon icon="bxs:user" color="#122c34" width="50" height="50" />
             </div>
-            <p style={style} className="DescribePin">
+            <p  className={style.DescribePin}>
               Twoi znajomi
             </p>
           </div>
-          <div style={style} className="PinLibContainer">
-            <div style={style} className="PinLib">
+          <div  className={style.PinLibContainer}>
+            <div  className={style.PinLib}>
               <Icon
                 icon="bx:book-reader"
                 color="#122c34"
@@ -136,12 +135,12 @@ const MainPage = () => {
                 height="40"
               />
             </div>
-            <p style={style} className="DescribePin">
+            <p  className={style.DescribePin}>
               Biblioteki
             </p>
           </div>
-          <div style={style} className="PinRestaurantContainer">
-            <div style={style} className="PinRestaurant">
+          <div  className={style.PinRestaurantContainer}>
+            <div  className={style.PinRestaurant}>
               <Icon
                 icon="bx:restaurant"
                 color="#122c34"
@@ -149,15 +148,15 @@ const MainPage = () => {
                 height="40"
               />
             </div>
-            <p style={style} className="DescribePin">
+            <p  className={style.DescribePin}>
               Restauracje
             </p>
           </div>
         </div>
       </div>
-      <div style={style} className="OpinionContainer">
-        <div style={style} className="OpinionSection">
-          <button style={style} className="Previous">
+      <div  className={style.OpinionContainer}>
+        <div  className={style.OpinionSection}>
+          <button  className={style.Previous}>
             <Icon
               icon="ant-design:arrow-left-outlined"
               color="#f5edf0"
@@ -165,15 +164,15 @@ const MainPage = () => {
               height="34"
             />
           </button>
-          <h2 style={style} className="OpinionText">
+          <h2  className={style.OpinionText}>
             Quisque orci erat rhoncus, cras adipiscing. Arcu gravida sed cras
             urna. Purus scelerisque faucibus dolor curabitur cras volutpat nisi,
             facilisis
           </h2>
-          <p style={style} className="OpinionAuth">
+          <p  className={style.OpinionAuth}>
             Jan Kowalski
           </p>
-          <button style={style} className="Next">
+          <button  className={style.Next}>
             <Icon
               icon="ant-design:arrow-right-outlined"
               color="#f5edf0"
@@ -183,10 +182,10 @@ const MainPage = () => {
           </button>
         </div>
       </div>
-      <div style={style} className="InformationContainer">
-        <div style={style} className="InformationSection">
-          <div style={style} className={"Logo2"}>
-            Brand{" "}
+      <div  className={style.InformationContainer}>
+        <div  className={style.InformationSection}>
+          <div  className={style.Logo2}>
+            Brand
             <Icon
               icon="bxs:book-reader"
               color="#ffffff"
@@ -194,7 +193,7 @@ const MainPage = () => {
               height="38"
             />
           </div>
-          <table style={style} className="InfoTable">
+          <table  className={style.InfoTable}>
             <thead>
               <tr>
                 <th>Info</th>
@@ -218,7 +217,7 @@ const MainPage = () => {
               </tr>
             </tbody>
           </table>
-          <div style={style} className="Social">
+          <div  className={style.Social}>
             <Icon
               icon="cib:facebook-f"
               color="#857e7b"
@@ -245,11 +244,11 @@ const MainPage = () => {
             />
           </div>
         </div>
-        <div style={style} className="AuthInfo">
-          <p style={style} className="AuthInfoParagraph">
+        <div  className={style.AuthInfo}>
+          <p  className={style.AuthInfoParagraph}>
             © WZiM MGR R1S2
           </p>
-          <p style={style} className="AuthInfoParagraph">
+          <p  className={style.AuthInfoParagraph}>
             Powered by SGGW
           </p>
         </div>
@@ -257,4 +256,4 @@ const MainPage = () => {
     </div>
   );
 };
-export default MainPage;
+export default HomePage;
