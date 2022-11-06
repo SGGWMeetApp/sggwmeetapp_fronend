@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import MainPage from "./MainPage/MainPage.js";
+import MainPage from "./HomePage/MainPage.js.js";
 
 const App = () => {
   return (
