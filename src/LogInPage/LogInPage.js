@@ -2,25 +2,14 @@ import React from "react";
 import style from "./LogInPage.module.css";
 import styleHome from "../HomePage/HomePage.module.css";
 import { Icon } from "@iconify/react";
-import { Link } from "react-router-dom";
-
+import { NavLink } from "react-router-dom";
+import Navigation from "./Navigatio";
 class LogInPage extends React.Component {
   render() {
     return (
       <div className={style.LogInContainer}>
         <div className={style.LogInBack}>
-          <nav className={style.NaviBar}>
-            <div className={style.Logo}>
-              Brand <Icon icon="bxs:book-reader" color="#85c9b9" />
-            </div>
-            <ul className={style.NavList}>
-              <li className={style.NavListElement}>Home</li>
-              <li className={style.NavListElement}>Miejsca</li>
-              <li className={style.NavListElement}>Wydarzenia</li>
-              <li className={style.NavListElement}>Log In</li>
-            </ul>
-            <button className={style.SignButton}>Sign Up</button>
-          </nav>
+        <Navigation/>
           <div className={style.LogInWindow}>
             <div className={styleHome.Logo}>
               Brand <Icon icon="bxs:book-reader" color="#85c9b9" />
@@ -42,7 +31,7 @@ class LogInPage extends React.Component {
               <div className={style.Register}>
                 <p className={style.RegisterParagraph}>
                   Nie masz jeszcze konta -{" "}
-                  <Link className={style.RegisterLink}>zarejestruj</Link>{" "}
+                  <NavLink to="/register" className={style.RegisterLink}>zarejestruj</NavLink>{" "}
                 </p>
               </div>
               <button className={style.FormLogInButton}>Zaloguj</button>
