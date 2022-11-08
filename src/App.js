@@ -5,6 +5,7 @@ import LogInPage from "./LogInPage/LogInPage.js";
 import RegisterPage from "./RegisterPage/RegisterPage.js";
 import MainPage from "./MainPage/MainPage.js";
 import GroupsPage from "./GroupsPage/GroupsPage.js";
+import ObjectPage from "./ObjectPage/ObjectMainPage.js";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/register" element={<RegisterPage/>}/>
         <Route path="/profile" element={<MainPage/>}/>
         <Route path="/profile/groups" element={<GroupsPage/>}/>
+        <Route path="/profile/object" element={<ObjectPage/>}/>
       </Routes>
     </BrowserRouter>
   );
