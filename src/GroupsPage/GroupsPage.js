@@ -4,12 +4,6 @@ import MainPageNavi from "../MainPage/MainPageNavi.js";
 import { Icon } from "@iconify/react";
 import TableRow from "./TableRow";
 class GroupsPage extends React.Component {
-  state = {
-    visible: false,
-  };
-  handleShow = () => {
-    this.setState({ visible: !this.state.visible });
-  };
   render() {
     return (
       <div className={style.GroupContainer}>
