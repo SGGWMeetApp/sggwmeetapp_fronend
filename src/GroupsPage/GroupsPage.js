@@ -2,7 +2,14 @@ import React from "react";
 import style from "./GroupsPage.module.css";
 import MainPageNavi from "../MainPage/MainPageNavi.js";
 import { Icon } from "@iconify/react";
+import TableRow from "./TableRow";
 class GroupsPage extends React.Component {
+  state = {
+    visible: false,
+  };
+  handleShow = () => {
+    this.setState({ visible: !this.state.visible });
+  };
   render() {
     return (
       <div className={style.GroupContainer}>
@@ -32,7 +39,7 @@ class GroupsPage extends React.Component {
             </div>
           </div>
           <div>
-            <table>
+            <table className={style.GroupsTable}>
               <thead>
                 <tr>
                   <th>Nazwa</th>
@@ -50,16 +57,7 @@ class GroupsPage extends React.Component {
                   <td>5</td>
                   <td>Jan Kowalski</td>
                   <td>2</td>
-                  <td>
-                    <button className={style.MoreBtn}>
-                      <Icon
-                        icon="akar-icons:more-vertical"
-                        color="rgba(0, 0, 0, 0.54)"
-                        width="20"
-                        height="20"
-                      />
-                    </button>
-                  </td>
+                 <TableRow/>
                 </tr>
                 <tr>
                   <td>
@@ -68,16 +66,7 @@ class GroupsPage extends React.Component {
                   <td>5</td>
                   <td>Jan Kowalski</td>
                   <td>2</td>
-                  <td>
-                    <button className={style.MoreBtn}>
-                      <Icon
-                        icon="akar-icons:more-vertical"
-                        color="rgba(0, 0, 0, 0.54)"
-                        width="20"
-                        height="20"
-                      />
-                    </button>
-                  </td>
+                  <TableRow/>
                 </tr>
               </tbody>
             </table>

@@ -91,17 +91,18 @@
     cursor: pointer;
 }
 
-table {
+.GroupsTable {
     width: 100%;
 }
 
-thead {
+.GroupsTable>thead {
     height: 56px;
     background: rgba(255, 255, 255, 0.003);
     box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
+    
 }
 
-th {
+.GroupsTable>thead>tr>th {
     text-align: initial;
     font-family: 'Roboto';
     font-style: normal;
@@ -112,14 +113,14 @@ th {
     color: rgba(0, 0, 0, 0.87);
 }
 
-tbody>tr {
+.GroupsTable>tbody>tr {
     height: 64px;
 
     background: rgba(255, 255, 255, 0.003);
     box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
 }
 
-td {
+.GroupsTable>tbody>tr>td {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
@@ -131,3 +132,4 @@ td {
     order: 0;
     flex-grow: 0
 }
+

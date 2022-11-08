@@ -1,0 +1,61 @@
+.MenuContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    position: absolute;
+    width: 200px;
+    height: 170px;
+    background: #FFFFFF;
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    margin-right: 200x;
+}
+
+.MenuHeader {
+    width: 200px;
+    height: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    text-align: end;
+
+}
+
+.CloseBtn {
+    height: 24px;
+    background: #ffffff;
+    border: none;
+}
+
+.MenuList {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px 0px;
+    list-style: none;
+    width: 200px;
+    height: 144px;
+}
+
+.MenuList>li>button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px 16px;
+    width: 200px;
+    height: 36px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 143%;
+    letter-spacing: 0.17px;
+    background-color: #FFFFFF;
+    border: none;
+    color: rgba(0, 0, 0, 0.87);
+}
+.ActBtn:hover{
+    cursor:pointer;
+}
+.MenuList>li>:nth-child(2) {
+    margin-left: 20px;
+}
