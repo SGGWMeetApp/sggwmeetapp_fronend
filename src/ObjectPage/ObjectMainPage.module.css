@@ -56,16 +56,48 @@
 .Address {
     width: 120px
 }
-.Fotos{
+
+.Fotos {
     min-height: 400px;
     width: 100%;
 }
-.ComponentsNavi {
+
+.NaviComponents {
     height: 50px;
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    padding: 6px 0px;
-    gap: 15px;
 }
+
+.NaviList {
+    list-style: none;
+    display: flex;
+    margin-left: 0px;
+    padding:0;
+
+}
+.NaviBtn {
+
+}
+ul>li{
+    background: #ffffff;
+    border: none;
+    height: 16px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 100%;
+    text-align:center;
+    letter-spacing: -0.02em;
+    width: auto;
+    margin-right:17px ;
+    text-align: initial;
+    color: #122C34;
+}
+ul>li:hover {
+    cursor: pointer;
+  }
+  ul> li.active {
+    border-bottom:2px solid #85C9B9;
+  }
