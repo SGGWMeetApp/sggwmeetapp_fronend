@@ -25,8 +25,8 @@ class ObjectPage extends React.Component {
         <div className={style.ObjectContainer}>
           <div className={style.MainBar}>
             <h1>Lorem Ipsum</h1>
-            <NavLink style={{textDecoration:"none"}} to="/profile">
-              <button className={styleGroup.BackMapBtn}>
+            <button className={styleGroup.BackMapBtn}>
+              <NavLink className={styleGroup.NavLinkBtn} to="/profile">
                 <Icon
                   icon="akar-icons:arrow-left"
                   color="#122c34"
@@ -34,8 +34,8 @@ class ObjectPage extends React.Component {
                   height="20"
                 />
                 Wróć do mapy
-              </button>
-            </NavLink>
+              </NavLink>
+            </button>
           </div>
           <div className={style.SecondBar}>
             <div className={style.Icon}>

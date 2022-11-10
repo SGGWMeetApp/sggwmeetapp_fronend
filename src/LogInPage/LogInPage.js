@@ -34,7 +34,7 @@ class LogInPage extends React.Component {
                   <NavLink to="/register" className={style.RegisterLink}>zarejestruj</NavLink>{" "}
                 </p>
               </div>
-              <button className={style.FormLogInButton}>Zaloguj</button>
+              <button className={style.FormLogInButton}><NavLink className={style.LogInBtn} to="/profile">Zaloguj</NavLink></button>
             </form>
           </div>
         </div>

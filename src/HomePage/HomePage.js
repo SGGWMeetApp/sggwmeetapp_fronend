@@ -13,11 +13,15 @@ class HomePage extends React.Component {
           <div className={style.HeroSection}>
             <nav className={style.NaviBar}>
               <div className={style.Logo}>
-                Brand <Icon icon="bxs:book-reader" color="#85c9b9" />
+                <NavLink className={style.LogoLink} to="/">
+                  Brand <Icon icon="bxs:book-reader" color="#85c9b9" />
+                </NavLink>
               </div>
               <ul className={style.NavList}>
                 <li className={style.NavListElement}>
-                  <NavLink className={style.NavLink} to="/">Home</NavLink>
+                  <NavLink className={style.NavLink} to="/">
+                    Home
+                  </NavLink>
                 </li>
                 <li className={style.NavListElement}>
                   <NavLink className={style.NavLink}>Miejsca</NavLink>
@@ -26,11 +30,15 @@ class HomePage extends React.Component {
                   <NavLink className={style.NavLink}>Wydarzenia</NavLink>
                 </li>
                 <li className={style.NavListElement}>
-                  <NavLink  className={style.NavLink}to="/login">Log In</NavLink>
+                  <NavLink className={style.NavLink} to="/login">
+                    Log In
+                  </NavLink>
                 </li>
               </ul>
               <button className={style.SignButton}>
-                <NavLink className={style.NavLinkButt} to="/register">Sign Up</NavLink>
+                <NavLink className={style.NavLinkButt} to="/register">
+                  Sign Up
+                </NavLink>
               </button>
             </nav>
             <h1 className={style.HelloBanner}>
@@ -60,7 +68,7 @@ class HomePage extends React.Component {
                 </tr>
               </tbody>
             </table>
-            <button className={style.SignButton2}>Sign Up</button>
+            <button className={style.SignButton2}><NavLink className={style.NavLinkButt} to="/register">Sign Up</NavLink></button>
             <img className={style.VectorIcons} src={Icon2} alt="" />
           </div>
         </div>
@@ -196,12 +204,12 @@ class HomePage extends React.Component {
                 <tr>
                   <td>O nas</td>
                   <td>Obiekty</td>
-                  <td>Zaloguj</td>
+                  <td><NavLink className={style.NavLinkFooter} to="/login">Zaloguj</NavLink></td>
                 </tr>
                 <tr>
                   <td>Kontakt</td>
                   <td>Eventy</td>
-                  <td>Zarejestruj</td>
+                  <td><NavLink className={style.NavLinkFooter} to="/register">Zarejestruj</NavLink></td>
                 </tr>
                 <tr>
                   <td>Regulamin</td>

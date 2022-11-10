@@ -36,7 +36,7 @@ body {
 }
 
 .Logo {
-    display: flex;
+    
     left: 0%;
     right: 27.59%;
     top: 8.33%;
@@ -52,7 +52,7 @@ body {
     text-align: center;
     letter-spacing: -0.02em;
 
-    color: #122C34;
+    
 }
 
 .LogoIcon {
@@ -62,7 +62,12 @@ body {
     top: 0px;
 
 }
+.LogoLink{
+    text-decoration: none;
+    color: #122C34;
+    display: flex;
 
+}
 .SignButton {
     position: absolute;
     width: 100px;
@@ -137,8 +142,10 @@ body {
 }
 
 .NavLinkButt {
+    display: block;
     text-decoration: none;
     color: #F5EDF0;
+    width: 100%;
 }
 :hover .NavListElement {
     cursor: pointer;
@@ -725,5 +732,9 @@ body {
     /* identical to box height, or 24px */
     letter-spacing: -0.02em;
 
+    color: #F5EDF0;
+}
+.NavLinkFooter{
+    text-decoration: none;
     color: #F5EDF0;
 }

@@ -11,7 +11,7 @@
 }
 
 .Logo {
-    display: flex;
+    
     left: 0%;
     right: 27.59%;
     top: 8.33%;
@@ -27,7 +27,7 @@
     text-align: center;
     letter-spacing: -0.02em;
 
-    color: #F5EDF0;
+    
 }
 
 .LogoIcon {
@@ -35,9 +35,15 @@
     right: 8.33%;
     bottom: 8.33%;
     top: 0px;
+    
 
 }
+.LogoLink{
+    text-decoration: none;
+    color: #F5EDF0;
+    display: flex;
 
+}
 .SignButton {
     position: absolute;
     width: 100px;
@@ -113,6 +119,8 @@
 .NavLinkButt {
     text-decoration: none;
     color: #122C34;
+    width: 100%;
+    display: block;
 }
 
 .LogInContainer::before {
@@ -266,11 +274,16 @@
     font-size: 15px;
     line-height: 26px;
 
-
+    color: #F5EDF0;
     letter-spacing: 0.46px;
 
 
+    
+}
+.LogInBtn{
     color: #FFFFFF;
+    text-decoration: none;
+    width: 450px;
 }
 
 .Register {

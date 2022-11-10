@@ -3,6 +3,7 @@ import style from "./GroupsPage.module.css";
 import MainPageNavi from "../MainPage/MainPageNavi.js";
 import { Icon } from "@iconify/react";
 import TableRow from "./TableRow";
+import { NavLink } from "react-router-dom";
 class GroupsPage extends React.Component {
   render() {
     return (
@@ -13,13 +14,15 @@ class GroupsPage extends React.Component {
             <h2 className={style.Header}>Twoje grupy</h2>
             <div className={style.BtnContainer}>
               <button className={style.BackMapBtn}>
-                <Icon
-                  icon="akar-icons:arrow-left"
-                  color="#122c34"
-                  width="20"
-                  height="20"
-                />
-                Wróć do mapy
+                <NavLink className={style.NavLinkBtn} to="/profile">
+                  <Icon
+                    icon="akar-icons:arrow-left"
+                    color="#122c34"
+                    width="20"
+                    height="20"
+                  />
+                  Wróć do mapy
+                </NavLink>
               </button>
               <button className={style.CreateGroupBtn}>
                 <Icon
@@ -51,7 +54,7 @@ class GroupsPage extends React.Component {
                   <td>5</td>
                   <td>Jan Kowalski</td>
                   <td>2</td>
-                 <TableRow/>
+                  <TableRow />
                 </tr>
                 <tr>
                   <td>
@@ -60,7 +63,7 @@ class GroupsPage extends React.Component {
                   <td>5</td>
                   <td>Jan Kowalski</td>
                   <td>2</td>
-                  <TableRow/>
+                  <TableRow />
                 </tr>
               </tbody>
             </table>

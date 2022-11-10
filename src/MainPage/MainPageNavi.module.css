@@ -13,6 +13,14 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     justify-content: space-between;
 }
+.LogoLink{
+    text-decoration: none;
+    color: #122C34;
+    align-items:center;
+    display:flex;
+
+
+}
 .Logo {
     text-align: center;
     font-family: 'Montserrat';
@@ -22,7 +30,7 @@
     line-height: 100%;
     letter-spacing: -0.02em;
     width: 100px;
-    color: #122C34;
+    margin-left: 20px;
 }
 
 .InputContainer {
@@ -61,6 +69,8 @@
     height: 24px;
     display:flex;
     align-items:center;
+    text-decoration: none;
+    color: #122C34;
 
 }
 
@@ -69,6 +79,8 @@
     height: 24px;
     display:flex;
     align-items:center;
+    text-decoration: none;
+    color: #122C34;
 }
 
 .GroupContainer {
@@ -76,6 +88,8 @@
     height: 24px;
     display:flex;
     align-items:center;
+    text-decoration: none;
+    color: #122C34;
 
 }
 

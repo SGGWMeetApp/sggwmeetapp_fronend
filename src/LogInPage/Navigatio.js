@@ -7,7 +7,9 @@ const Navigation = () => {
   return (
     <nav className={style.NaviBar}>
       <div className={style.Logo}>
-        Brand <Icon icon="bxs:book-reader" color="#85c9b9" />
+        <NavLink className={style.LogoLink} to="/">
+          Brand <Icon icon="bxs:book-reader" color="#85c9b9" />
+        </NavLink>
       </div>
       <ul className={style.NavList}>
         <li className={style.NavListElement}>
@@ -22,11 +24,15 @@ const Navigation = () => {
           <NavLink className={style.NavLink}>Wydarzenia</NavLink>
         </li>
         <li className={style.NavListElement}>
-          <NavLink className={style.NavLink} to="/login">Log In</NavLink>
+          <NavLink className={style.NavLink} to="/login">
+            Log In
+          </NavLink>
         </li>
       </ul>
       <button className={style.SignButton}>
-        <NavLink className={style.NavLinkButt} to="/register">Sign Up</NavLink>
+        <NavLink className={style.NavLinkButt} to="/register">
+          Sign Up
+        </NavLink>
       </button>
     </nav>
   );
