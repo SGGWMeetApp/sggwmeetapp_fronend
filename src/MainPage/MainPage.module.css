@@ -3,11 +3,40 @@
 
     position: absolute;
     width: 360px;
-    height: calc(100% - 60px);
+    min-height: calc(100% - 60px);
     left: 0px;
     top: 60px;
     background: #FFFFFF;
     border-right: 3px solid rgba(188, 188, 188, 0.5);
+}
+
+.SectionHeader {
+    display: flex;
+    box-sizing: border-box;
+    position: absolute;
+    width: 360px;
+    height: 74px;
+    left: 0px;
+    top: 0px;
+    align-items: center;
+    background: #FFFFFF;
+    border-bottom: 2px solid rgba(188, 188, 188, 0.5);
+    border-right: 3px solid rgba(188, 188, 188, 0.5);
+}
+
+.ObjectNumber {
+    position: absolute;
+    width: 130px;
+    height: 14px;
+    left: 24px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    color: #122C34;
 }
 
 .FilterButton {
@@ -19,7 +48,6 @@
     width: 92px;
     height: 27px;
     left: 244px;
-    top: 23px;
     background: #FFFFFF;
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
@@ -29,9 +57,7 @@
     font-size: 14px;
     line-height: 24px;
 
-    /* identical to box height, or 171% */
     letter-spacing: 0.4px;
-
     color: #122C34;
 
 
@@ -39,4 +65,93 @@
 
 .FilterButton:hover {
     cursor: pointer;
+}
+
+.ObjectListContainer {
+    position: absolute;
+    width: 333px;
+    left: 24px;
+    top: 74px;
+    overflow-y: scroll;
+    height: calc(100% - 74px);
+}
+
+.MapContainer {
+    position: absolute;
+    width: calc(100% - 360px);
+    left: 360px;
+    top: 60px;
+
+}
+
+.ObjectList {
+    height: auto;
+    list-style: none;
+    padding-left: 0px;
+}
+
+.ListElement {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 312px;
+    height: 181px;
+    left: 0px;
+    top: 20px;
+    padding: 0px;
+}
+
+.ListElemnet>img {
+    width: 312px;
+    height: 135px;
+}
+
+.ObjectDescribe {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 50% 50%;
+    height: 40px;
+}
+
+.ObjectName {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    height: 16px;
+    margin: 0px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    color: #122C34;
+}
+
+.ObjectOpinions {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    height:12px;
+    margin: 0px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    color: #122C34;
+}
+
+.ObjecAddress, .ObjectType {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    height:20px;
+    margin: 0px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    color: #122C34;
+}
+.ObjectType{
+    display: flex;
+    justify-content: right;
 }
