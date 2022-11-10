@@ -1,7 +1,7 @@
 .NaviBar {
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: 40% 30% 30%;
+    grid-template-columns: 40% 28% 32%;
     position: absolute;
     width: 100%;
     height: 60px;
@@ -13,14 +13,16 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     justify-content: space-between;
 }
-.LogoLink{
+
+.LogoLink {
     text-decoration: none;
     color: #122C34;
-    align-items:center;
-    display:flex;
+    align-items: center;
+    display: flex;
 
 
 }
+
 .Logo {
     text-align: center;
     font-family: 'Montserrat';
@@ -42,9 +44,12 @@
     outline: none;
     border: none;
 }
-.NavContainer{
+
+.NavContainer {
     display: flex;
+    flex-direction: row;
 }
+
 .SearchInput {
     width: 220px;
     height: 24px;
@@ -64,11 +69,10 @@
 }
 
 .MapContainer {
-
+    display: block;
     width: 83px;
-    height: 24px;
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
     text-decoration: none;
     color: #122C34;
 
@@ -76,26 +80,51 @@
 
 .EventsContainer {
     width: 126px;
-    height: 24px;
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
     text-decoration: none;
     color: #122C34;
 }
 
 .GroupContainer {
     width: 87px;
-    height: 24px;
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
     text-decoration: none;
     color: #122C34;
 
 }
 
-.UserName {
-    width: 141px;
+.UserContainer {
+    display: flex;
+    background: #ffffff;
+    border: none;
+    min-width: 180px;
+    width: auto;
+    top: 7px;
+}
+
+.UserContainer>img {
+    width: 30px;
     height: 30px;
-    display:flex;
-    align-items:center;
+    border-radius: 8px;
+    margin-left: 8px;
+}
+
+.MapContainer, .UserContainer, .EventsContainer, .GroupContainer {
+    font-family: 'Montserrat';
+    font-style: normal;
+    align-items: center;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    /* identical to box height, or 14px */
+    text-align: right;
+    letter-spacing: -0.02em;
+    height: 30px;
+    margin-right: 18px;
+    color: #122C34;
+}
+.MapContainer:hover, .UserContainer:hover, .EventsContainer:hover, .GroupContainer:hover{
+    cursor: pointer;
 }
