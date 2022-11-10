@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
+
 import style from "./ProfileMenu.module.css";
 import { Icon } from "@iconify/react";
 const ProfileMenu = (props) => {
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+  }, []);
+  const refOne = useRef();
+  const handleClickOutside = (e) => {
+    if (refOne.current !== null) {
+      if (!refOne.current.contains(e.target)) {
+        props.visible();
+      }
+    }
+  };
   return (
-    <div className={style.MenuContainer}>
+    <div className={style.MenuContainer} ref={refOne}>
       <div className={style.MenuHeader}>
         <p className={style.UserName}>Andrzej Wajda</p>
         <p className={style.Usermail}>andrju164@inet.pl</p>
@@ -21,7 +33,7 @@ const ProfileMenu = (props) => {
           </button>
         </li>
         <li>
-          <button className={style.ProfilBtn}>
+          <button onClick={() => props.OpenModal()} className={style.ProfilBtn}>
             <Icon
               icon="carbon:user-avatar-filled"
               color="rgba(0, 0, 0, 0.54)"
