@@ -152,7 +152,7 @@
     margin-top: 100px;
 }
 
-.FilterContainer {
+.FilterContainer, .SettingContainer {
     border: 1px solid rgba(0, 0, 0, 0.12);
     display: flex;
     flex-direction: column;
@@ -169,7 +169,7 @@
     border-radius: 4px;
 }
 
-.FilterHeader {
+.FilterHeader, .SettingHeader {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -183,7 +183,7 @@
     border-radius: 4px 4px 0px 0px;
 }
 
-.FilterHeaderText {
+.FilterHeaderText, .SettingHeaderText {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
@@ -199,7 +199,13 @@
     width: 100%;
 }
 
-.FormSection {
+.SettingForm {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    width: 100%;
+}
+
+.FormSection, .SettingSection {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -208,7 +214,7 @@
     height: 304px;
 }
 
-.FilterObjectType, .FilterPlaceType {
+.FilterObjectType, .FilterPlaceType, .VisibilityType, .NotifyType {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
@@ -238,7 +244,7 @@
 
 }
 
-.ObjectTypeContainer {
+.ObjectTypeContainer, .VisibilityContainer, .NotifyContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -246,6 +252,24 @@
 
     width: 116px;
     height: 42px;
+}
+.ObjectTypeContainer>input[type=radio], .PlacesContainer>input[type=checkbox]{
+    accent-color: #85C9B9;
+}
+.VisibilityContainer, .NotifyContainer {
+    width: 400px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.15px;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.VisibilityContainer>label {
+    width: 400px;
+    display: flex;
 }
 
 .GradContainer, .DistanceContainer {
@@ -307,7 +331,7 @@
     color: rgba(0, 0, 0, 0.87);
 }
 
-.SendFilterBtn, .ClearFilterBtn {
+.SendFilterBtn, .ClearFilterBtn, .SendSettingsBtn {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -332,7 +356,7 @@
     width: 124px;
 }
 
-.SendFilterBtn {
+.SendFilterBtn, .SendSettingsBtn {
     background: #122C34;
     width: 71px;
     color: #FFFFFF;
@@ -353,6 +377,40 @@
     border-radius: 4px;
 
 }
-.BackBtn:hover, .SendFilterBtn:hover, .ClearFilterBtn:hover{
+
+.BackBtn:hover, .SendFilterBtn:hover, .ClearFilterBtn:hover {
     cursor: pointer;
+}
+
+.ExceptionInput {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 5.5px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+    width: 180px;
+}
+
+.ExceptionInput::placeholder {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+
+    /* identical to box height, or 171% */
+    letter-spacing: 0.15px;
+
+    color: #122C34;
+}
+.ExceptionInput:focus{
+    outline: none;
+}
+.SearchIcon{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+}
+.NotifyContainer>input, .VisibilityContainer>input{
+    accent-color: #85C9B9;
 }

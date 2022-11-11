@@ -79,7 +79,7 @@ const Filter = (props) => {
               <input
                 type="checkbox"
                 id="all"
-                name="placeType"
+                name="all"
                 value="wszystkie"
               />
               <label htmlFor="all">Wszytskie</label>
@@ -88,7 +88,7 @@ const Filter = (props) => {
               <input
                 type="checkbox"
                 id="restaurant"
-                name="placetType"
+                name="restaurant"
                 value="miejsca"
               />
               <label htmlFor="restaurant">Miejsca</label>
@@ -97,7 +97,7 @@ const Filter = (props) => {
               <input
                 type="checkbox"
                 id="library"
-                name="placeType"
+                name="library"
                 value="wydarzenia"
               />
               <label htmlFor="library">Wydarzenia</label>
