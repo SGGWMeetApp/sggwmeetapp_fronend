@@ -5,20 +5,34 @@ import Navigation from "./MainPageNavi.js";
 import Foto from "../Assets/section2_photo.jpg";
 import { NavLink } from "react-router-dom";
 import UserProfile from "./ModalWindows/UserProfile.js";
+import Filter from "./ModalWindows/Filter";
 import ModalWindow from "./ModalWindows/Modal";
 class MainPage extends React.Component {
   state = {
     openModal: false,
+    openFilter: false,
   };
-  OpenModal = () => {
-    this.setState({
-      openModal: true,
-    });
+  OpenModal = (id) => {
+    if (id === "filter") {
+      this.setState({
+        openFilter: !this.state.openFilter,
+      });
+    } else {
+      this.setState({
+        openModal: !this.state.openModal,
+      });
+    }
   };
-  CloseModal = () => {
-    this.setState({
-      openModal: false,
-    });
+  CloseModal = (id) => {
+    if (id === "filter") {
+      this.setState({
+        openFilter: false,
+      });
+    } else {
+      this.setState({
+        openModal: false,
+      });
+    }
   };
   render() {
     return (
@@ -27,7 +41,10 @@ class MainPage extends React.Component {
         <div className={style.PlacesContainer}>
           <div className={style.SectionHeader}>
             <p className={style.ObjectNumber}>68 miejsc w okolicy</p>
-            <button className={style.FilterButton}>
+            <button
+              className={style.FilterButton}
+              onClick={this.OpenModal.bind(this, "filter")}
+            >
               <Icon
                 icon="bx:filter-alt"
                 color="#122c34"
@@ -69,6 +86,12 @@ class MainPage extends React.Component {
             onClose={!this.state.openModal}
           >
             <UserProfile CloseModal={this.CloseModal} />
+          </ModalWindow>
+          <ModalWindow
+            openModal={this.state.openFilter}
+            onClose={!this.state.openFilter}
+          >
+            <Filter CloseModal={this.CloseModal} />
           </ModalWindow>
         </div>
       </div>

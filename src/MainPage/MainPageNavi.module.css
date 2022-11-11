@@ -4,6 +4,7 @@
     grid-template-columns: 40% 28% 32%;
     position: absolute;
     width: 100%;
+    min-width: 1300px;
     height: 60px;
     left: 0px;
     top: 0px;

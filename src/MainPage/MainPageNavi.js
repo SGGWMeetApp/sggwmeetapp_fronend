@@ -63,7 +63,7 @@ class Navigation extends React.Component {
 
           <button
             className={style.UserContainer}
-            onClick={this.handleVisible.bind(this)}
+            onClick={this.handleVisible.bind(this, "filter")}
           >
             Andrzej Wajda <img src={Foto} alt="User Foto" />
           </button>
