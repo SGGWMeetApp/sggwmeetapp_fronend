@@ -6,6 +6,7 @@ body {
 .MainContainer {
     position: relative;
     width: 100%;
+    min-width: 1300px;
     height: auto;
 
     background: #FFFFFF;
@@ -15,12 +16,13 @@ body {
     width: auto;
     height: 1080px;
     background: url("../Assets/hero_bg.png") no-repeat center center;
-    background-size: 100vw 1080px;
+    min-width: 1300px;
 }
 
 .HeroSection {
     position: absolute;
     width: 70%;
+    min-width: 910px;
     height: 905px;
     left: 0;
     right: 0;
@@ -146,6 +148,7 @@ body {
     text-decoration: none;
     color: #F5EDF0;
     width: 100%;
+    
 }
 :hover .NavListElement {
     cursor: pointer;
