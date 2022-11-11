@@ -6,16 +6,22 @@ import Foto from "../Assets/section2_photo.jpg";
 import { NavLink } from "react-router-dom";
 import UserProfile from "./ModalWindows/UserProfile.js";
 import Filter from "./ModalWindows/Filter";
+import Settings from "./ModalWindows/UserSettings";
 import ModalWindow from "./ModalWindows/Modal";
 class MainPage extends React.Component {
   state = {
     openModal: false,
     openFilter: false,
+    openSetting: false,
   };
   OpenModal = (id) => {
     if (id === "filter") {
       this.setState({
         openFilter: !this.state.openFilter,
+      });
+    } else if (id === "settings") {
+      this.setState({
+        openSetting: !this.state.openSetting,
       });
     } else {
       this.setState({
@@ -27,6 +33,10 @@ class MainPage extends React.Component {
     if (id === "filter") {
       this.setState({
         openFilter: false,
+      });
+    } else if (id === "settings") {
+      this.setState({
+        openSetting: false,
       });
     } else {
       this.setState({
@@ -92,6 +102,12 @@ class MainPage extends React.Component {
             onClose={!this.state.openFilter}
           >
             <Filter CloseModal={this.CloseModal} />
+          </ModalWindow>
+          <ModalWindow
+            openModal={this.state.openSetting}
+            onClose={!this.state.openSetting}
+          >
+            <Settings CloseModal={this.CloseModal} />
           </ModalWindow>
         </div>
       </div>

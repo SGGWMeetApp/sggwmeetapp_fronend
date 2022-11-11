@@ -22,7 +22,7 @@ const ProfileMenu = (props) => {
       </div>
       <ul className={style.MenuList}>
         <li>
-          <button className={style.SettingBtn}>
+          <button onClick={() => props.OpenModal("settings")} className={style.SettingBtn}>
             <Icon
               icon="ci:settings-filled"
               color="rgba(0, 0, 0, 0.54)"
