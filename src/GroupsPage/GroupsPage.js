@@ -49,21 +49,21 @@ class GroupsPage extends React.Component {
               <tbody>
                 <tr>
                   <td>
-                    <input type="checkbox" /> Lorem Ipsum
+                    <input type="checkbox" /> <NavLink to="/profile/groups/id/members" className={style.NavGroup}>Lorem Ipsum</NavLink> 
                   </td>
                   <td>5</td>
                   <td>Jan Kowalski</td>
                   <td>2</td>
-                  <TableRow />
+                  <TableRow id="groups" />
                 </tr>
                 <tr>
                   <td>
-                    <input type="checkbox" /> Lorem Ipsum
+                    <input type="checkbox" /> <NavLink to="/profile/groups/id/members" className={style.NavGroup}>Lorem Ipsum</NavLink> 
                   </td>
                   <td>5</td>
                   <td>Jan Kowalski</td>
                   <td>2</td>
-                  <TableRow />
+                  <TableRow id="groups" />
                 </tr>
               </tbody>
             </table>
