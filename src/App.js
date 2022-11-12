@@ -6,6 +6,9 @@ import RegisterPage from "./RegisterPage/RegisterPage.js";
 import MainPage from "./MainPage/MainPage.js";
 import GroupsPage from "./GroupsPage/GroupsPage.js";
 import ObjectPage from "./ObjectPage/ObjectMainPage.js";
+import EventsPage from "./EventsPage/EventsPage.js";
+import GroupMemebers from "./GroupsPage/GroupMembers.js"
+import GroupEvents from "./GroupsPage/GroupEvent.js";
 
 const App = () => {
   return (
@@ -17,6 +20,9 @@ const App = () => {
         <Route path="/profile" element={<MainPage/>}/>
         <Route path="/profile/groups" element={<GroupsPage/>}/>
         <Route path="/profile/object" element={<ObjectPage/>}/>
+        <Route path="/profile/events" element={<EventsPage/>}/>
+        <Route path="/profile/groups/id/members" element={<GroupMemebers/>}/>
+        <Route path="/profile/groups/id/events" element={<GroupEvents/>}/>
       </Routes>
     </BrowserRouter>
   );
