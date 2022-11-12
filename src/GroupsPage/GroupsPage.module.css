@@ -37,7 +37,7 @@
 }
 
 .BackMapBtn {
-    
+
     align-items: center;
     justify-content: space-around;
     padding: 0px;
@@ -53,16 +53,18 @@
     font-size: 14px;
     line-height: 24px;
     letter-spacing: 0.4px;
-    
+
 }
-.NavLinkBtn{
+
+.NavLinkBtn {
     width: 100%;
     display: flex;
     align-items: center;
     color: #122C34;
     text-decoration: none;
-    margin-left:20px;
+    margin-left: 20px;
 }
+
 .CreateGroupBtn {
     display: flex;
     align-items: center;
@@ -106,7 +108,7 @@
     height: 56px;
     background: rgba(255, 255, 255, 0.003);
     box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
-    
+
 }
 
 .GroupsTable>thead>tr>th {
@@ -139,4 +141,31 @@
     order: 0;
     flex-grow: 0
 }
+.GroupsTable>tbody>tr>:last-child{
+    text-align:end;
+}
+input[type=checkbox] {
+    accent-color: #85C9B9;
+}
 
+.NavGroup {
+    color: rgba(0, 0, 0, 0.87);
+    text-decoration: none;
+
+}
+
+.active, .inactive {
+    margin-right: 10px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    color: #122C34;
+    text-decoration: none;
+}
+.active{
+    text-decoration: underline;
+    text-decoration-color: #85C9B9;
+}
