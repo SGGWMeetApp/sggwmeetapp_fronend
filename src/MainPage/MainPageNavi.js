@@ -47,7 +47,7 @@ class Navigation extends React.Component {
               height="18"
             />
           </NavLink>
-          <NavLink className={style.EventsContainer}>
+          <NavLink className={style.EventsContainer} to="/profile/events">
             Wydarzenia
             <Icon
               icon="ic:baseline-event"
