@@ -1,6 +1,65 @@
-#Password{
-    width:100px;
+#Password {
 }
-#RegisterWindow{
-    height: 450px;
+#RegisterWindow {
+}
+
+.LabelGroupNumber {
+   display: flex;
+   width: 400px;
+   gap: 10px;
+}
+
+.NumberInputLabel {
+   position: absolute;
+   display: flex;
+   flex-direction: column;
+   left: 150px;
+   letter-spacing: 0.15px;
+   color: rgba(0, 0, 0, 0.6);
+   background: white;
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 12px;
+   line-height: 2px;
+   z-index: 1;
+   text-align: center;
+   padding: 0 10px;
+}
+
+.InputPrefix {
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   padding: 0px 12px;
+   isolation: isolate;
+   width: 90px;
+   height: 40px;
+   border: 1px solid rgba(0, 0, 0, 0.23);
+   border-radius: 4px;
+   flex: none;
+   order: 0;
+   align-self: stretch;
+   flex-grow: 0;
+}
+
+.InputNumber {
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   padding: 0px 12px;
+   isolation: isolate;
+   width: 300px;
+   height: 40px;
+   border: 1px solid rgba(0, 0, 0, 0.23);
+   border-radius: 4px;
+   flex: none;
+   order: 0;
+   align-self: stretch;
+   flex-grow: 0;
+}
+
+.InputPrefix:focus,
+.InputNumber:focus {
+   outline: none;
 }
