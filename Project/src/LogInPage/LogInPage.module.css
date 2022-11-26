@@ -1,0 +1,293 @@
+.NaviBar {
+   position: absolute;
+   display: flex;
+   transform: matrix(-1, 0, 0, -1, 0, 0);
+   grid-row-start: 2;
+   width: 70%;
+   height: 40px;
+   margin-left: auto;
+   margin-right: auto;
+   bottom: 30px;
+}
+
+.Logo {
+   left: 0%;
+   right: 27.59%;
+   top: 8.33%;
+   bottom: 8.33%;
+
+   font-family: 'Montserrat';
+   font-style: normal;
+   font-weight: 800;
+   font-size: 20px;
+   line-height: 100%;
+
+   /* identical to box height, or 20px */
+   text-align: center;
+   letter-spacing: -0.02em;
+}
+
+.LogoIcon {
+   left: 8.33%;
+   right: 8.33%;
+   bottom: 8.33%;
+   top: 0px;
+}
+.LogoLink {
+   text-decoration: none;
+   color: #f5edf0;
+   display: flex;
+}
+.SignButton {
+   position: absolute;
+   width: 100px;
+   height: 25px;
+   top: 0px;
+   right: 0px;
+   font-family: 'Montserrat';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 14px;
+   line-height: 100%;
+   text-align: center;
+   letter-spacing: -0.02em;
+}
+
+.LogButton {
+   position: absolute;
+   width: 43px;
+   height: 14px;
+   top: 5px;
+   margin-left: 10px;
+   font-family: 'Montserrat';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 14px;
+   line-height: 100%;
+
+   /* identical to box height, or 14px */
+   text-align: center;
+   letter-spacing: -0.02em;
+
+   color: #f5edf0;
+}
+
+.NavList {
+   position: relative;
+   display: flex;
+   list-style: none;
+   justify-content: space-around;
+   top: 0px;
+   margin-top: 4px;
+   width: 85%;
+}
+
+.NavListElement {
+   width: 52px;
+   height: 14px;
+   left: 213px;
+   top: 5px;
+
+   font-family: 'Montserrat';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 16px;
+   line-height: 100%;
+
+   text-align: center;
+   letter-spacing: -0.02em;
+}
+
+:hover .NavListElement {
+   cursor: pointer;
+}
+
+.NavLink {
+   text-decoration: none;
+
+   color: #f5edf0;
+}
+
+.NavLinkButt {
+   text-decoration: none;
+   color: #122c34;
+   width: 100%;
+   display: block;
+}
+
+.LogInContainer::before {
+   content: '';
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   min-height: 600px;
+   background: url('../Assets/map_v2.PNG') no-repeat;
+   background-size: 100% 100%;
+   opacity: 0.3;
+}
+
+.LogInContainer {
+   position: absolute;
+   width: 100vw;
+   min-height: 600px;
+   height: 100vh;
+   background: url('../Assets/section3_bg.png') no-repeat;
+   transform: matrix(-1, 0, 0, -1, 0, 0);
+   background-size: 100% 100%;
+}
+
+.LogInBack {
+   display: flex;
+   background: rgba(0, 0, 0, 0.6);
+   width: 100vw;
+   height: 100vh;
+   padding-bottom: 30px;
+   align-items: center;
+   justify-content: center;
+}
+
+.LogInWindow {
+   position: absolute;
+   padding: 30px;
+   gap: 10px;
+   background: #ffffff;
+   border-radius: 8px;
+   width: 450px;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 0;
+   transform: matrix(-1, 0, 0, -1, 0, 0);
+}
+
+.Header {
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 24px;
+   line-height: 133.4%;
+   display: flex;
+   align-items: center;
+   color: rgba(0, 0, 0, 0.87);
+}
+
+.LabelGroup {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   padding: 0px;
+   width: 400px;
+   flex: none;
+   order: 0;
+   align-self: stretch;
+   flex-grow: 0;
+   padding: 13px 0;
+}
+
+.TextInputLabel {
+   position: absolute;
+   display: flex;
+   flex-direction: column;
+   left: 50px;
+   letter-spacing: 0.15px;
+   color: rgba(0, 0, 0, 0.6);
+   background: white;
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 12px;
+   line-height: 2px;
+   z-index: 1;
+   text-align: center;
+   padding: 0 10px;
+}
+
+.TextInput {
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   padding: 0px 12px;
+   isolation: isolate;
+   width: 400px;
+   height: 40px;
+   border: 1px solid rgba(0, 0, 0, 0.23);
+   border-radius: 4px;
+   flex: none;
+   order: 0;
+   align-self: stretch;
+   flex-grow: 0;
+}
+
+.TextInput:focus {
+   outline: none;
+}
+
+.CheckInputLabel {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   padding: 0px;
+   width: 344px;
+   height: 42px;
+   flex: none;
+   order: 4;
+   flex-grow: 0;
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 150%;
+   letter-spacing: 0.15px;
+   color: rgba(0, 0, 0, 0.87);
+}
+
+.CheckInput {
+   background: rgba(0, 0, 0, 0.6);
+}
+
+.FormLogInButton {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: 0px;
+
+   width: 450px;
+   height: 42px;
+   background: #122c34;
+   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+   border-radius: 4px;
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 15px;
+   line-height: 26px;
+
+   color: #f5edf0;
+   letter-spacing: 0.46px;
+}
+.LogInBtn {
+   color: #ffffff;
+   text-decoration: none;
+   width: 450px;
+}
+
+.Register {
+   width: 223px;
+   height: 21px;
+   margin-bottom: 10px;
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 300;
+   font-size: 14px;
+   line-height: 150%;
+
+   letter-spacing: 0.15px;
+
+   color: rgba(0, 0, 0, 0.87);
+}
+
+.RegisterLink {
+   color: rgba(0, 0, 0, 0.87);
+}

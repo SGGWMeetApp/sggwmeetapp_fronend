@@ -1,0 +1,743 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.MainContainer {
+    position: relative;
+    width: 100%;
+    min-width: 1300px;
+    height: auto;
+
+    background: #FFFFFF;
+}
+
+.HelloContainer {
+    width: auto;
+    height: 1080px;
+    background: url("../Assets/hero_bg.png") no-repeat center center;
+    min-width: 1300px;
+}
+
+.HeroSection {
+    position: absolute;
+    width: 70%;
+    min-width: 910px;
+    height: 905px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 30px;
+}
+
+.NaviBar {
+    position: absolute;
+    display: flex;
+    top:0px;
+    width: 100%;
+}
+
+.Logo {
+    
+    left: 0%;
+    right: 27.59%;
+    top: 8.33%;
+    bottom: 8.33%;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 100%;
+
+    /* identical to box height, or 20px */
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    
+}
+
+.LogoIcon {
+    left: 8.33%;
+    right: 8.33%;
+    bottom: 8.33%;
+    top: 0px;
+
+}
+.LogoLink{
+    text-decoration: none;
+    color: #122C34;
+    display: flex;
+
+}
+.SignButton {
+    position: absolute;
+    width: 100px;
+    height: 25px;
+    top: 0px;
+    right: 0px;
+    background: #122C34;
+    border-radius: 8px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    color: #F5EDF0;
+}
+
+.LogButton {
+    position: absolute;
+    width: 43px;
+    height: 14px;
+    top: 5px;
+    margin-left: 10px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+
+    /* identical to box height, or 14px */
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    color: #122C34;
+}
+
+.NavList {
+    position: relative;
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    top: 0px;
+    margin-top: 4px;
+    width: 85%;
+}
+
+.NavListElement {
+
+    width: 52px;
+    height: 14px;
+    left: 213px;
+    top: 5px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+
+    /* identical to box height, or 14px */
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    color: #122C34;
+}
+.NavLink {
+    text-decoration: none;
+    color: #122C34;
+}
+
+.NavLinkButt {
+    display: block;
+    text-decoration: none;
+    color: #F5EDF0;
+    width: 100%;
+    
+}
+:hover .NavListElement {
+    cursor: pointer;
+}
+
+.HelloBanner {
+    position: absolute;
+    width: 945px;
+    height: 128px;
+    left: 0px;
+    top: 198px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 100%;
+
+    /* or 64px */
+    letter-spacing: -0.02em;
+
+    color: #122C34;
+}
+
+.HelloBanner2 {
+    position: absolute;
+    width: 743px;
+    height: 36px;
+    left: 0px;
+    top: 344px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 100%;
+
+    /* identical to box height, or 36px */
+    letter-spacing: -0.02em;
+
+    color: rgba(133, 126, 123, 0.8);
+}
+
+.HelloPara {
+    position: absolute;
+    width: 535px;
+    height: 60px;
+    left: 0px;
+    top: 435px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 100%;
+
+    /* or 20px */
+    letter-spacing: -0.02em;
+
+    color: #8B9998;
+}
+
+.StatisticTable {
+    position: absolute;
+    left: 0px;
+    top: 550px;
+}
+
+.StatisticTable>thead {
+    color: #857E7B;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 100%;
+    margin-left: 20px;
+
+    /* identical to box height, or 36px */
+    letter-spacing: -0.02em;
+}
+
+.StatisticTable>tbody {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 100%;
+
+    /* or 24px */
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    color: #8B9998;
+}
+
+.SignButton2 {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 0px;
+    top: 714px;
+
+    background: #122C34;
+    border-radius: 8px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 100%;
+
+    /* identical to box height, or 24px */
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    color: #F5EDF0;
+}
+
+.VectorIcons {
+    position: absolute;
+    width: 424.13px;
+    height: 424.13px;
+    left: 410.89px;
+    top: 414px;
+
+    transform: rotate(24.06deg);
+}
+
+.PointsContainer {
+    position: absolute;
+    width: 100%;
+    height: 595px;
+    left: 0px;
+    top: 1080px;
+    background: #122C34;
+}
+
+.PointsSection {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 725px;
+    width: 900px;
+    left: 360px;
+    top: 0px;
+}
+
+.Foto {
+    position: absolute;
+    width: 445px;
+    height: 331.1px;
+    left: 0px;
+    top: 172px;
+    border: 5px solid #F5EDF0;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 4px;
+}
+
+.PointsList {
+    margin-top: 0px;
+    list-style: none;
+    height: auto;
+    left: 400px;
+}
+
+.PointsListElement {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+
+    /* identical to box height, or 32px */
+    letter-spacing: -0.02em;
+
+    color: #F5EDF0;
+}
+
+.PointsListElement::before {
+    content: "\25AA";
+    color: #5EBAC3;
+    font-size: 40px;
+    display: inline-block;
+    width: 30px;
+    margin-left: -1em;
+
+}
+
+.ItemDescription {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    width: 400px;
+    /* or 16px */
+    letter-spacing: -0.02em;
+
+    color: #857E7B
+}
+
+.Gradient {
+    position: absolute;
+    height: 305px;
+    width: 100%;
+    z-index: 3;
+    background: linear-gradient(187.33deg, #122C34 35.63%, #FFFEFE 35.63%, rgba(255, 254, 254, 0) 35.64%);
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.MapContainer::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 879px;
+    background: url("../Assets/map_v2.PNG") no-repeat;
+    background-size: 100% cover;
+    opacity: 0.5;
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.MapContainer {
+    position: absolute;
+    display: grid;
+    justify-items: center;
+    width: 100%;
+    height: 879px;
+    top: 1675px;
+    background: url("../Assets/section3_bg.png");
+    background-size: 100% 1080px;
+
+}
+
+.MapContainer::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 305px;
+    left: 0px;
+    top: 574px;
+    background: linear-gradient(187.33deg, #122C34 35.63%, #FFFEFE 35.63%, rgba(255, 254, 254, 0) 35.64%);
+    transform: matrix(1, 0, 0, -1, 0, 0);
+
+}
+
+.MapInformaton {
+    position: absolute;
+    width: 75%;
+    height: 725px;
+    z-index: inherit;
+}
+
+.MapInformatonHeader {
+    margin: 0px;
+    position: absolute;
+    width: 100%;
+    height: 96px;
+    text-justify: center;
+    top: 169px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 100%;
+
+    /* or 48px */
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    color: #122C34;
+}
+
+.PinInteresContainer {
+    display: grid;
+    justify-items: center;
+    position: absolute;
+    width: 140px;
+    height: 100px;
+    left: 10%;
+    top: 387px;
+}
+
+.PinInteres {
+    width: 76px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    height: 76px;
+    background: url("../Assets/pin.svg");
+
+}
+
+.PinFriendsContainer {
+    display: grid;
+    justify-items: center;
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    left: 550px;
+    top: 324px;
+}
+
+.PinFriends {
+    display: grid;
+    justify-items: center;
+
+    align-items: center;
+    background: url("../Assets/pin.svg") no-repeat;
+    background-size: 100%;
+    width: 100px;
+    height: 100px;
+
+}
+
+.PinLibContainer {
+    display: grid;
+    justify-items: center;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 856px;
+    top: 218px;
+}
+
+.PinLib {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    background: url("../Assets/pin.svg");
+    width: 76px;
+    height: 76px;
+}
+
+.PinRestaurantContainer {
+    position: absolute;
+    display: grid;
+    justify-items: center;
+    width: 100px;
+    height: 100px;
+    left: 994px;
+    top: 388px;
+
+}
+
+.PinRestaurant {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    background: url("../Assets/pin.svg");
+    width: 76px;
+    height: 76px;
+}
+
+.DescribePin {
+    margin: 0;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 100%;
+
+    /* or 24px */
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    color: #122C34;
+}
+
+.OpinionContainer::before {
+    content: " ";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    left: 0px;
+    top: -70px;
+    background: url("../Assets/quote_left.svg");
+
+}
+
+.OpinionContainer {
+    display: flex;
+    grid-template-columns: auto;
+    justify-items: center;
+
+    background-color: #122C34;
+    position: absolute;
+    width: 100%;
+    height: 485px;
+    top: 2550px;
+}
+
+.OpinionContainer::after {
+    content: " ";
+    position: absolute;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
+    left: 1080px;
+    top: 300px;
+    background: url("../Assets/quote_right.svg");
+
+}
+
+.OpinionSection {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.OpinionText {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 100%;
+    width: 70%;
+
+    /* or 36px */
+    text-align: center;
+    letter-spacing: -0.02em;
+
+    color: #FFFFFF;
+}
+
+.OpinionAuth {
+    position: absolute;
+    width: 70%;
+    height: 24px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 100%;
+
+    /* identical to box height, or 24px */
+    text-align: center;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+}
+
+.Next, .Previous {
+    background: #122C34;
+    border: none;
+}
+
+.Next, .Previous:hover {
+    cursor: pointer;
+}
+
+.Previous {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 100px;
+}
+
+.Next {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 100px;
+    margin-left: 67%;
+}
+
+.InformationContainer::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 305px;
+    top: -305px;
+    background: linear-gradient(187.33deg, #122C34 35.63%, #FFFEFE 35.63%, rgba(255, 254, 254, 0) 35.64%, #857E7B 35.65%);
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+
+.InformationContainer {
+    background-color: #857E7B;
+    position: absolute;
+    width: 100%;
+    height: 340px;
+    top: 3200px;
+}
+
+.InformationSection {
+    width: 70%;
+    margin: auto;
+    display: grid;
+}
+
+.Logo2 {
+    display: flex;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 100%;
+    align-items: top;
+    /* identical to box height, or 36px */
+    letter-spacing: -0.02em;
+    grid-column: 1;
+    color: #FFFFFF;
+}
+
+.InfoTable {
+    grid-column: 2;
+}
+
+.InfoTable>thead {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 100%;
+    text-align: left;
+    height: 70px;
+    /* identical to box height, or 36px */
+    letter-spacing: -0.02em;
+
+    color: #FFFFFF;
+}
+
+.InfoTable>tbody {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 100%;
+    /* identical to box height, or 24px */
+    letter-spacing: -0.02em;
+
+    color: #FFFFFF;
+}
+
+.InfoTable tr {
+    height: 40px;
+}
+
+.InfoTable th, .InfoTable td {
+    vertical-align: top;
+}
+
+.Social {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 26px;
+    width: 180px;
+    height: 43px;
+    background: #ffffff;
+    grid-column-start: 1;
+    grid-row-end: 3;
+    align-items: center;
+    flex-grow: initial;
+
+}
+
+.AuthInfo {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.AuthInfoParagraph {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 100%;
+
+    /* identical to box height, or 24px */
+    letter-spacing: -0.02em;
+
+    color: #F5EDF0;
+}
+.NavLinkFooter{
+    text-decoration: none;
+    color: #F5EDF0;
+}
