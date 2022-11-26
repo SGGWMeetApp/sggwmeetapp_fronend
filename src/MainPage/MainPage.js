@@ -27,7 +27,7 @@ class MainPage extends React.Component {
 
   componentDidMount() {
     this.getPlaces();
-    console.log(this.state.user)
+  
   }
   getPlaces = async () => {
     var localisation=[];
@@ -79,7 +79,7 @@ class MainPage extends React.Component {
         <Navigation OpenModal={this.OpenModal} />
         <div className={style.PlacesContainer}>
           <div className={style.SectionHeader}>
-            <p className={style.ObjectNumber}>68 miejsc w okolicy {console.log(this.state.localisation)}</p>
+            <p className={style.ObjectNumber}>68 miejsc w okolicy </p>
             <button
               className={style.FilterButton}
               onClick={this.OpenModal.bind(this, "filter")}

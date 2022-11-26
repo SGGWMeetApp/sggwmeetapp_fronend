@@ -10,8 +10,6 @@ const SimpleMap = (props) => {
   });
   if (!isLoaded) {
     return <div>Loading...</div>;
-  } else {
-    console.log(props.localisation);
   }
   const elements = props.localisation;
   const point=({x:28,y:48})
