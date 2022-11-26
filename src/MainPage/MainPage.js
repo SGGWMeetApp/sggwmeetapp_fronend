@@ -8,12 +8,41 @@ import UserProfile from "./ModalWindows/UserProfile.js";
 import Filter from "./ModalWindows/Filter";
 import Settings from "./ModalWindows/UserSettings";
 import ModalWindow from "./ModalWindows/Modal";
+import SimpleMap from "./Map";
+import axios from "axios";
+
 class MainPage extends React.Component {
-  state = {
-    openModal: false,
-    openFilter: false,
-    openSetting: false,
+  constructor(){
+    let user = JSON.parse(localStorage.getItem('user'));
+    super();
+    this.state = {
+      openModal: false,
+      openFilter: false,
+      openSetting: false,
+      localisation:[],
+      user:user,
+    };
+  }
+
+
+  componentDidMount() {
+    this.getPlaces();
+    console.log(this.state.user)
+  }
+  getPlaces = async () => {
+    var localisation=[];
+    const response = await axios.get("http://3.68.195.28/api/places", {
+      headers: {
+        Authorization: `Bearer ${this.state.user.token}`,
+      },
+    });
+    for(var i=0; i<response.data.places.length;i++){
+      localisation[i]=[response.data.places[i].geolocation,response.data.places[i].name]
+      
+    }
+    this.setState({localisation:localisation})
   };
+
   OpenModal = (id) => {
     if (id === "filter") {
       this.setState({
@@ -50,7 +79,7 @@ class MainPage extends React.Component {
         <Navigation OpenModal={this.OpenModal} />
         <div className={style.PlacesContainer}>
           <div className={style.SectionHeader}>
-            <p className={style.ObjectNumber}>68 miejsc w okolicy</p>
+            <p className={style.ObjectNumber}>68 miejsc w okolicy {console.log(this.state.localisation)}</p>
             <button
               className={style.FilterButton}
               onClick={this.OpenModal.bind(this, "filter")}
@@ -91,6 +120,7 @@ class MainPage extends React.Component {
           </div>
         </div>
         <div className={style.MapContainer}>
+          <SimpleMap localisation={this.state.localisation} />
           <ModalWindow
             openModal={this.state.openModal}
             onClose={!this.state.openModal}
