@@ -22,7 +22,7 @@ const Opinions = (props) => {
             width="20"
             height="20"
           />
-          Dodaj grupę
+          Dodaj opinie
         </button>
       </div>
       <div className={style.Opinions}>

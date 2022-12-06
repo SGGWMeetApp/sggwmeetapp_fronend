@@ -326,8 +326,7 @@
 }
 
 .DishAmount {
-    margin: 0px;
-    ;
+    margin-top: -60px;
     height: 19px;
     font-family: 'Roboto';
     font-style: normal;
