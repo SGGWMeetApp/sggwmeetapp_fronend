@@ -13,13 +13,18 @@ const SimpleMap = (props) => {
     return <div>Loading...</div>;
   }
   const elements = props.localisation;
+  const center ={lat: 52.16351, lng: 21.04665}
   const point=({x:28,y:48});
-  const myPosition =props.mylocalisation;
+  let myPosition =props.mylocalisation;
+  if(myPosition){
+    center.lat=myPosition.lat;
+    center.lng=myPosition.lng
+  }
   console.log(myPosition);
   return (
     <GoogleMap
       zoom={15}
-      center={{ lat: 52.16351, lng: 21.04665 }}
+      center={{ lat: center.lat, lng: center.lng }}
       mapContainerClassName={style.map_container}
       options={{ styles: MapStyle }}
     >
