@@ -1,7 +1,3 @@
-#Password {
-}
-#RegisterWindow {
-}
 
 .LabelGroupNumber {
    display: flex;
@@ -62,4 +58,13 @@
 .InputPrefix:focus,
 .InputNumber:focus {
    outline: none;
+}
+#RegisterWindow{
+   margin-bottom: 100px;
+}
+#RegisterContainer{
+height: 800px;
+}
+#RegisterInBack{
+   height: 820px;
 }

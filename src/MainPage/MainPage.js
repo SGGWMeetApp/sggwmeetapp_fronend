@@ -27,6 +27,7 @@ class MainPage extends React.Component {
 
   componentDidMount() {
     this.getPlaces();
+    this.showMyLocation()
   
   }
   getPlaces = async () => {
@@ -42,7 +43,20 @@ class MainPage extends React.Component {
     }
     this.setState({localisation:localisation})
   };
-
+  showMyLocation=()=>{
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(
+        position =>
+        this.setState(prevState=>({
+          currentLoc:{
+            ...prevState.currentLoc,
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          },
+        }))
+      )
+    }
+  }
   OpenModal = (id) => {
     if (id === "filter") {
       this.setState({
@@ -120,7 +134,7 @@ class MainPage extends React.Component {
           </div>
         </div>
         <div className={style.MapContainer}>
-          <SimpleMap localisation={this.state.localisation} />
+          <SimpleMap localisation={this.state.localisation} mylocalisation={this.state.currentLoc}/>
           <ModalWindow
             openModal={this.state.openModal}
             onClose={!this.state.openModal}

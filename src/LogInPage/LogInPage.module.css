@@ -3,7 +3,7 @@
    display: flex;
    transform: matrix(-1, 0, 0, -1, 0, 0);
    grid-row-start: 2;
-   width: 70%;
+   width: 80%;
    height: 40px;
    margin-left: auto;
    margin-right: auto;
@@ -128,9 +128,9 @@
 
 .LogInContainer {
    position: absolute;
-   width: 100vw;
+   width: 100%;
    min-height: 600px;
-   height: 100vh;
+   height: 100%;
    background: url('../Assets/section3_bg.png') no-repeat;
    transform: matrix(-1, 0, 0, -1, 0, 0);
    background-size: 100% 100%;
@@ -274,7 +274,7 @@
 }
 
 .Register {
-   width: 223px;
+   width: 253px;
    height: 21px;
    margin-bottom: 10px;
    font-family: 'Roboto';

@@ -71,8 +71,8 @@ class RegisterPage extends React.Component {
 
    render() {
       return (
-         <div className={style.LogInContainer}>
-            <div className={style.LogInBack}>
+         <div className={style.LogInContainer} id={styleRegister.RegisterContainer}>
+            <div className={style.LogInBack} id={styleRegister.RegisterInBack}>
                <Navigation />
                <div
                   className={style.LogInWindow}

@@ -1,5 +1,6 @@
 import React from "react";
 import icon from "../Assets/pin2.svg";
+import user from "../Assets/user.svg";
 import MapStyle from "./Mapstyle.js";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import style from "./Map.module.css";
@@ -12,7 +13,9 @@ const SimpleMap = (props) => {
     return <div>Loading...</div>;
   }
   const elements = props.localisation;
-  const point=({x:28,y:48})
+  const point=({x:28,y:48});
+  const myPosition =props.mylocalisation;
+  console.log(myPosition);
   return (
     <GoogleMap
       zoom={15}
@@ -28,6 +31,11 @@ const SimpleMap = (props) => {
           label={{text:marker[1] }}
         ></Marker>
       ))}
+         { myPosition&&    <Marker
+          position={{ lat: myPosition.lat, lng: myPosition.lng }}
+          icon={{url:user, labelOrigin:point }}
+          label="Moja  lokalizacja"
+        ></Marker>}
     </GoogleMap>
   );
 };
