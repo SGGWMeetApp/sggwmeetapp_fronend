@@ -14,7 +14,7 @@ class HomePage extends React.Component {
             <nav className={style.NaviBar}>
               <div className={style.Logo}>
                 <NavLink className={style.LogoLink} to="/">
-                  Brand <Icon icon="bxs:book-reader" color="#85c9b9" />
+                  SGGWMeetApp <Icon icon="bxs:book-reader" color="#85c9b9" />
                 </NavLink>
               </div>
               <ul className={style.NavList}>
@@ -184,7 +184,7 @@ class HomePage extends React.Component {
         <div className={style.InformationContainer}>
           <div className={style.InformationSection}>
             <div className={style.Logo2}>
-              Brand
+            SGGWMeetApp
               <Icon
                 icon="bxs:book-reader"
                 color="#ffffff"
