@@ -20,7 +20,6 @@ const SimpleMap = (props) => {
     center.lat=myPosition.lat;
     center.lng=myPosition.lng
   }
-  console.log(myPosition);
   return (
     <GoogleMap
       zoom={15}
