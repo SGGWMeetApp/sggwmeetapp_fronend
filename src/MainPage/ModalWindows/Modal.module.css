@@ -25,6 +25,7 @@
 .CloseBtn {
     border: none;
     background: #FFFFFF;
+    cursor: pointer;
 }
 
 .HeaderText {
@@ -253,9 +254,11 @@
     width: 116px;
     height: 42px;
 }
-.ObjectTypeContainer>input[type=radio], .PlacesContainer>input[type=checkbox]{
+
+.ObjectTypeContainer>input[type=radio], .PlacesContainer>input[type=checkbox] {
     accent-color: #85C9B9;
 }
+
 .VisibilityContainer, .NotifyContainer {
     width: 400px;
     font-family: 'Roboto';
@@ -304,7 +307,7 @@
     align-items: center;
     padding: 24px;
     gap: 8px;
-
+    cursor: pointer;
     width: 100%;
     height: 64px;
 }
@@ -345,7 +348,7 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 24px;
-
+    cursor: pointer;
     letter-spacing: 0.4px;
 
 }
@@ -362,7 +365,7 @@
     color: #FFFFFF;
 }
 
-.BackBtn {
+.BackBtn, #Back {
     border: none;
     background: #ffffff;
     display: flex;
@@ -370,7 +373,7 @@
     justify-content: center;
     align-items: center;
     padding: 0px;
-
+    cursor: pointer;
     width: 58px;
     height: 36px;
     color: #857E7B;
@@ -405,12 +408,90 @@
 
     color: #122C34;
 }
-.ExceptionInput:focus{
+
+.ExceptionInput:focus {
     outline: none;
 }
-.SearchIcon{
+
+.SearchIcon {
     border-bottom: 1px solid rgba(0, 0, 0, 0.42);
 }
-.NotifyContainer>input, .VisibilityContainer>input{
+
+.NotifyContainer>input, .VisibilityContainer>input {
     accent-color: #85C9B9;
 }
+
+.EditWindow {
+    position: absolute;
+    height: auto;
+    padding-bottom: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    width: 700px;
+    display: grid;
+    justify-items: center;
+    top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #122C34;
+}
+.EditTextLabel{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 0.15px;
+    color: rgba(0, 0, 0, 0.6);
+    background: white;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 2px;
+    z-index: 1;
+    text-align: center;
+    padding: 0 10px;
+}
+.FormContainerHeader{
+    display: flex;
+    justify-content:space-between;
+}
+#SaveChange, #Back {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+}
+#EditNumber{
+    left: 270px;
+}
+.FormContainerButtons{
+    display: flex;
+    justify-content:space-between;
+}
+#FileUploadLabel{
+    width: 350px;
+    max-width: 100%;
+    color: #444;
+    background: #fff;
+
+}
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #85c9b9;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+  
+  input[type=file]::file-selector-button:hover {
+    background: #19414d;
+    color: #fff;
+  }
+  .FileGroup{
+    display: flex;
+    flex-direction: column;
+  }
+  
