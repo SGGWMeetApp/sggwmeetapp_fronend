@@ -2,12 +2,13 @@ import React from "react";
 import style from "./MainPageNavi.module.css";
 import { NavLink } from "react-router-dom";
 import { Icon } from "@iconify/react";
-import Foto from "../Assets/section2_photo.jpg";
+import UserAvatar from "../Assets/User-avatar.svg";
 import ProfileMenu from "./ProfileMenu.js";
 class Navigation extends React.Component {
   state = {
     visible: false,
     OpenModal: this.props.OpenModal,
+    user:JSON.parse(localStorage.getItem('user')),
 
   };
 
@@ -20,6 +21,14 @@ class Navigation extends React.Component {
 
 
   render() {
+    const user = this.state.user
+    let fotoUrl=null;
+    if (user.userData.avatarFoto){
+      fotoUrl=user.userData.avatarFoto;
+    }
+    else{
+      fotoUrl=UserAvatar;
+    }
     return (
       <nav className={style.NaviBar}>
         <div className={style.Logo}>
@@ -65,10 +74,10 @@ class Navigation extends React.Component {
             className={style.UserContainer}
             onClick={this.handleVisible.bind(this, "filter")}
           >
-            Andrzej Wajda <img src={Foto} alt="User Foto" />
+            {user.userData.firstName} {user.userData.lastName} <img src={fotoUrl} alt="User Foto" />
           </button>
             {this.state.visible && (
-              <ProfileMenu visible={this.handleVisibleCl} OpenModal={this.state.OpenModal} />
+              <ProfileMenu visible={this.handleVisibleCl} OpenModal={this.state.OpenModal} user={user.userData} />
             )}
         </div>
       </nav>

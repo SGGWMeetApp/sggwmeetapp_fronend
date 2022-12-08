@@ -13,7 +13,8 @@ import axios from "axios";
 
 class MainPage extends React.Component {
   constructor(){
-    let user = JSON.parse(localStorage.getItem('user'));
+     let user = JSON.parse(localStorage.getItem('user'));
+     
     super();
     this.state = {
       openModal: false,
@@ -90,7 +91,7 @@ class MainPage extends React.Component {
   render() {
     return (
       <div className={style.MainPage}>
-        <Navigation OpenModal={this.OpenModal} />
+        <Navigation OpenModal={this.OpenModal}/>
         <div className={style.PlacesContainer}>
           <div className={style.SectionHeader}>
             <p className={style.ObjectNumber}>68 miejsc w okolicy </p>
@@ -138,8 +139,9 @@ class MainPage extends React.Component {
           <ModalWindow
             openModal={this.state.openModal}
             onClose={!this.state.openModal}
+            
           >
-            <UserProfile CloseModal={this.CloseModal} />
+            <UserProfile CloseModal={this.CloseModal} user={this.state.user.userData} />
           </ModalWindow>
           <ModalWindow
             openModal={this.state.openFilter}

@@ -28,8 +28,8 @@ const ProfileMenu = (props) => {
    return (
       <div className={style.MenuContainer} ref={refOne}>
          <div className={style.MenuHeader}>
-            <p className={style.UserName}>Andrzej Wajda</p>
-            <p className={style.Usermail}>andrju164@inet.pl</p>
+            <p className={style.UserName}>{props.user.firstName} {props.user.lastName}</p>
+            <p className={style.Usermail}>stara@foch.pl</p>
          </div>
          <ul className={style.MenuList}>
             <li>
