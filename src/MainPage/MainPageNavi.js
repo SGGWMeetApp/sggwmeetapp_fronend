@@ -8,7 +8,6 @@ import axios from 'axios';
 import Settings from "./ModalWindows/UserSettings";
 import ModalWindow from "./ModalWindows/Modal";
 import UserProfile from "./ModalWindows/UserProfile.js";
-import MainPage from "./MainPage";
 class Navigation extends React.Component {
   constructor() {
     let user = JSON.parse(localStorage.getItem("user"));

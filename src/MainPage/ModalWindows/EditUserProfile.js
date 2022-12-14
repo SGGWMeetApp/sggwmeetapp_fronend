@@ -27,7 +27,9 @@ class EditUser extends React.Component {
     const response = await axios.patch(url + this.state.id, {
       userData
     },{headers: {Authorization: `Bearer ${this.props.token}`}}).then(
+      this.props.getData,
       this.props.CloseModal(),
+      
 
     );
     
