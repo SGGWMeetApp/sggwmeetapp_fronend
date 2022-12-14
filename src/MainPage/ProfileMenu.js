@@ -24,6 +24,12 @@ const ProfileMenu = (props) => {
          if (!refOne.current.contains(e.target)) {
             props.visible();
          }
+         else{
+            setTimeout(()=>{
+               props.visible()
+            },100)
+            
+         }
       }
    };
    return (
