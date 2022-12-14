@@ -5,6 +5,7 @@ import style from './Modal.module.css';
 import ModalWindow from './Modal';
 import EditUser from './EditUserProfile';
 import { useState } from 'react';
+
 const User = (props) => {
    const [openEdit, setOpenEdit] = useState(false);
    const  OnClick =()=>{
@@ -56,7 +57,7 @@ const User = (props) => {
                   </button>
                </div>
                <div className={style.UserContact}>
-                  <p className={style.Mail}>Email: andrej164@onet.pl</p>
+                  <p className={style.Mail}>Email: {user.email}</p>
                   <p className={style.PhoneNumber}>Telefon: {user.phoneNumberPrefix} {user.phoneNumber}</p>
                </div>
                <div className={style.UserDescription}>
@@ -70,7 +71,7 @@ const User = (props) => {
             openModal={openEdit}
             onClose={!openEdit}
           >
-            <EditUser CloseModal={()=>CloseModal() } user={props.user} />
+            <EditUser CloseModal={()=>CloseModal() } getData={props.getData} user={props.user} token={props.token} id={props.id}/>
           </ModalWindow>
       </div>
    );
