@@ -1,9 +1,110 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import style from "./Modal.module.css";
+import axios from "axios";
 const Settings = (props) => {
-  return (
+  const id = props.id;
+  const url = "http://3.68.195.28/api/";
+  const [notifications, setNotifications] = useState(null);
+  const [eventNotification, setEventNot] = useState();
+  const [groupAddNotification, setGroupAddNot] = useState();
+  const [groupRemoveNotification, setGroupRemoveNot] = useState();
+  const [allNotification, setAllNot] = useState();
+
+  const Get_notification_set = async () => {
+    try {
+      const response = await axios.get(
+        url + `users/${id}/notification_settings`,
+        {
+          headers: {
+            Authorization: `Bearer ${props.token}`,
+          },
+        }
+      );
+      setNotifications(response.data);
+      setEventNot(response.data.event_notification);
+      setGroupAddNot(response.data.group_add_notification);
+      setGroupRemoveNot(response.data.group_remove_notification);
+      if (
+        response.data.event_notification &&
+        response.data.group_add_notification &&
+        response.data.group_remove_notification
+      ) {
+        setAllNot(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const Edit_notification_set = async () => {
+    try {
+      await axios
+        .patch(
+          url + `users/${id}/notification_settings`,
+          {
+            eventNotification: eventNotification,
+            groupAddNotification: groupAddNotification,
+            groupRemoveNotification: groupRemoveNotification,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${props.token}`,
+            },
+          }
+        )
+        .then(Get_notification_set(), props.CloseModal("settings"));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    Get_notification_set();
+  }, []);
+
+  const onChange = (e) => {
+    switch (e.target.name) {
+      case "eventNotification":
+        all(!eventNotification, groupAddNotification, groupRemoveNotification);
+        return setEventNot(!eventNotification);
+
+      case "groupAddNotification":
+        all(eventNotification, !groupAddNotification, groupRemoveNotification);
+        return setGroupAddNot(!groupAddNotification);
+
+      case "groupRemoveNotification":
+        all(eventNotification, groupAddNotification, !groupRemoveNotification);
+        return setGroupRemoveNot(!groupRemoveNotification);
+
+      case "allNotification":
+        if (!allNotification === true) {
+          setGroupRemoveNot(true);
+          setGroupAddNot(true);
+          setEventNot(true);
+        } else {
+          setGroupRemoveNot(false);
+          setGroupAddNot(false);
+          setEventNot(false);
+        }
+        return setAllNot(!allNotification);
+
+      default:
+        console.log(e.target.name);
+    }
+  };
+  const all = (p1, p2, p3) => {
+    if (p1 && p2 && p3) {
+      setAllNot(true);
+    } else {
+      setAllNot(false);
+    }
+  };
+  return notifications ? (
     <div className={style.SettingContainer}>
+      {console.log(
+        notifications
+      )}
       <div className={style.SettingHeader}>
         <p className={style.SettingHeaderText}>Opcje użytkownika</p>
         <button
@@ -18,7 +119,10 @@ const Settings = (props) => {
           />
         </button>
       </div>
-      <form className={style.SettingForm}>
+      <form
+        className={style.SettingForm}
+        onSubmit={() => Edit_notification_set()}
+      >
         <div className={style.SettingSection}>
           <div className={style.Visibility}>
             <p className={style.VisibilityType}>Widoczność na mapie</p>
@@ -84,35 +188,46 @@ const Settings = (props) => {
             <div className={style.NotifyContainer}>
               <input
                 type="checkbox"
-                id="allNotify"
-                name="allNotify"
-                value="wszystkie"
+                id="allNotification"
+                name="allNotification"
+                onChange={(e) => onChange(e)}
+                checked={allNotification}
               />
 
-              <label htmlFor="allNotify">Wszytskie</label>
+              <label htmlFor="allNotification">Wszytskie</label>
             </div>
             <div className={style.NotifyContainer}>
               <input
                 type="checkbox"
-                id="newEvents"
-                name="newEvents"
-                value="nowe"
+                id="eventNotification"
+                name="eventNotification"
+                onChange={(e) => onChange(e)}
+                checked={eventNotification}
               />
-              <label htmlFor="newEvents">Nowe wydarzenia</label>
-            </div>
-            <div className={style.NotifyContainer}>
-              <input type="checkbox" id="add" name="add" value="dodanie" />
-
-              <label htmlFor="add">Dodanie do grupy</label>
+              <label htmlFor="eventNotification">Nowe wydarzenia</label>
             </div>
             <div className={style.NotifyContainer}>
               <input
                 type="checkbox"
-                id="delete"
-                name="delete"
-                value="wyrzucenie"
+                id="groupAddNotification"
+                name="groupAddNotification"
+                onChange={(e) => onChange(e)}
+                checked={groupAddNotification}
               />
-              <label htmlFor="delete">Wyrzucenie z grupy</label>
+
+              <label htmlFor="groupAddNotification">Dodanie do grupy</label>
+            </div>
+            <div className={style.NotifyContainer}>
+              <input
+                type="checkbox"
+                id="groupRemoveNotification"
+                name="groupRemoveNotification"
+                onChange={(e) => onChange(e)}
+                checked={groupRemoveNotification}
+              />
+              <label htmlFor="groupRemoveNotification">
+                Wyrzucenie z grupy
+              </label>
             </div>
           </div>
         </div>
@@ -127,6 +242,8 @@ const Settings = (props) => {
         </div>
       </form>
     </div>
+  ) : (
+    <div>Loading...</div>
   );
 };
 export default Settings;
