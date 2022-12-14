@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./GroupsPage.module.css";
-import MainPageNavi from "../MainPage/MainPageNavi.js";
 import { Icon } from "@iconify/react";
 import TableRow from "./TableRow";
 import { NavLink } from "react-router-dom";
@@ -23,7 +22,6 @@ class GroupMemebers extends React.Component {
   render() {
     return (
       <div className={style.GroupContainer}>
-        <MainPageNavi />
         <div className={style.GroupsSection}>
           <div className={style.GroupsHeader}>
             <h2 className={style.Header}>Nazwa grupy </h2>

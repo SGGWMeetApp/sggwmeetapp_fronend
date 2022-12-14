@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import style from './LogInPage.module.css';
 import styleHome from '../HomePage/HomePage.module.css';
 import { Icon } from '@iconify/react';
-import { NavLink, Navigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Navigation from './Navigatio';
 
 const LOGIN_URL = 'http://3.68.195.28/api/login_check';

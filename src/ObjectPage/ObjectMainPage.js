@@ -2,7 +2,6 @@ import React from "react";
 import { Icon } from "@iconify/react";
 import style from "./ObjectMainPage.module.css";
 import styleGroup from "../GroupsPage/GroupsPage.module.css";
-import Navigation from "../MainPage/MainPageNavi";
 import Describe from "./Components/Describe";
 import Opinions from "./Components/Opinion";
 import Events from "./Components/Events";
@@ -21,7 +20,6 @@ class ObjectPage extends React.Component {
   render() {
     return (
       <div className={style.MainContainer}>
-        <Navigation />
         <div className={style.ObjectContainer}>
           <div className={style.MainBar}>
             <h1>Lorem Ipsum</h1>
