@@ -4,6 +4,7 @@ import { Icon } from '@iconify/react';
 import { useAuthContext } from '../context/AuthContext';
 import { Navigate } from 'react-router-dom';
 
+
 const ProfileMenu = (props) => {
    const { setUser } = useAuthContext();
 
@@ -29,7 +30,7 @@ const ProfileMenu = (props) => {
       <div className={style.MenuContainer} ref={refOne}>
          <div className={style.MenuHeader}>
             <p className={style.UserName}>{props.user.firstName} {props.user.lastName}</p>
-            <p className={style.Usermail}>stara@foch.pl</p>
+            <p className={style.Usermail}>{props.user.email}</p>
          </div>
          <ul className={style.MenuList}>
             <li>

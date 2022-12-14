@@ -3,25 +3,35 @@ import styleRegister from "../../RegisterPage/RegisterPage.module.css";
 import styleLogIn from "../../LogInPage/LogInPage.module.css";
 import style from "./Modal.module.css";
 import { Icon } from "@iconify/react";
+import axios from "axios";
+const url = "http://3.68.195.28/api/users/";
 class EditUser extends React.Component {
-    state={
-        firstName:this.props.user.firstName,
-        lastName:this.props.user.lastName,
-        prefix:this.props.user.phoneNumberPrefix,
-        phoneNumber:this.props.user.phoneNumber,
-        description:this.props.user.description,
-        file:this.props.user.avatarUrl
+  state = {
+    firstName: this.props.user.firstName,
+    lastName: this.props.user.lastName,
+    phoneNumberPrefix: this.props.user.phoneNumberPrefix,
+    phoneNumber: this.props.user.phoneNumber,
+    description: this.props.user.description,
+    id: this.props.id,
+  };
+  update(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+      error: null,
+    });
+  }
+  onSubmit = async () => {
+    const { firstName, lastName, phoneNumberPrefix, phoneNumber, description} =
+      this.state;
+    const userData={"firstName":firstName, "lastName":lastName,"phoneNumberPrefix": phoneNumberPrefix, "phoneNumber":phoneNumber, "description": description}
+    const response = await axios.patch(url + this.state.id, {
+      userData
+    },{headers: {Authorization: `Bearer ${this.props.token}`}}).then(
+      this.props.CloseModal(),
 
-    }
-    fileSelectedHandler =e =>{
-        this.setState({
-            file:e.target.files[0]
-        });
-        console.log(e.target.files[0])
-    }
-    fileUploadHandler=()=>{
-
-    }
+    );
+    
+  };
   render() {
     return (
       <div className={style.EditWindow}>
@@ -40,18 +50,7 @@ class EditUser extends React.Component {
               />
             </button>
           </div>
-          <form /*onSubmit={(e) => this.handleSubmit(e)}*/>
-          <div className={style.FileGroup} >
-              <label id={style.FileUploadLabel}>Dodaj/edytuj zdjęcie profilowe</label>
-              
-              <input
-                className={styleLogIn.FileUpload}
-                type="file"
-                name="avatar"
-                accept="image/png, image/jpg"
-                onChange={this.fileSelectedHandler}
-              ></input>
-            </div>
+          <form onSubmit={()=>this.onSubmit()}>
             <div className={styleLogIn.LabelGroup}>
               <label className={style.EditTextLabel}>Imię </label>
               <input
@@ -59,7 +58,7 @@ class EditUser extends React.Component {
                 value={this.state.firstName}
                 type="text"
                 name="firstName"
-                onChange={(e) => this.getUserData(e)}
+                onChange={(e) => this.update(e)}
               ></input>
             </div>
             <div className={styleLogIn.LabelGroup}>
@@ -69,17 +68,17 @@ class EditUser extends React.Component {
                 value={this.state.lastName}
                 type="text"
                 name="lastName"
-                onChange={(e) => this.getUserData(e)}
+                onChange={(e) => this.update(e)}
               ></input>
             </div>
             <div className={styleRegister.LabelGroupNumber}>
               <label className={style.EditTextLabel}>Prefix </label>
               <input
                 className={styleRegister.InputPrefix}
-                value={this.state.prefix}
-                type="tel"
+                value={this.state.phoneNumberPrefix}
+                type="text"
                 name="phoneNumberPrefix"
-                onChange={(e) => this.getUserData(e)}
+                onChange={(e) => this.update(e)}
               ></input>
               <label
                 className={styleRegister.NumberInputLabel}
@@ -92,7 +91,7 @@ class EditUser extends React.Component {
                 value={this.state.phoneNumber}
                 type="tel"
                 name="phoneNumber"
-                onChange={(e) => this.getUserData(e)}
+                onChange={(e) => this.update(e)}
               ></input>
             </div>
             <div className={styleLogIn.LabelGroup}>
@@ -102,19 +101,20 @@ class EditUser extends React.Component {
               <input
                 className={styleLogIn.TextInput}
                 value={this.state.description}
-
                 name="description"
-                onChange={(e) => this.getUserData(e)}
+                onChange={(e) => this.update(e)}
               ></input>
             </div>
             <div className={style.FormContainerButtons}>
               <button
+
                 className={styleLogIn.FormLogInButton}
                 id={style.SaveChange}
+
               >
                 Zapisz zmiany
               </button>
-              <button
+              <button type="button"
                 className={styleLogIn.FormLogInButton}
                 id={style.Back}
                 onClick={() => this.props.CloseModal()}
