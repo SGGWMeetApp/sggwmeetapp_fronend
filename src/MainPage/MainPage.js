@@ -1,7 +1,6 @@
 import { Icon } from "@iconify/react";
 import React from "react";
 import style from "./MainPage.module.css";
-import Navigation from "./MainPageNavi.js";
 import Foto from "../Assets/section2_photo.jpg";
 import { NavLink } from "react-router-dom";
 import Filter from "./ModalWindows/Filter";
@@ -15,33 +14,41 @@ class MainPage extends React.Component {
     super();
     this.state = {
       openFilter: false,
-      localisation: [],
+      localisation: null,
       userToken: user.token,
       userId: user.userData.id,
+      categories:null,
+      categoryObjectFilter:"",
     };
   }
-
+  setFiler=(filter)=>{
+    this.setState({categoryObjectFilter:"categoryCodes[]=CINEMA"})
+  }
   componentDidMount() {
+    this.setFiler();
     this.getPlaces();
     this.showMyLocation();
   }
 
   getPlaces = async () => {
     var localisation = [];
-    const response = await axios.get("http://3.68.195.28/api/places", {
+    const response = await axios.get(`http://3.68.195.28/api/places/?${this.state.categoryObjectFilter}`, {
       headers: {
         Authorization: `Bearer ${this.state.userToken}`,
       },
     });
-    for (var i = 0; i < response.data.places.length; i++) {
-      localisation[i] = [
-        response.data.places[i].geolocation,
-        response.data.places[i].name,
-      ];
-    }
+    localisation = response.data.places.map((elem) => [
+      elem.geolocation,
+      elem.name,
+      elem.locationCategoryCodes,
+    ]);
     this.setState({ localisation: localisation });
+    const category = localisation.map((elem) => [].concat(elem[2])).flat(1);
+    const catFilter = category.filter(
+      (item, index) => category.indexOf(item) === index
+    );
+   this.setState({categories:catFilter});
   };
-
 
   showMyLocation = () => {
     if (navigator.geolocation) {
@@ -57,14 +64,13 @@ class MainPage extends React.Component {
     }
   };
 
-
   OpenModal = (id) => {
     if (id === "filter") {
       this.setState({
         openFilter: !this.state.openFilter,
       });
+    }
   };
-  }
 
   CloseModal = (id) => {
     if (id === "filter") {
@@ -72,11 +78,10 @@ class MainPage extends React.Component {
         openFilter: false,
       });
     }
-  }
+  };
 
-  
   render() {
-    return (
+    return this.state.localisation ? (
       <div className={style.MainPage}>
         <div className={style.PlacesContainer}>
           <div className={style.SectionHeader}>
@@ -129,10 +134,17 @@ class MainPage extends React.Component {
             openModal={this.state.openFilter}
             onClose={!this.state.openFilter}
           >
-            <Filter CloseModal={this.CloseModal} />
+            <Filter
+              CloseModal={this.CloseModal}
+              localisation={this.state.localisation}
+              categories={this.state.categories}
+              getMap={this.getPlaces}
+            />
           </ModalWindow>
         </div>
       </div>
+    ) : (
+      <div>Loading...</div>
     );
   }
 }
