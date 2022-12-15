@@ -112,7 +112,7 @@ class GroupMemebers extends React.Component {
               </thead>
               <tbody>
                 {this.state.members.length > 0 ? this.state.members.map(member =>
-                  <tr>
+                  <tr key={member.id}>
                     <td>
                       <input type="checkbox" /> {member.firstName + " " + member.lastName}
                     </td>

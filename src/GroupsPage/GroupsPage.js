@@ -78,7 +78,7 @@ class GroupsPage extends React.Component {
               <tbody>
                 {this.state.groups.length > 0 ? this.state.groups.map(group =>
 
-                  <tr>
+                  <tr key={group.id}>
                     <td>
                       <input type="checkbox" /> <NavLink to={`/profile/groups/${group.id}/members`} className={style.NavGroup}>{group.name}</NavLink>
                     </td>

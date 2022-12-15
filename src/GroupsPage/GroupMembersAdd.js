@@ -2,10 +2,11 @@ import React from "react";
 import style from "./GroupsPage.module.css";
 import { Icon } from "@iconify/react";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
-const CREATE_URL = 'http://3.68.195.28/api/groups';
+const ADD_URL = 'http://3.68.195.28/api/groups';
 
-class GroupsAdd extends React.Component {
+class GroupMembersAdd extends React.Component {
 
 
     constructor(props) {
@@ -13,10 +14,12 @@ class GroupsAdd extends React.Component {
 
         super(props);
         this.state = {
+            filter: "",
             id: undefined,
-            name: '',
             userToken: user.token,
             error: null,
+            users: [],
+            timer: null,
         };
     }
 
@@ -24,33 +27,50 @@ class GroupsAdd extends React.Component {
         this.setState({ id: +window.location.pathname.split("/")[3] })
     }
 
-    async handleSubmit(e) {
-        e.preventDefault();
-
-        const response = await fetch(CREATE_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${this.state.userToken}`, },
-            body: JSON.stringify({
-                name: this.state.name,
-            }),
-        });
-
-        const json = await response.json();
-        if (response.ok) {
-            window.history.go("/profile/groups")
-        }
-        if (!response.ok) {
-            this.setState({
-                error: json.message,
-            });
-        }
-    }
-
     getFormData(e) {
         this.setState({
             [e.target.name]: e.target.value,
             error: null,
         });
+        if (e.target.value.length > 0) {
+            clearTimeout(this.state.timer);
+
+            const newTimeout = setTimeout(() => {
+                this.getMembers({ id: this.state.id, filter: this.state.filter });
+            }, 500);
+
+            this.setState({ timer: newTimeout });
+        }
+        else {
+            this.setState({ users: [] });
+        }
+    }
+
+    getMembers = async ({ id, filter }) => {
+        const response = await axios.get(`http://3.68.195.28/api/groups/${id}/users/eligible${filter.length > 0 ? "?namePhrase=" + filter : ''}`, {
+            headers: {
+                Authorization: `Bearer ${this.state.userToken}`,
+            },
+        });
+        if (response.data.users.length > 0) {
+            this.setState({ users: response.data.users })
+        }
+
+    };
+
+    handleClick = async (userId) => {
+        const response = await fetch(`http://3.68.195.28/api/groups/${this.state.id}/users`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${this.state.userToken}`,
+            },
+            body: JSON.stringify({
+                userId: userId,
+            }),
+        });
+        if (response.data.firstName) {
+            window.history.pushState(`/profile/groups/${this.state.id}/members`);
+        }
     }
 
     render() {
@@ -74,23 +94,54 @@ class GroupsAdd extends React.Component {
                         </div>
                     </div>
                     <div>
-                        <form onSubmit={(e) => this.handleSubmit(e)}>
+                        <form onSubmit={(e) => e.preventDefault()}>
                             <div className={style.LabelGroup}>
-                                <label className={style.TextInputLabel}>Nazwa grupy</label>
+                                <label className={style.TextInputLabel}>Szukaj</label>
                                 <input
                                     className={style.TextInput}
-                                    value={this.state.name}
+                                    value={this.state.filter}
                                     type="text"
-                                    name="name"
+                                    name="filter"
                                     onChange={(e) => this.getFormData(e)}
                                 ></input>
                             </div>
-                            <button className={style.FormSubmitButton}>Utwórz</button>
                         </form>
+                    </div>
+                    <div>
+                        <table className={style.GroupsTable}>
+                            <thead>
+                                <tr>
+                                    <th>Imię i nazwisko</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.users.length > 0 ? this.state.users.map(user =>
+                                    <tr key={user.id}>
+                                        <td>
+                                            {user.firstName + " " + user.lastName}
+                                        </td>
+                                        <td className={style.AddButtonRow}>
+                                            <button className={style.CreateGroupBtn} onClick={() => { this.handleClick(user.id) }}>
+                                                <Icon
+                                                    icon="ant-design:plus-outlined"
+                                                    color="white"
+                                                    width="20"
+                                                    height="20"
+                                                />
+                                                Dodaj
+                                            </button>
+                                        </td>
+                                    </tr>)
+                                    : <tr className={style.EmptyRow}>
+                                        Wyszukaj za pomocą pola powyżej!
+                                    </tr>}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         );
     }
 }
-export default GroupsAdd;
+export default GroupMembersAdd;

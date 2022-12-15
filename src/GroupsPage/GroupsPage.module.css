@@ -251,3 +251,17 @@ input[type="checkbox"] {
   color: #f5edf0;
   letter-spacing: 0.46px;
 }
+
+.EmptyRow {
+  display: flex;
+  margin-top: 2.5rem;
+  font-weight: bold;
+  justify-content: center;
+}
+
+.AddButtonRow {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  height: inherit;
+}
