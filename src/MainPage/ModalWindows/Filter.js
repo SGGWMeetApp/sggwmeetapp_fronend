@@ -3,75 +3,81 @@ import { Icon } from "@iconify/react";
 import style from "./Modal.module.css";
 import Slider from "@mui/material/Slider";
 import { useState } from "react";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 const Filter = (props) => {
-  const [ready, setReady] =useState(null)
+  const [ready, setReady] = useState(null);
   const [value1, setValue1] = useState([1, 5]);
-  const [value2, setValue2] = useState([10, 3000]);
+  const [value2, setValue2] = useState(300000000);
   const categories = props.categories;
-  var checkCategory=[];
-  const [PlacesFilter,setPLacesFilter]=useState(categories.map(cat=>[cat,""]))
+  var checkCategory = [];
+  const [change, setChange] = useState(false);
+  const [allObject, setAllObject] = useState(false);
+  const [PlacesFilter, setPlacesFilter] = useState(
+    categories.map((cat) => [cat, ""])
+  );
   const handleChange = (e, newValue) => {
     setValue1(newValue);
   };
-  const handleChangeDst = (e, newValue) => {
-    setValue2(newValue);
+  const handleChangeDst = (e) => {
+    setValue2(e.target.value);
   };
 
-  const onChange=(e)=>{
-    PlacesFilter[e.target.id][1]=!PlacesFilter[e.target.id][1]
-    setPLacesFilter(PlacesFilter);
-    console.log(PlacesFilter[e.target.id][1]);
-  }
-
-
-  const onSubmit=()=>{
-    for(var i=0;i<PlacesFilter.length;i++){
-      if(PlacesFilter[i][1]===true){
-        checkCategory.push(PlacesFilter[i][0])
+  const onChange = (e) => {
+    if (e.target.name === "all") {
+      setAllObject(!allObject);
+      if (allObject !== true) {
+        setPlacesFilter(categories.map((cat) => [cat, true]));
+      }
+    } else {
+      setChange(!change);
+      PlacesFilter[e.target.id][1] = !PlacesFilter[e.target.id][1];
+      setPlacesFilter(PlacesFilter);
+      if (PlacesFilter[e.target.id][1] === false) {
+        setAllObject(false);
       }
     }
-    console.log(PlacesFilter);
+  };
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    for (var i = 0; i < PlacesFilter.length; i++) {
+      if (PlacesFilter[i][1] === true) {
+        checkCategory.push(PlacesFilter[i][0]);
+      }
+    }
     sessionStorage.setItem("objFilter", JSON.stringify(checkCategory));
+    sessionStorage.setItem("objDistance", JSON.stringify(value2));
     props.getMap();
+    props.CloseModal("filter");
+  };
+
+  function ResetFilter() {
+    setPlacesFilter(categories.map((cat) => [cat, false]));
+    setValue2(30000000);
   }
 
-
-  function ResetFilter(){
-    setPLacesFilter(categories.map((cat)=>[cat, false]));
-  }
-
-
-  function GetItemStorage(key){
-    setReady("ss")
-    const sessionS=sessionStorage.getItem(key);
-    if(sessionS&& sessionS!==[]){
-      for(var i=0;i<PlacesFilter.length;i++){
-        if(sessionS.includes(PlacesFilter[i][0])){
-          PlacesFilter[i][1]=true;
-        
-        }
-        else{
-          PlacesFilter[i][1]=false;
-         
+  function GetItemStorage(key) {
+    setReady("ss");
+    const sessionS = sessionStorage.getItem(key);
+    if (sessionS && sessionS !== []) {
+      for (var i = 0; i < PlacesFilter.length; i++) {
+        if (sessionS.includes(PlacesFilter[i][0])) {
+          PlacesFilter[i][1] = true;
+        } else {
+          PlacesFilter[i][1] = false;
         }
       }
+    } else {
+      setPlacesFilter(categories.map((cat) => [cat, false]));
     }
-    else{
-      setPLacesFilter(categories.map((cat)=>[cat, false]));
-    }
-    console.log(PlacesFilter)
   }
 
-  
-  useEffect(()=>{
+  useEffect(() => {
     GetItemStorage("objFilter");
-    
-  },[])
+  }, []);
 
-
-  return (ready==="ss"?
+  return ready === "ss" ? (
     <div className={style.FilterContainer}>
-       {console.log(PlacesFilter)}
       <div className={style.FilterHeader}>
         <p className={style.FilterHeaderText}>Opcje filtrowania</p>
         <button
@@ -86,7 +92,7 @@ const Filter = (props) => {
           />
         </button>
       </div>
-      <form className={style.FilterForm} onSubmit={()=>onSubmit()}>
+      <form className={style.FilterForm} onSubmit={onSubmit}>
         <div className={style.FormSection}>
           <div className={style.ObjectType}>
             <p className={style.FilterObjectType}>Typy obiektów</p>
@@ -137,7 +143,14 @@ const Filter = (props) => {
           <div className={style.PlacesType}>
             <p className={style.FilterPlaceType}>Typy miejsc</p>
             <div className={style.PlacesContainer}>
-              <input type="checkbox" id="all" name="all" value="wszystkie" />
+              <input
+                type="checkbox"
+                id="all"
+                name="all"
+                value="wszystkie"
+                checked={allObject}
+                onChange={(e) => onChange(e)}
+              />
               <label htmlFor="all">Wszytskie</label>
             </div>
             {categories.map((category, ind) => (
@@ -146,30 +159,40 @@ const Filter = (props) => {
                   type="checkbox"
                   id={ind}
                   name={category}
-                  onChange={(e)=>onChange(e)}
+                  onChange={(e) => onChange(e)}
                   checked={PlacesFilter[ind][1]}
                 />
-                <label htmlFor={category}>{category.charAt(0) + category.slice(1).toLowerCase()}</label>
+                <label htmlFor={category}>
+                  {category.charAt(0) + category.slice(1).toLowerCase()}
+                </label>
               </div>
             ))}
           </div>
           <div className={style.DistanceContainer}>
             <p className={style.DistanceText}>Odległość</p>
             <Slider
-              min={10}
-              max={3000}
+              aria-label="Custom marks"
+              defaultValue={1000}
               step={10}
-              disableSwap
-              className={style.Slider}
-              value={value2}
-              onChange={handleChangeDst}
+              max={6000}
+              min={10}
               valueLabelDisplay="on"
+              value={value2}
+              onChange={(e)=>handleChangeDst(e)}
             />
           </div>
         </div>
         <div className={style.FilterBtn}>
-          <button  className={style.SendFilterBtn}>Filtruj</button>
-          <button type="button" className={style.ClearFilterBtn} onClick={()=>ResetFilter()}>Wyczyść filtry</button>
+          <button type="submit" className={style.SendFilterBtn}>
+            Filtruj
+          </button>
+          <button
+            type="button"
+            className={style.ClearFilterBtn}
+            onClick={() => ResetFilter()}
+          >
+            Wyczyść filtry
+          </button>
           <button
             onClick={() => props.CloseModal("filter")}
             className={style.BackBtn}
@@ -178,7 +201,9 @@ const Filter = (props) => {
           </button>
         </div>
       </form>
-    </div>:<div>Loading...</div>
+    </div>
+  ) : (
+    <div>Loading...</div>
   );
 };
 export default Filter;

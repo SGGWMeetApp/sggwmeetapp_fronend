@@ -10,29 +10,36 @@ import axios from "axios";
 class MainPage extends React.Component {
   constructor() {
     let user = JSON.parse(localStorage.getItem("user"));
-
     super();
     this.state = {
       openFilter: false,
       localisation: null,
+      places:null,
       userToken: user.token,
       userId: user.userData.id,
-      categories:null,
-      categoryObjectFilter:"",
+      categories:[],
     };
   }
-  setFiler=(filter)=>{
-    this.setState({categoryObjectFilter:"categoryCodes[]=CINEMA"})
-  }
   componentDidMount() {
-    this.setFiler();
     this.getPlaces();
     this.showMyLocation();
   }
 
   getPlaces = async () => {
     var localisation = [];
-    const response = await axios.get(`http://3.68.195.28/api/places/?${this.state.categoryObjectFilter}`, {
+    const obj =JSON.parse(sessionStorage.getItem("objFilter"));
+    var objFilter ="";
+    if(obj&&obj.length>0){
+      for(var i=0;i<obj.length;i++){
+        if(i===0){
+          objFilter= objFilter.concat("categoryCodes[]="+ (obj[0]).toString())
+        }
+        else{
+         objFilter= objFilter.concat("&categoryCodes[]="+obj[i])
+        }
+      }
+    }
+    const response = await axios.get(`http://3.68.195.28/api/places/?${objFilter}`, {
       headers: {
         Authorization: `Bearer ${this.state.userToken}`,
       },
@@ -43,13 +50,26 @@ class MainPage extends React.Component {
       elem.locationCategoryCodes,
     ]);
     this.setState({ localisation: localisation });
-    const category = localisation.map((elem) => [].concat(elem[2])).flat(1);
+    this.getCategory();
+  };
+  
+  getCategory =async()=>{
+    var places=[];
+    const res = await axios.get(`http://3.68.195.28/api/places/?`, {
+      headers: {
+        Authorization: `Bearer ${this.state.userToken}`,
+      },
+    });
+    places = res.data.places.map((elem) => [
+      elem.locationCategoryCodes,
+    ]);
+    this.setState({ places: places });
+    const category = places.map((elem) => [].concat(elem[0])).flat(1);
     const catFilter = category.filter(
       (item, index) => category.indexOf(item) === index
     );
-   this.setState({categories:catFilter});
-  };
-
+   this.setState({categories:catFilter})
+  }
   showMyLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) =>
@@ -129,6 +149,7 @@ class MainPage extends React.Component {
           <SimpleMap
             localisation={this.state.localisation}
             mylocalisation={this.state.currentLoc}
+            distance ={JSON.parse(sessionStorage.getItem("objDistance"))}
           />
           <ModalWindow
             openModal={this.state.openFilter}

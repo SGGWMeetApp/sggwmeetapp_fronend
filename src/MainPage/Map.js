@@ -1,24 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import icon from "../Assets/pin2.svg";
 import user from "../Assets/user.svg";
 import MapStyle from "./Mapstyle.js";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import style from "./Map.module.css";
+import { useEffect } from "react";
 
 const SimpleMap = (props) => {
+  const [libraries, setLib] = useState(["geometry"]);
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+    libraries,
   });
+
+  const google = window.google;
+  const [elements,setElements] = useState(props.localisation);
+  const dist = props.distance;
+  const center = { lat: 52.16351, lng: 21.04665 };
+  const point = { x: 28, y: 48 };
+  let myPosition = props.mylocalisation;
+  if (myPosition) {
+    center.lat = myPosition.lat;
+    center.lng = myPosition.lng;
+  }
+  function distance() {
+    if (myPosition) {
+      if (dist !== [])
+      {
+        setElements(elements.filter(
+          (element) =>
+            dist >=
+            google.maps.geometry.spherical.computeDistanceBetween(myPosition, {
+              lat: element[0].latitude,
+              lng: element[0].longitude,
+            })
+        ));
+      }
+    }
+  }
+  useEffect(() => {
+    distance();
+  }, [dist, myPosition]);
   if (!isLoaded) {
     return <div>Loading...</div>;
-  }
-  const elements = props.localisation;
-  const center ={lat: 52.16351, lng: 21.04665}
-  const point=({x:28,y:48});
-  let myPosition =props.mylocalisation;
-  if(myPosition){
-    center.lat=myPosition.lat;
-    center.lng=myPosition.lng
   }
   return (
     <GoogleMap
@@ -31,16 +55,19 @@ const SimpleMap = (props) => {
         <Marker
           key={index}
           position={{ lat: marker[0].latitude, lng: marker[0].longitude }}
-          icon={{url:icon, labelOrigin:point }}
-          label={{text:marker[1] }}
+          icon={{ url: icon, labelOrigin: point }}
+          label={{ text: marker[1] }}
         ></Marker>
       ))}
-         { myPosition&&    <Marker
+      {myPosition && (
+        <Marker
           position={{ lat: myPosition.lat, lng: myPosition.lng }}
-          icon={{url:user, labelOrigin:point }}
+          icon={{ url: user, labelOrigin: point }}
           label="Moja  lokalizacja"
-        ></Marker>}
+        ></Marker>
+      )}
     </GoogleMap>
   );
 };
+
 export default SimpleMap;

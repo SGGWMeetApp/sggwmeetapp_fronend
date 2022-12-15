@@ -1,7 +1,7 @@
 .NaviBar {
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: 40% 28% 32%;
+    grid-template-columns: 40% 32%;
     position: absolute;
     width: 100%;
     min-width: 1300px;

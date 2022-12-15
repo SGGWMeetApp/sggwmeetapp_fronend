@@ -94,16 +94,7 @@ class Navigation extends React.Component {
             Brand <Icon icon="bxs:book-reader" color="#85c9b9" />
           </NavLink>
         </div>
-        <div className={style.InputContainer}>
-          <input className={style.SearchInput} placeholder="Wyszukaj..." />
-          <Icon
-            className={style.SearchIcon}
-            icon="bx:search"
-            width="24px"
-            height="24px"
-            color="122C34"
-          />
-        </div>
+
         <div className={style.NavContainer}>
           <NavLink className={style.MapContainer} to="/profile">
             Mapa
