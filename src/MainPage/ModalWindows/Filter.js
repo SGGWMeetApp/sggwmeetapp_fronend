@@ -9,7 +9,7 @@ const Filter = (props) => {
   const [value2, setValue2] = useState([10, 3000]);
   const categories = props.categories;
   var checkCategory=[];
-  var PlacesFilter=(categories.map(cat=>[cat,""]))
+  const [PlacesFilter,setPLacesFilter]=useState(categories.map(cat=>[cat,""]))
   const handleChange = (e, newValue) => {
     setValue1(newValue);
   };
@@ -19,7 +19,8 @@ const Filter = (props) => {
 
   const onChange=(e)=>{
     PlacesFilter[e.target.id][1]=!PlacesFilter[e.target.id][1]
-    console.log(PlacesFilter)
+    setPLacesFilter(PlacesFilter);
+    console.log(PlacesFilter[e.target.id][1]);
   }
 
 
@@ -36,27 +37,27 @@ const Filter = (props) => {
 
 
   function ResetFilter(){
-    PlacesFilter=(categories.map((cat)=>[cat, false]));
-    console.log(PlacesFilter);
+    setPLacesFilter(categories.map((cat)=>[cat, false]));
   }
 
 
   function GetItemStorage(key){
-    console.log("dsd")
     setReady("ss")
     const sessionS=sessionStorage.getItem(key);
     if(sessionS&& sessionS!==[]){
       for(var i=0;i<PlacesFilter.length;i++){
-        if(PlacesFilter[i].some(item=>sessionS.includes(item))){
+        if(sessionS.includes(PlacesFilter[i][0])){
           PlacesFilter[i][1]=true;
+        
         }
         else{
           PlacesFilter[i][1]=false;
+         
         }
       }
     }
     else{
-      PlacesFilter=(categories.map((cat)=>[cat, false]));
+      setPLacesFilter(categories.map((cat)=>[cat, false]));
     }
     console.log(PlacesFilter)
   }
@@ -64,11 +65,13 @@ const Filter = (props) => {
   
   useEffect(()=>{
     GetItemStorage("objFilter");
-  })
+    
+  },[])
 
 
   return (ready==="ss"?
     <div className={style.FilterContainer}>
+       {console.log(PlacesFilter)}
       <div className={style.FilterHeader}>
         <p className={style.FilterHeaderText}>Opcje filtrowania</p>
         <button
@@ -143,11 +146,9 @@ const Filter = (props) => {
                   type="checkbox"
                   id={ind}
                   name={category}
-                  value={category}
                   onChange={(e)=>onChange(e)}
                   checked={PlacesFilter[ind][1]}
                 />
-                {console.log(PlacesFilter[ind])}
                 <label htmlFor={category}>{category.charAt(0) + category.slice(1).toLowerCase()}</label>
               </div>
             ))}
