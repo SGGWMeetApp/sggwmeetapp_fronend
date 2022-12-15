@@ -3,7 +3,36 @@ import style from "./GroupsPage.module.css";
 import { Icon } from "@iconify/react";
 import TableRow from "./TableRow";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 class GroupsPage extends React.Component {
+
+  constructor(props) {
+    let user = JSON.parse(localStorage.getItem("user"));
+
+    super(props);
+    this.state = {
+      groups: [],
+      userToken: user.token,
+      error: null,
+    };
+  }
+
+  componentDidMount() {
+    this.getGroups();
+  }
+
+  getGroups = async () => {
+    const response = await axios.get("http://3.68.195.28/api/groups", {
+      headers: {
+        Authorization: `Bearer ${this.state.userToken}`,
+      },
+    });
+    if (response.data.groups.length > 0) {
+      this.setState({ groups: response.data.groups });
+    }
+
+  };
+
   render() {
     return (
       <div className={style.GroupContainer}>
@@ -23,13 +52,15 @@ class GroupsPage extends React.Component {
                 </NavLink>
               </button>
               <button className={style.CreateGroupBtn}>
-                <Icon
-                  icon="ant-design:plus-outlined"
-                  color="white"
-                  width="20"
-                  height="20"
-                />
-                Dodaj grupę
+                <NavLink className={style.NavLinkBtn + " " + style.NavLinkBtnGroupAdd} to="/profile/groups/add">
+                  <Icon
+                    icon="ant-design:plus-outlined"
+                    color="white"
+                    width="20"
+                    height="20"
+                  />
+                  Dodaj grupę
+                </NavLink>
               </button>
             </div>
           </div>
@@ -45,29 +76,24 @@ class GroupsPage extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>
-                    <input type="checkbox" /> <NavLink to="/profile/groups/id/members" className={style.NavGroup}>Lorem Ipsum</NavLink> 
-                  </td>
-                  <td>5</td>
-                  <td>Jan Kowalski</td>
-                  <td>2</td>
-                  <TableRow id="groups" />
-                </tr>
-                <tr>
-                  <td>
-                    <input type="checkbox" /> <NavLink to="/profile/groups/id/members" className={style.NavGroup}>Lorem Ipsum</NavLink> 
-                  </td>
-                  <td>5</td>
-                  <td>Jan Kowalski</td>
-                  <td>2</td>
-                  <TableRow id="groups" />
-                </tr>
+                {this.state.groups.length > 0 ? this.state.groups.map(group =>
+
+                  <tr key={group.id}>
+                    <td>
+                      <input type="checkbox" /> <NavLink to={`/profile/groups/${group.id}/members`} className={style.NavGroup}>{group.name}</NavLink>
+                    </td>
+                    <td>{group.memberCount}</td>
+                    <td>{group.adminData.firstName + " " + group.adminData.lastName}</td>
+                    <td>{group.incomingEventsCount}</td>
+                    <TableRow id="groups" />
+                  </tr>
+
+                ) : null}
               </tbody>
             </table>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }
