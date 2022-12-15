@@ -23,13 +23,15 @@ class GroupsPage extends React.Component {
                 </NavLink>
               </button>
               <button className={style.CreateGroupBtn}>
-                <Icon
-                  icon="ant-design:plus-outlined"
-                  color="white"
-                  width="20"
-                  height="20"
-                />
-                Dodaj grupę
+                <NavLink className={style.NavLinkBtn + " " + style.NavLinkBtnGroupAdd} to="/profile/groups/add">
+                  <Icon
+                    icon="ant-design:plus-outlined"
+                    color="white"
+                    width="20"
+                    height="20"
+                  />
+                  Dodaj grupę
+                </NavLink>
               </button>
             </div>
           </div>
@@ -47,7 +49,7 @@ class GroupsPage extends React.Component {
               <tbody>
                 <tr>
                   <td>
-                    <input type="checkbox" /> <NavLink to="/profile/groups/id/members" className={style.NavGroup}>Lorem Ipsum</NavLink> 
+                    <input type="checkbox" /> <NavLink to="/profile/groups/id/members" className={style.NavGroup}>Lorem Ipsum</NavLink>
                   </td>
                   <td>5</td>
                   <td>Jan Kowalski</td>
@@ -56,7 +58,7 @@ class GroupsPage extends React.Component {
                 </tr>
                 <tr>
                   <td>
-                    <input type="checkbox" /> <NavLink to="/profile/groups/id/members" className={style.NavGroup}>Lorem Ipsum</NavLink> 
+                    <input type="checkbox" /> <NavLink to="/profile/groups/id/members" className={style.NavGroup}>Lorem Ipsum</NavLink>
                   </td>
                   <td>5</td>
                   <td>Jan Kowalski</td>
@@ -67,7 +69,7 @@ class GroupsPage extends React.Component {
             </table>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }

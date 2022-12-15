@@ -9,6 +9,7 @@ import ObjectPage from "./ObjectPage/ObjectMainPage.js";
 import EventsPage from "./EventsPage/EventsPage.js";
 import GroupMemebers from "./GroupsPage/GroupMembers.js";
 import GroupEvents from "./GroupsPage/GroupEvent.js";
+import GroupsAdd from "./GroupsAdd/GroupsAdd.js";
 import { useAuthContext } from "./context/AuthContext";
 import Navigation from "./MainPage/MainPageNavi.js";
 const App = () => {
@@ -16,7 +17,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-    <Navigation/>
+      <Navigation />
       <Routes>
         <Route
           path="/"
@@ -37,6 +38,10 @@ const App = () => {
         <Route
           path="/profile/groups"
           element={user ? <GroupsPage /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/profile/groups/add"
+          element={user ? <GroupsAdd /> : <Navigate to="/" />}
         />
         <Route
           path="/profile/object"
