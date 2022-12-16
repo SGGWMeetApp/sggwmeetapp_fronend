@@ -18,7 +18,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Navigation />
+      {user? <Navigation />:null}
       <Routes>
         <Route
           path="/"
