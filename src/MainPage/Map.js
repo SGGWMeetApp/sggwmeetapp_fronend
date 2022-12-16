@@ -14,7 +14,7 @@ const SimpleMap = (props) => {
   });
 
   const google = window.google;
-  const [elements,setElements] = useState(props.localisation);
+  let elements = props.localisation;
   const dist = props.distance;
   const center = { lat: 52.16351, lng: 21.04665 };
   const point = { x: 28, y: 48 };
@@ -23,24 +23,35 @@ const SimpleMap = (props) => {
     center.lat = myPosition.lat;
     center.lng = myPosition.lng;
   }
+  const [nelements, setN] = useState(elements);
   function distance() {
     if (myPosition) {
-      if (dist !== [])
-      {
-        setElements(elements.filter(
-          (element) =>
-            dist >=
-            google.maps.geometry.spherical.computeDistanceBetween(myPosition, {
-              lat: element[0].latitude,
-              lng: element[0].longitude,
-            })
-        ));
+      if (dist !== []) {
+        setN(
+          elements.filter(
+            (element) =>
+              dist >=
+              google.maps.geometry.spherical.computeDistanceBetween(
+                myPosition,
+                {
+                  lat: element[0].latitude,
+                  lng: element[0].longitude,
+                }
+              )
+          )
+        );
       }
+      else {
+        setN(elements);
+      }
+    } else {
+      setN(elements);
     }
+  
   }
   useEffect(() => {
     distance();
-  }, [dist, myPosition]);
+  }, [myPosition, elements, dist]);
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
@@ -51,7 +62,7 @@ const SimpleMap = (props) => {
       mapContainerClassName={style.map_container}
       options={{ styles: MapStyle }}
     >
-      {elements.map((marker, index) => (
+      {nelements.map((marker, index) => (
         <Marker
           key={index}
           position={{ lat: marker[0].latitude, lng: marker[0].longitude }}

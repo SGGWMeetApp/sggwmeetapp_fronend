@@ -3,11 +3,10 @@ import { Icon } from "@iconify/react";
 import style from "./Modal.module.css";
 import Slider from "@mui/material/Slider";
 import { useState } from "react";
-import { faL } from "@fortawesome/free-solid-svg-icons";
 const Filter = (props) => {
   const [ready, setReady] = useState(null);
   const [value1, setValue1] = useState([1, 5]);
-  const [value2, setValue2] = useState(300000000);
+  const [value2, setValue2] = useState(null);
   const categories = props.categories;
   var checkCategory = [];
   const [change, setChange] = useState(false);
@@ -21,6 +20,7 @@ const Filter = (props) => {
   const handleChangeDst = (e) => {
     setValue2(e.target.value);
   };
+
 
   const onChange = (e) => {
     if (e.target.name === "all") {
@@ -54,6 +54,9 @@ const Filter = (props) => {
   function ResetFilter() {
     setPlacesFilter(categories.map((cat) => [cat, false]));
     setValue2(30000000);
+    sessionStorage.setItem("objFilter", JSON.stringify(checkCategory));
+    sessionStorage.setItem("objDistance", JSON.stringify(30000000));
+    props.getMap()
   }
 
   function GetItemStorage(key) {
@@ -73,6 +76,12 @@ const Filter = (props) => {
   }
 
   useEffect(() => {
+    if(JSON.parse(sessionStorage.getItem("objDistance")) &&JSON.parse(sessionStorage.getItem("objDistance"))!==[]){
+      setValue2(JSON.parse(sessionStorage.getItem("objDistance")))
+    }
+    else{
+      setValue2(30000000);
+    }
     GetItemStorage("objFilter");
   }, []);
 
@@ -172,7 +181,6 @@ const Filter = (props) => {
             <p className={style.DistanceText}>Odległość</p>
             <Slider
               aria-label="Custom marks"
-              defaultValue={1000}
               step={10}
               max={6000}
               min={10}

@@ -18,6 +18,7 @@ class MainPage extends React.Component {
       userToken: user.token,
       userId: user.userData.id,
       categories:[],
+      objFilter:null,
     };
   }
   componentDidMount() {
@@ -50,6 +51,7 @@ class MainPage extends React.Component {
       elem.locationCategoryCodes,
     ]);
     this.setState({ localisation: localisation });
+    this.setState({objFilter:obj});
     this.getCategory();
   };
   
@@ -149,7 +151,7 @@ class MainPage extends React.Component {
           <SimpleMap
             localisation={this.state.localisation}
             mylocalisation={this.state.currentLoc}
-            distance ={JSON.parse(sessionStorage.getItem("objDistance"))}
+            distance={JSON.parse(sessionStorage.getItem("objDistance"))}
           />
           <ModalWindow
             openModal={this.state.openFilter}
