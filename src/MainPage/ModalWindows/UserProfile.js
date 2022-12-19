@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Icon } from '@iconify/react';
 import UserAvatar from "../../Assets/User-avatar.svg";
 import style from './Modal.module.css';
 import ModalWindow from './Modal';
 import EditUser from './EditUserProfile';
 import { useState } from 'react';
+import axios from 'axios';
 
 const User = (props) => {
+   let userData = JSON.parse(localStorage.getItem("user"));
    const [openEdit, setOpenEdit] = useState(false);
+   const [id] = useState(userData.userData.id)
+   const [token]= useState(userData.token)
+   const [user, setUser]= useState();
    const  OnClick =()=>{
       setOpenEdit(true);
       
@@ -17,15 +22,28 @@ const User = (props) => {
       props.CloseModal();
       
    }
-   let user =props.user;
+   const getData = async () => {
+      const response =await axios
+        .get(`http://3.68.195.28/api/users/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        setUser(response.data.userData)
+        if(response.data.userData.avatarUrl){
+         avatarUrl=response.data.userData.avatarUrl;
+      }
+      else{
+         avatarUrl =UserAvatar;
+      }
+    };
+    useEffect(() => {
+      getData();
+
+    },[])
    let avatarUrl=null;
-   if(user.avatarUrl){
-      avatarUrl=user.avatarUrl;
-   }
-   else{
-      avatarUrl =UserAvatar;
-   }
-   return (
+
+   return (user?
       <div className={style.UserContainer}>
          <div className={style.UserHeader}>
             <p className={style.HeaderText}>Profil Użytkownika</p>
@@ -73,7 +91,7 @@ const User = (props) => {
           >
             <EditUser CloseModal={()=>CloseModal() } getData={props.getData} user={props.user} token={props.token} id={props.id}/>
           </ModalWindow>
-      </div>
+      </div>:<div>Loading...</div>
    );
 };
 export default User;

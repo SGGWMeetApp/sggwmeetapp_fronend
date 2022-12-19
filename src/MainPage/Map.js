@@ -23,7 +23,7 @@ const SimpleMap = (props) => {
     center.lat = myPosition.lat;
     center.lng = myPosition.lng;
   }
-  const [nelements, setN] = useState(elements);
+  const [nelements, setN] = useState();
   function distance() {
     if (myPosition) {
       if (dist !== []) {
@@ -50,17 +50,20 @@ const SimpleMap = (props) => {
   
   }
   useEffect(() => {
-    distance();
+    if(isLoaded){
+      distance();
+    }
   }, [myPosition, elements, dist]);
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
-  return (
+  return (nelements?
     <GoogleMap
       zoom={15}
       center={{ lat: center.lat, lng: center.lng }}
       mapContainerClassName={style.map_container}
       options={{ styles: MapStyle }}
+      onLoad={distance}
     >
       {nelements.map((marker, index) => (
         <Marker
@@ -77,7 +80,7 @@ const SimpleMap = (props) => {
           label="Moja  lokalizacja"
         ></Marker>
       )}
-    </GoogleMap>
+    </GoogleMap>:<div>Loading...</div>
   );
 };
 
