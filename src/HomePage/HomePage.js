@@ -19,11 +19,6 @@ class HomePage extends React.Component {
               </div>
               <ul className={style.NavList}>
                 <li className={style.NavListElement}>
-                  <NavLink className={style.NavLink} to="/">
-                    Home
-                  </NavLink>
-                </li>
-                <li className={style.NavListElement}>
                   <NavLink className={style.NavLink}>Miejsca</NavLink>
                 </li>
                 <li className={style.NavListElement}>
@@ -31,13 +26,13 @@ class HomePage extends React.Component {
                 </li>
                 <li className={style.NavListElement}>
                   <NavLink className={style.NavLink} to="/login">
-                    Log In
+                    Zaloguj
                   </NavLink>
                 </li>
               </ul>
               <button className={style.SignButton}>
                 <NavLink className={style.NavLinkButt} to="/register">
-                  Sign Up
+                  Utwórz konto
                 </NavLink>
               </button>
             </nav>
@@ -68,7 +63,7 @@ class HomePage extends React.Component {
                 </tr>
               </tbody>
             </table>
-            <button className={style.SignButton2}><NavLink className={style.NavLinkButt} to="/register">Sign Up</NavLink></button>
+            <button className={style.SignButton2}><NavLink className={style.NavLinkButt} to="/register">Utwórz konto</NavLink></button>
             <img className={style.VectorIcons} src={Icon2} alt="" />
           </div>
         </div>
@@ -208,7 +203,7 @@ class HomePage extends React.Component {
                 </tr>
                 <tr>
                   <td>Kontakt</td>
-                  <td>Eventy</td>
+                  <td>Wydarzenia</td>
                   <td><NavLink className={style.NavLinkFooter} to="/register">Zarejestruj</NavLink></td>
                 </tr>
                 <tr>
