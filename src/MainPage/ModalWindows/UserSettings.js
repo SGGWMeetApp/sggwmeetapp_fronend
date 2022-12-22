@@ -102,9 +102,6 @@ const Settings = (props) => {
   };
   return notifications ? (
     <div className={style.SettingContainer}>
-      {console.log(
-        notifications
-      )}
       <div className={style.SettingHeader}>
         <p className={style.SettingHeaderText}>Opcje użytkownika</p>
         <button
@@ -124,7 +121,7 @@ const Settings = (props) => {
         onSubmit={() => Edit_notification_set()}
       >
         <div className={style.SettingSection}>
-          <div className={style.Visibility}>
+          <div className={style.Visibility} style={{visibility:"hidden"}}>
             <p className={style.VisibilityType}>Widoczność na mapie</p>
             <div className={style.VisibilityContainer}>
               <input type="radio" id="all" name="visible" value="wszyscy" />

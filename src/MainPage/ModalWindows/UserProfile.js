@@ -13,6 +13,7 @@ const User = (props) => {
    const [id] = useState(userData.userData.id)
    const [token]= useState(userData.token)
    const [user, setUser]= useState();
+   const [avatarUrl,setAvatar]= useState(UserAvatar);
    const  OnClick =()=>{
       setOpenEdit(true);
       
@@ -31,17 +32,14 @@ const User = (props) => {
         })
         setUser(response.data.userData)
         if(response.data.userData.avatarUrl){
-         avatarUrl=response.data.userData.avatarUrl;
-      }
-      else{
-         avatarUrl =UserAvatar;
+         setAvatar( response.data.userData.avatarUrl);
       }
     };
     useEffect(() => {
       getData();
 
     },[])
-   let avatarUrl=null;
+   
 
    return (user?
       <div className={style.UserContainer}>
