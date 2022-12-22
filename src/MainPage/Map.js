@@ -23,7 +23,7 @@ const SimpleMap = (props) => {
     center.lat = myPosition.lat;
     center.lng = myPosition.lng;
   }
-  const [nelements, setN] = useState();
+  const [nelements, setN] = useState(elements);
   function distance() {
     if (myPosition) {
       if (dist !== []) {
@@ -80,7 +80,7 @@ const SimpleMap = (props) => {
           label="Moja  lokalizacja"
         ></Marker>
       )}
-    </GoogleMap>:<div>Loading...</div>
+    </GoogleMap>:<div>Loading...2</div>
   );
 };
 
