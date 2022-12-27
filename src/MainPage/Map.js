@@ -12,9 +12,8 @@ const SimpleMap = (props) => {
     googleMapsApiKey: process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     libraries,
   });
-
   const google = window.google;
-  let elements = props.localisation;
+  const elements = props.objects;
   const dist = props.distance;
   const center = { lat: 52.16351, lng: 21.04665 };
   const point = { x: 28, y: 48 };
@@ -24,40 +23,69 @@ const SimpleMap = (props) => {
     center.lng = myPosition.lng;
   }
   const [nelements, setN] = useState(elements);
+  
   function distance() {
+    let objects = null;
+    let distArray = null;
     if (myPosition) {
       if (dist !== []) {
-        setN(
+        objects=(
           elements.filter(
             (element) =>
               dist >=
               google.maps.geometry.spherical.computeDistanceBetween(
                 myPosition,
                 {
-                  lat: element[0].latitude,
-                  lng: element[0].longitude,
+                  lat: element.geolocation.latitude,
+                  lng: element.geolocation.longitude,
                 }
               )
           )
         );
-      }
-      else {
+        setN(objects);
+      } else {
         setN(elements);
+        objects=elements;
       }
+       distArray = objects.map((item) => {
+        if (
+          google.maps.geometry.spherical.computeDistanceBetween(myPosition, {
+            lat: item.geolocation.latitude,
+            lng: item.geolocation.longitude,
+          }) > 6000
+        ) {
+          return(
+            google.maps.geometry.spherical.computeDistanceBetween(myPosition, {
+              lat: item.geolocation.latitude,
+              lng: item.geolocation.longitude,
+            }) / 1000
+          ).toFixed(2)+" km";
+        } else {
+          return (item, google.maps.geometry.spherical
+            .computeDistanceBetween(myPosition, {
+              lat: item.geolocation.latitude,
+              lng: item.geolocation.longitude,
+            })
+            .toFixed(1)+" m");
+        }
+      });
+      
     } else {
       setN(elements);
     }
-  
+    console.log(objects);
+    props.getDist(objects,distArray);
   }
   useEffect(() => {
-    if(isLoaded){
+    if (isLoaded) {
       distance();
     }
-  }, [myPosition, elements, dist]);
+      
+  }, [dist, elements, myPosition]);
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
-  return (nelements?
+  return nelements ? (
     <GoogleMap
       zoom={15}
       center={{ lat: center.lat, lng: center.lng }}
@@ -68,9 +96,9 @@ const SimpleMap = (props) => {
       {nelements.map((marker, index) => (
         <Marker
           key={index}
-          position={{ lat: marker[0].latitude, lng: marker[0].longitude }}
+          position={{ lat: marker.geolocation.latitude, lng: marker.geolocation.longitude }}
           icon={{ url: icon, labelOrigin: point }}
-          label={{ text: marker[1] }}
+          label={{ text: marker.name }}
         ></Marker>
       ))}
       {myPosition && (
@@ -80,7 +108,9 @@ const SimpleMap = (props) => {
           label="Moja  lokalizacja"
         ></Marker>
       )}
-    </GoogleMap>:<div>Loading...2</div>
+    </GoogleMap>
+  ) : (
+    <div>Loading map...</div>
   );
 };
 

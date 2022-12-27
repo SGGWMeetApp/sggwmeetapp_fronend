@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import React from "react";
 import style from "./MainPage.module.css";
-import Foto from "../Assets/section2_photo.jpg";
+import Foto from "../Assets/Brak_zdjecia.png";
 import { NavLink } from "react-router-dom";
 import Filter from "./ModalWindows/Filter";
 import ModalWindow from "./ModalWindows/Modal";
@@ -14,11 +14,14 @@ class MainPage extends React.Component {
     this.state = {
       openFilter: false,
       localisation: null,
-      places:null,
+      places: null,
       userToken: user.token,
       userId: user.userData.id,
-      categories:[],
-      objFilter:null,
+      categories: [],
+      objFilter: null,
+      objects: null,
+      objects2:null,
+      dist:null,
     };
   }
   componentDidMount() {
@@ -28,50 +31,72 @@ class MainPage extends React.Component {
 
   getPlaces = async () => {
     var localisation = [];
-    const obj =JSON.parse(sessionStorage.getItem("objFilter"));
-    var objFilter ="";
-    if(obj&&obj.length>0){
-      for(var i=0;i<obj.length;i++){
-        if(i===0){
-          objFilter= objFilter.concat("categoryCodes[]="+ (obj[0]).toString())
-        }
-        else{
-         objFilter= objFilter.concat("&categoryCodes[]="+obj[i])
+    var objects = [];
+    const obj = JSON.parse(sessionStorage.getItem("objFilter"));
+    var objFilter = "";
+
+    if (obj && obj.length > 0) {
+      for (var i = 0; i < obj.length; i++) {
+        if (i === 0) {
+          objFilter = objFilter.concat("categoryCodes[]=" + obj[0].toString());
+        } else {
+          objFilter = objFilter.concat("&categoryCodes[]=" + obj[i]);
         }
       }
     }
-    const response = await axios.get(`http://3.68.195.28/api/places/?${objFilter}`, {
-      headers: {
-        Authorization: `Bearer ${this.state.userToken}`,
-      },
-    });
+
+    const response = await axios.get(
+      `http://3.68.195.28/api/places/?${objFilter}`,
+      {
+        headers: {
+          Authorization: `Bearer ${this.state.userToken}`,
+        },
+      }
+    );
+
     localisation = response.data.places.map((elem) => [
       elem.geolocation,
       elem.name,
       elem.locationCategoryCodes,
+      elem.id
     ]);
+
+    objects = response.data.places.map((obj) => {
+      if (obj["photoPath"] === null) {
+        obj["photoPath"] = Foto;
+        return obj;
+      } else if (obj.reviewSummary["positivePercent"] === null) {
+        obj.reviewSummary["positivePercent"] = 0;
+        return obj;
+      } else if (obj.reviewSummary["reviewsCount"] === null) {
+        obj.reviewSummary["reviewsCount"] = 0;
+        return obj;
+      } else {
+        return obj;
+      }
+    });
+    this.setState({ objects: objects });
     this.setState({ localisation: localisation });
-    this.setState({objFilter:obj});
+    this.setState({ objFilter: obj });
     this.getCategory();
   };
-  
-  getCategory =async()=>{
-    var places=[];
+
+  getCategory = async () => {
+    var places = [];
     const res = await axios.get(`http://3.68.195.28/api/places/?`, {
       headers: {
         Authorization: `Bearer ${this.state.userToken}`,
       },
     });
-    places = res.data.places.map((elem) => [
-      elem.locationCategoryCodes,
-    ]);
+    places = res.data.places.map((elem) => [elem.locationCategoryCodes]);
     this.setState({ places: places });
     const category = places.map((elem) => [].concat(elem[0])).flat(1);
     const catFilter = category.filter(
       (item, index) => category.indexOf(item) === index
     );
-   this.setState({categories:catFilter})
-  }
+    this.setState({ categories: catFilter });
+  };
+
   showMyLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) =>
@@ -84,6 +109,11 @@ class MainPage extends React.Component {
         }))
       );
     }
+  };
+
+  getDistFilter = (value,dist) =>{
+    if(value){
+    this.setState({objects2:value, dist:dist})}
   };
 
   OpenModal = (id) => {
@@ -102,12 +132,13 @@ class MainPage extends React.Component {
     }
   };
 
-  render() {
-    return this.state.localisation ? (
+  render(
+  ) {
+    return (this.state.localisation && this.state.objects) ? (
       <div className={style.MainPage}>
         <div className={style.PlacesContainer}>
           <div className={style.SectionHeader}>
-            <p className={style.ObjectNumber}>68 miejsc w okolicy </p>
+            <p className={style.ObjectNumber}>{ (!this.state.objects2)? (this.state.objects.length):(this.state.objects2.length)} miejsc w okolicy </p>
             <button
               className={style.FilterButton}
               onClick={this.OpenModal.bind(this, "filter")}
@@ -123,35 +154,65 @@ class MainPage extends React.Component {
           </div>
           <div className={style.ObjectListContainer}>
             <ul className={style.ObjectList}>
-              <li>
-                <NavLink to="/profile/object">
-                  <div className={style.ListElemnet}>
-                    <img src={Foto} alt="" />
-                    <div className={style.ObjectDescribe}>
-                      <p className={style.ObjectName}>Restauracja Nova</p>
-                      <p className={style.ObjectOpinions}>
-                        <Icon
-                          icon="majesticons:percent"
-                          color="#857E7B"
-                          width="16"
-                          height="16"
-                        />
-                        78 [6]
-                      </p>
-                      <p className={style.ObjecAddress}>450m Potocka 7a</p>
-                      <p className={style.ObjectType}>Restauracja</p>
+              { (!this.state.objects2)? this.state.objects.map((obj, index) => (
+                <li key={index}>
+                  <NavLink to="/profile/object" className={style.ObjecLink}>
+                    <div className={style.ListElemnet}>
+                      <img src={obj.photoPath} alt="" />
+                      <div className={style.ObjectDescribe}>
+                        <p className={style.ObjectName}>{obj.name}</p>
+                        <p className={style.ObjectOpinions}>
+                          <Icon
+                            icon="majesticons:percent"
+                            color="#857E7B"
+                            width="16"
+                            height="16"
+                          />
+                          {obj.reviewSummary.positivePercent} [{obj.reviewSummary.reviewsCount}]
+                        </p>
+                        <p className={style.ObjecAddress}>{obj.textLocation}</p>
+
+                        <p className={style.ObjectType}>{obj.locationCategoryCodes.map((item)=> `${item} ${'\n'}`)}</p>
+                      </div>
                     </div>
-                  </div>
-                </NavLink>
-              </li>
+                  </NavLink>
+                </li>
+              )):this.state.objects2.map((obj, index) => (
+                <li key={index}>
+                  <NavLink to="/profile/object" className={style.ObjecLink}>
+                    <div className={style.ListElemnet}>
+                      <img src={obj.photoPath} alt="" />
+                      <div className={style.ObjectDescribe}>
+                        <p className={style.ObjectName}>{obj.name}</p>
+                        <p className={style.ObjectOpinions}>
+                          <Icon
+                            icon="majesticons:percent"
+                            color="#857E7B"
+                            width="16"
+                            height="16"
+                          />
+                          {obj.reviewSummary.positivePercent} [{obj.reviewSummary.reviewsCount}]
+                        </p>
+                        
+                        <p className={style.ObjecAddress}>{obj.textLocation}</p>
+                        
+                        <p className={style.ObjectType}>{obj.locationCategoryCodes.map((item)=> `${item} ${'\n'}`)}</p>
+                        <p className={style.ObjecDist}>{this.state.dist[index]}</p>
+                      </div>
+                    </div>
+                  </NavLink>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
         <div className={style.MapContainer}>
           <SimpleMap
-            localisation={this.state.localisation}
+
             mylocalisation={this.state.currentLoc}
             distance={JSON.parse(sessionStorage.getItem("objDistance"))}
+            objects = {this.state.objects}
+            getDist={this.getDistFilter}
           />
           <ModalWindow
             openModal={this.state.openFilter}
@@ -162,6 +223,7 @@ class MainPage extends React.Component {
               localisation={this.state.localisation}
               categories={this.state.categories}
               getMap={this.getPlaces}
+              
             />
           </ModalWindow>
         </div>

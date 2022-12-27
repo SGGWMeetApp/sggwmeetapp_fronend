@@ -5,7 +5,7 @@ import Slider from "@mui/material/Slider";
 import { useState } from "react";
 const Filter = (props) => {
   const [ready, setReady] = useState(null);
-  const [value1, setValue1] = useState([1, 5]);
+  const [value1, setValue1] = useState([1, 100]);
   const [value2, setValue2] = useState(null);
   const categories = props.categories;
   var checkCategory = [];
@@ -137,10 +137,10 @@ const Filter = (props) => {
             <p className={style.GraduateText}>Ocena</p>
             <Slider
               min={1}
-              max={5}
+              max={100}
               valueLabelDisplay="on"
-              step={0.5}
-              mindistance={0.5}
+              step={1}
+              mindistance={1}
               disableSwap
               className={style.Slider}
               value={value1}
