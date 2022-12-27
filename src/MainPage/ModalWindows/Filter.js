@@ -103,38 +103,8 @@ const Filter = (props) => {
       </div>
       <form className={style.FilterForm} onSubmit={onSubmit}>
         <div className={style.FormSection}>
-          <div className={style.ObjectType}>
-            <p className={style.FilterObjectType}>Typy obiektów</p>
-            <div className={style.ObjectTypeContainer}>
-              <input
-                type="radio"
-                id="all1"
-                name="objectType"
-                value="wszystkie"
-              />
-              <label htmlFor="all1">Wszytskie</label>
-            </div>
-            <div className={style.ObjectTypeContainer}>
-              <input
-                type="radio"
-                id="places"
-                name="objectType"
-                value="miejsca"
-              />
-              <label htmlFor="places">Miejsca</label>
-            </div>
-            <div className={style.ObjectTypeContainer}>
-              <input
-                type="radio"
-                id="events"
-                name="objectType"
-                value="wydarzenia"
-              />
-              <label htmlFor="events">Wydarzenia</label>
-            </div>
-          </div>
           <div className={style.GradContainer}>
-            <p className={style.GraduateText}>Ocena</p>
+            <p className={style.GraduateText}>Procen pozytywnych opini:</p>
             <Slider
               min={1}
               max={100}
@@ -150,7 +120,7 @@ const Filter = (props) => {
         </div>
         <div className={style.FormSection}>
           <div className={style.PlacesType}>
-            <p className={style.FilterPlaceType}>Typy miejsc</p>
+            <p className={style.FilterPlaceType}>Typy miejsc:</p>
             <div className={style.PlacesContainer}>
               <input
                 type="checkbox"
@@ -178,7 +148,7 @@ const Filter = (props) => {
             ))}
           </div>
           <div className={style.DistanceContainer}>
-            <p className={style.DistanceText}>Odległość</p>
+            <p className={style.DistanceText}>Odległość:</p>
             <Slider
               aria-label="Custom marks"
               step={10}
