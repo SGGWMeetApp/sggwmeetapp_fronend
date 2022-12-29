@@ -12,7 +12,7 @@ const EventsPage = () => {
       <div className={style.GroupContainer}>
          <div className={style.GroupsSection}>
             <div className={style.GroupsHeader}>
-               <h2 className={style.Header}>Twoje grupy</h2>
+               <h2 className={style.Header}>Twoje Wydarzenia</h2>
                <div className={style.BtnContainer}>
                   <button className={style.BackMapBtn}>
                      <NavLink className={style.NavLinkBtn} to="/profile">

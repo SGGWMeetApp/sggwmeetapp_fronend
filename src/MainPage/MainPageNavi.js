@@ -91,7 +91,7 @@ class Navigation extends React.Component {
       <nav className={style.NaviBar}>
         <div className={style.Logo}>
           <NavLink className={style.LogoLink} to="/">
-            Brand <Icon icon="bxs:book-reader" color="#85c9b9" />
+            SGGW MeetApp <Icon icon="bxs:book-reader" color="#85c9b9" />
           </NavLink>
         </div>
 
