@@ -50,7 +50,7 @@ const App = () => {
               element={user ? <EventsAdd /> : <Navigate to="/" />}
           />
           <Route
-              path="/profile/object"
+              path="/profile/object/:id/details"
               element={user ? <ObjectPage /> : <Navigate to="/" />}
           />
           <Route

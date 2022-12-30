@@ -139,7 +139,7 @@ class MainPage extends React.Component {
         <div className={style.PlacesContainer}>
           <div className={style.SectionHeader}>
             <p className={style.ObjectNumber}>{ (!this.state.objects2)? (this.state.objects.length):(this.state.objects2.length)} miejsc w okolicy </p>
-            <button
+            {this.state.categories.length!==0 ?<button
               className={style.FilterButton}
               onClick={this.OpenModal.bind(this, "filter")}
             >
@@ -150,13 +150,13 @@ class MainPage extends React.Component {
                 height="14"
               />
               Filtruj
-            </button>
+            </button>:<p>...</p>}
           </div>
           <div className={style.ObjectListContainer}>
             <ul className={style.ObjectList}>
               { (!this.state.objects2)? this.state.objects.map((obj, index) => (
                 <li key={index}>
-                  <NavLink to="/profile/object" className={style.ObjecLink}>
+                  <NavLink to={`/profile/object/${obj.id}/details`} className={style.ObjecLink}>
                     <div className={style.ListElemnet}>
                       <img src={obj.photoPath} alt="" />
                       <div className={style.ObjectDescribe}>
@@ -179,7 +179,7 @@ class MainPage extends React.Component {
                 </li>
               )):this.state.objects2.map((obj, index) => (
                 <li key={index}>
-                  <NavLink to="/profile/object" className={style.ObjecLink}>
+                  <NavLink to={`/profile/object/${obj.id}/details`}  className={style.ObjecLink}>
                     <div className={style.ListElemnet}>
                       <img src={obj.photoPath} alt="" />
                       <div className={style.ObjectDescribe}>

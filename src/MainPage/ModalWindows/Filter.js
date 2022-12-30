@@ -14,8 +14,8 @@ const Filter = (props) => {
   const [PlacesFilter, setPlacesFilter] = useState(
     categories.map((cat) => [cat, ""])
   );
-  const handleChange = (e, newValue) => {
-    setValue1(newValue);
+  const handleChangeRange = (e) => {
+    setValue1(e.target.value);
   };
   const handleChangeDst = (e) => {
     setValue2(e.target.value);
@@ -85,7 +85,7 @@ const Filter = (props) => {
     GetItemStorage("objFilter");
   }, []);
 
-  return ready === "ss" ? (
+  return (ready === "ss") ? (
     <div className={style.FilterContainer}>
       <div className={style.FilterHeader}>
         <p className={style.FilterHeaderText}>Opcje filtrowania</p>
@@ -106,15 +106,14 @@ const Filter = (props) => {
           <div className={style.GradContainer}>
             <p className={style.GraduateText}>Procen pozytywnych opini:</p>
             <Slider
-              min={1}
+              min={0}
               max={100}
               valueLabelDisplay="on"
               step={1}
-              mindistance={1}
-              disableSwap
               className={style.Slider}
               value={value1}
-              onChange={handleChange}
+              onChange={(e)=>handleChangeRange(e)}
+              on
             />
           </div>
         </div>
@@ -181,7 +180,7 @@ const Filter = (props) => {
       </form>
     </div>
   ) : (
-    <div>Loading...</div>
+    <div>Ładowanie...</div>
   );
 };
 export default Filter;
