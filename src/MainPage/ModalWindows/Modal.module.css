@@ -187,7 +187,9 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 4px 4px 0px 0px;
 }
-
+.SettingContainer, .SettingHeader {
+    width: 500px;
+}
 .FilterHeaderText, .SettingHeaderText {
     font-family: 'Roboto';
     font-style: normal;
@@ -206,7 +208,7 @@
 
 .SettingForm {
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 20% 40%;
     width: 100%;
 }
 
