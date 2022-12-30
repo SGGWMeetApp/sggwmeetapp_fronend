@@ -79,7 +79,7 @@ class RegisterPage extends React.Component {
                   id={styleRegister.RegisterWindow}
                >
                   <div className={styleHome.Logo}>
-                     Brand <Icon icon="bxs:book-reader" color="#85c9b9" />
+                     SGGW MeetApp <Icon icon="bxs:book-reader" color="#85c9b9" />
                   </div>
                   <h2 className={style.Header}>Zarejestruj się w serwisie</h2>
                   <form onSubmit={(e) => this.handleSubmit(e)}>

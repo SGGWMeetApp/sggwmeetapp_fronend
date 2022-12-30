@@ -14,7 +14,7 @@ class HomePage extends React.Component {
             <nav className={style.NaviBar}>
               <div className={style.Logo}>
                 <NavLink className={style.LogoLink} to="/">
-                  SGGWMeetApp <Icon icon="bxs:book-reader" color="#85c9b9" />
+                  SGGW MeetApp <Icon icon="bxs:book-reader" color="#85c9b9" />
                 </NavLink>
               </div>
               <ul className={style.NavList}>
@@ -37,15 +37,13 @@ class HomePage extends React.Component {
               </button>
             </nav>
             <h1 className={style.HelloBanner}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Jedna aplikacja by spotkać się ze wszystkimi
             </h1>
             <h2 className={style.HelloBanner2}>
-              Lorem ipsum consectetur adipiscing elit.
+              Ty wybierasz z kim, gdzie i kiedy się spotkasz
             </h2>
             <p className={style.HelloPara}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-              fusce maecenas lacus enim parturient nulla. Ac leo augue fames
-              aliquam.
+
             </p>
             <table className={style.StatisticTable}>
               <thead>
@@ -57,9 +55,9 @@ class HomePage extends React.Component {
               </thead>
               <tbody>
                 <tr>
-                  <td style={{ textAlign: "left" }}>Hosted events</td>
-                  <td style={{ width: "100px" }}>Meeting places</td>
-                  <td style={{ width: "100px" }}>Active users</td>
+                  <td style={{ textAlign: "left" }}>Wydarzeń</td>
+                  <td style={{ width: "100px" }}>Miejsc</td>
+                  <td style={{ width: "100px" }}>Użytkowników</td>
                 </tr>
               </tbody>
             </table>
@@ -77,25 +75,19 @@ class HomePage extends React.Component {
                 <li className={style.PointsListElement}>
                   Znajdź swoją przestrzeń
                   <p className={style.ItemDescription}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Fringilla massa lorem lorem maecenas sed elit quis ornare.
-                    Enim, et nec pharetra dolor libero.
+                    Wybierz jedno z wielu miejsc lub dodaj nowe.
                   </p>
                 </li>
                 <li className={style.PointsListElement}>
                   Kiedy On-line nie wystarcza
                   <p className={style.ItemDescription}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Fringilla massa lorem lorem maecenas sed elit quis ornare.
-                    Enim, et nec pharetra dolor libero.
+                    Spotkaj się ze znajomymi na żywo.
                   </p>
                 </li>
                 <li className={style.PointsListElement}>
-                  Good food=good talk
+                  Poznawaj nowe osoby
                   <p className={style.ItemDescription}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Fringilla massa lorem lorem maecenas sed elit quis ornare.
-                    Enim, et nec pharetra dolor libero.
+                    Dołącz do istniejącej grupy lub załóż nową.
                   </p>
                 </li>
               </ul>
@@ -161,9 +153,7 @@ class HomePage extends React.Component {
               />
             </button>
             <h2 className={style.OpinionText}>
-              Quisque orci erat rhoncus, cras adipiscing. Arcu gravida sed cras
-              urna. Purus scelerisque faucibus dolor curabitur cras volutpat
-              nisi, facilisis
+              Super Aplikacja
             </h2>
             <p className={style.OpinionAuth}>Jan Kowalski</p>
             <button className={style.Next}>

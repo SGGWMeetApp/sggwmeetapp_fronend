@@ -55,7 +55,7 @@ class LogInPage extends React.Component {
                <Navigation />
                <div className={style.LogInWindow}>
                   <div className={styleHome.Logo}>
-                     Brand <Icon icon="bxs:book-reader" color="#85c9b9" />
+                     SGGW MeetApp <Icon icon="bxs:book-reader" color="#85c9b9" />
                   </div>
                   <h2 className={style.Header}>Zaloguj się do serwisu</h2>
                   <form onSubmit={(e) => this.handleSubmit(e)}>

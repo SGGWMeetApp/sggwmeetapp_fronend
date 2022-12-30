@@ -80,7 +80,7 @@ const EventsAdd = (props) => {
                             width="300"
                             height="300"
                         />
-                        Wróć do wydarzen
+                        Wróć do wydarzeń
                     </NavLink>
                     <Box
                         sx={{

@@ -14,7 +14,7 @@ body {
 
 .HelloContainer {
     width: auto;
-    height: 1080px;
+    height: 800px;
     background: url("../Assets/hero_bg.png") no-repeat center center;
     min-width: 1300px;
 }
@@ -156,10 +156,10 @@ body {
 
 .HelloBanner {
     position: absolute;
-    width: 945px;
+    width: 745px;
     height: 128px;
     left: 0px;
-    top: 198px;
+    top: 98px;
 
     font-family: 'Montserrat';
     font-style: normal;
@@ -178,12 +178,12 @@ body {
     width: 743px;
     height: 36px;
     left: 0px;
-    top: 344px;
+    top: 264px;
 
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    font-size: 36px;
+    font-size: 32px;
     line-height: 100%;
 
     /* identical to box height, or 36px */
@@ -214,7 +214,7 @@ body {
 .StatisticTable {
     position: absolute;
     left: 0px;
-    top: 550px;
+    top: 350px;
 }
 
 .StatisticTable>thead {
@@ -249,7 +249,7 @@ body {
     width: 150px;
     height: 40px;
     left: 0px;
-    top: 714px;
+    top: 450px;
 
     background: #122C34;
     border-radius: 8px;
@@ -271,7 +271,7 @@ body {
     width: 424.13px;
     height: 424.13px;
     left: 410.89px;
-    top: 414px;
+    top: 280px;
 
     transform: rotate(24.06deg);
 }
@@ -281,7 +281,7 @@ body {
     width: 100%;
     height: 595px;
     left: 0px;
-    top: 1080px;
+    top: 800px;
     background: #122C34;
 }
 
@@ -292,8 +292,8 @@ body {
     align-items: center;
     height: 725px;
     width: 900px;
-    left: 360px;
-    top: 0px;
+    left: 530px;
+    top: -60px;
 }
 
 .Foto {
@@ -333,7 +333,7 @@ body {
     font-size: 40px;
     display: inline-block;
     width: 30px;
-    margin-left: -1em;
+    margin-left: -0.1em;
 
 }
 
@@ -377,7 +377,7 @@ body {
     justify-items: center;
     width: 100%;
     height: 879px;
-    top: 1675px;
+    top: 1395px;
     background: url("../Assets/section3_bg.png");
     background-size: 100% 1080px;
 
@@ -414,7 +414,7 @@ body {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
-    font-size: 48px;
+    font-size: 62px;
     line-height: 100%;
 
     /* or 48px */
@@ -431,7 +431,7 @@ body {
     width: 140px;
     height: 100px;
     left: 10%;
-    top: 387px;
+    top: 487px;
 }
 
 .PinInteres {
@@ -450,8 +450,8 @@ body {
     position: absolute;
     width: 120px;
     height: 120px;
-    left: 550px;
-    top: 324px;
+    left: 410px;
+    top: 254px;
 }
 
 .PinFriends {
@@ -472,8 +472,8 @@ body {
     position: absolute;
     width: 100px;
     height: 100px;
-    left: 856px;
-    top: 218px;
+    left: 756px;
+    top: 260px;
 }
 
 .PinLib {
@@ -491,8 +491,8 @@ body {
     justify-items: center;
     width: 100px;
     height: 100px;
-    left: 994px;
-    top: 388px;
+    left: 1075px;
+    top: 360px;
 
 }
 
@@ -541,7 +541,7 @@ body {
     position: absolute;
     width: 100%;
     height: 485px;
-    top: 2550px;
+    top: 2274px;
 }
 
 .OpinionContainer::after {
@@ -550,8 +550,8 @@ body {
     z-index: 1;
     width: 120px;
     height: 120px;
-    left: 1080px;
-    top: 300px;
+    right: 0px;
+    top: 120px;
     background: url("../Assets/quote_right.svg");
 
 }
@@ -641,7 +641,7 @@ body {
     position: absolute;
     width: 100%;
     height: 340px;
-    top: 3200px;
+    top: 2759px;
 }
 
 .InformationSection {

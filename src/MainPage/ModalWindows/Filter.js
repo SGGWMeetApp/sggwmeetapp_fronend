@@ -104,7 +104,7 @@ const Filter = (props) => {
       <form className={style.FilterForm} onSubmit={onSubmit}>
         <div className={style.FormSection}>
           <div className={style.GradContainer}>
-            <p className={style.GraduateText}>Procen pozytywnych opini:</p>
+            <p className={style.GraduateTextLeft}>Procent pozytywnych opini:</p>
             <Slider
               min={0}
               max={100}
@@ -119,7 +119,7 @@ const Filter = (props) => {
         </div>
         <div className={style.FormSection}>
           <div className={style.PlacesType}>
-            <p className={style.FilterPlaceType}>Typy miejsc:</p>
+            <p className={style.FilterPlaceType}>Typ miejsca:</p>
             <div className={style.PlacesContainer}>
               <input
                 type="checkbox"
@@ -129,7 +129,7 @@ const Filter = (props) => {
                 checked={allObject}
                 onChange={(e) => onChange(e)}
               />
-              <label htmlFor="all">Wszytskie</label>
+              <label htmlFor="all">Wszystkie</label>
             </div>
             {categories.map((category, ind) => (
               <div className={style.PlacesContainer} key={ind}>
