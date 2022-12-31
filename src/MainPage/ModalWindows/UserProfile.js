@@ -35,6 +35,7 @@ const User = (props) => {
       
    }
    const getData = async () => {
+      const val =Math.random()
       const response =await axios
         .get(`http://3.68.195.28/api/users/${id}`, {
           headers: {
@@ -43,7 +44,7 @@ const User = (props) => {
         })
         setUser(response.data.userData)
         if(response.data.userData.avatarUrl){
-         setAvatar( response.data.userData.avatarUrl);
+         setAvatar( response.data.userData.avatarUrl+'?'+val);
       }
     };
     useEffect(() => {
@@ -52,7 +53,7 @@ const User = (props) => {
    
 
    return (user?
-      <div className={style.UserContainer}>
+      <div className={style.UserContainer} >
          <div className={style.UserHeader}>
             <p className={style.HeaderText}>Profil Użytkownika</p>
             <button
@@ -67,9 +68,8 @@ const User = (props) => {
                />
             </button>
          </div>
-         {console.log(avatarUrl)}
          <div className={style.UserContainerBody}>
-            <img src={avatarUrl} alt="User foto"></img>
+            <img src={avatarUrl}  alt="User foto"></img>
             <div className={style.UserInformation}>
                <div className={style.UserInformationHeader}>
                   <p className={style.UserName}>{user.firstName} {user.lastName}</p>
@@ -109,7 +109,7 @@ const User = (props) => {
             openModal={openEditAvatar}
             onClose={!openEditAvatar}
           >
-            <EditAvatar CloseModalEditAvatar={()=>CloseModalEditAvatar() } getData={props.getData} user={props.user} token={props.token} id={props.id}/>
+            <EditAvatar CloseModalEditAvatar={()=>CloseModalEditAvatar() } getData={props.getData} avatar={avatarUrl} user={props.user} token={props.token} id={props.id}/>
           </ModalWindow>
       </div>:<div>Loading...</div>
    );

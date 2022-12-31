@@ -31,7 +31,7 @@ class EditUserAvatar extends React.Component {
           headers: { Authorization: `Bearer ${this.props.token}` },
           "Content-Type": "multipart/form-data",
         })
-        .then(this.props.getData(), this.props.CloseModalEditAvatar());
+        .then(this.props.getData, this.props.CloseModalEditAvatar(),);
     }
   };
   componentDidMount() {
@@ -63,7 +63,7 @@ class EditUserAvatar extends React.Component {
             <div className={styleRegister.LabelGroupNumber}>
               <img
                 className={style.preview}
-                src={this.state.avatarShow}
+                src={this.props.avatar}
                 alt="User foto"
               ></img>
               <input

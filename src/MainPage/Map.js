@@ -73,7 +73,6 @@ const SimpleMap = (props) => {
     } else {
       setN(elements);
     }
-    console.log(objects);
     props.getDist(objects,distArray);
   }
   useEffect(() => {
