@@ -29,8 +29,7 @@ class EditUser extends React.Component {
     },{headers: {Authorization: `Bearer ${this.props.token}`}}).then(
       this.props.getData,
       this.props.CloseModal(),
-      
-
+    
     );
     
   };

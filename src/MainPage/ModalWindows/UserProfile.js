@@ -4,12 +4,14 @@ import UserAvatar from "../../Assets/User-avatar.svg";
 import style from './Modal.module.css';
 import ModalWindow from './Modal';
 import EditUser from './EditUserProfile';
+import EditAvatar from './EditUserAvatar.js'
 import { useState } from 'react';
 import axios from 'axios';
 
 const User = (props) => {
    let userData = JSON.parse(localStorage.getItem("user"));
    const [openEdit, setOpenEdit] = useState(false);
+   const [openEditAvatar, setOpenEditAvatar] = useState(false);
    const [id] = useState(userData.userData.id)
    const [token]= useState(userData.token)
    const [user, setUser]= useState();
@@ -18,8 +20,17 @@ const User = (props) => {
       setOpenEdit(true);
       
    }
+   const  OpenEditAvatar =()=>{
+      setOpenEditAvatar(true);
+      
+   }
    const CloseModal=()=>{
       setOpenEdit(false);
+      props.CloseModal();
+      
+   }
+   const CloseModalEditAvatar=()=>{
+      setOpenEditAvatar(false);
       props.CloseModal();
       
    }
@@ -37,7 +48,6 @@ const User = (props) => {
     };
     useEffect(() => {
       getData();
-
     },[])
    
 
@@ -57,11 +67,13 @@ const User = (props) => {
                />
             </button>
          </div>
+         {console.log(avatarUrl)}
          <div className={style.UserContainerBody}>
             <img src={avatarUrl} alt="User foto"></img>
             <div className={style.UserInformation}>
                <div className={style.UserInformationHeader}>
                   <p className={style.UserName}>{user.firstName} {user.lastName}</p>
+                  <div>
                   <button className={style.EditBtn} onClick={()=>OnClick()}>
                      <Icon
                         className={style.EditIcon}
@@ -71,6 +83,10 @@ const User = (props) => {
                         height="22"
                      />
                   </button>
+                  <button className={style.EditFoto} onClick={()=>OpenEditAvatar()}>
+                     Edytuj zdjęcie
+                  </button>
+                  </div>
                </div>
                <div className={style.UserContact}>
                   <p className={style.Mail}>Email: {user.email}</p>
@@ -88,6 +104,12 @@ const User = (props) => {
             onClose={!openEdit}
           >
             <EditUser CloseModal={()=>CloseModal() } getData={props.getData} user={props.user} token={props.token} id={props.id}/>
+          </ModalWindow>
+          <ModalWindow
+            openModal={openEditAvatar}
+            onClose={!openEditAvatar}
+          >
+            <EditAvatar CloseModalEditAvatar={()=>CloseModalEditAvatar() } getData={props.getData} user={props.user} token={props.token} id={props.id}/>
           </ModalWindow>
       </div>:<div>Loading...</div>
    );

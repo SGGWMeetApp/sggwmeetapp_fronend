@@ -42,6 +42,7 @@ class Navigation extends React.Component {
           Authorization: `Bearer ${this.state.user.token}`,
         },
       })
+      
       .then((response) => this.setState({ userInfo: response.data.userData }));
   };
 
@@ -82,8 +83,8 @@ class Navigation extends React.Component {
       return <div className={style.NaviBar}>Loading...</div>;
     }
     let fotoUrl = null;
-    if (userInfo.avatarFoto) {
-      fotoUrl = userInfo.avatarFoto;
+    if (userInfo.avatarUrl) {
+      fotoUrl = userInfo.avatarUrl;
     } else {
       fotoUrl = UserAvatar;
     }
