@@ -35,7 +35,7 @@ const User = (props) => {
       
    }
    const getData = async () => {
-      const val =Math.random()
+      const val =Date.now();
       const response =await axios
         .get(`http://3.68.195.28/api/users/${id}`, {
           headers: {

@@ -84,7 +84,7 @@ class Navigation extends React.Component {
     }
     let fotoUrl = null;
     if (userInfo.avatarUrl) {
-      fotoUrl = userInfo.avatarUrl+"?"+Math.random();
+      fotoUrl = userInfo.avatarUrl+"?"+Date.now();;
     } else {
       fotoUrl = UserAvatar;
     }

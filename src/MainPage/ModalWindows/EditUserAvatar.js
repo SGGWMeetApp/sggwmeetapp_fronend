@@ -35,8 +35,8 @@ class EditUserAvatar extends React.Component {
     }
   };
   componentDidMount() {
-    if (this.props.user.avatarUrl) {
-      this.setState({ avatarShow: this.props.user.avatarUrl });
+    if (this.props.avatar) {
+      this.setState({ avatarShow: this.props.avatar});
     } else {
       this.setState({ avatarShow: UserAvatar });
     }
@@ -63,7 +63,7 @@ class EditUserAvatar extends React.Component {
             <div className={styleRegister.LabelGroupNumber}>
               <img
                 className={style.preview}
-                src={this.props.avatar}
+                src={this.state.avatarShow}
                 alt="User foto"
               ></img>
               <input
