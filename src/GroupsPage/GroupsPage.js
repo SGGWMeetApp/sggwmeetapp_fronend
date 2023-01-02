@@ -14,6 +14,7 @@ class GroupsPage extends React.Component {
       groups: [],
       userToken: user.token,
       error: null,
+      id:user.userData.id,
     };
   }
 
@@ -22,7 +23,7 @@ class GroupsPage extends React.Component {
   }
 
   getGroups = async () => {
-    const response = await axios.get("http://3.68.195.28/api/groups", {
+    const response = await axios.get(`http://3.68.195.28/api/users/${this.state.id}/groups`, {
       headers: {
         Authorization: `Bearer ${this.state.userToken}`,
       },
