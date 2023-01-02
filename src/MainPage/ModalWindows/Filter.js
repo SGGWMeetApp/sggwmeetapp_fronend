@@ -5,7 +5,7 @@ import Slider from "@mui/material/Slider";
 import { useState } from "react";
 const Filter = (props) => {
   const [ready, setReady] = useState(null);
-  const [value1, setValue1] = useState([1, 100]);
+  const [value1, setValue1] = useState(null);
   const [value2, setValue2] = useState(null);
   const categories = props.categories;
   var checkCategory = [];
@@ -47,6 +47,7 @@ const Filter = (props) => {
     }
     sessionStorage.setItem("objFilter", JSON.stringify(checkCategory));
     sessionStorage.setItem("objDistance", JSON.stringify(value2));
+    sessionStorage.setItem("objRange", JSON.stringify(value1))
     props.getMap();
     props.CloseModal("filter");
   };
@@ -54,8 +55,10 @@ const Filter = (props) => {
   function ResetFilter() {
     setPlacesFilter(categories.map((cat) => [cat, false]));
     setValue2(30000000);
+    setValue1([0,100])
     sessionStorage.setItem("objFilter", JSON.stringify(checkCategory));
     sessionStorage.setItem("objDistance", JSON.stringify(30000000));
+    sessionStorage.setItem("objRange", JSON.stringify([0,100]))
     props.getMap()
   }
 
@@ -82,8 +85,17 @@ const Filter = (props) => {
     else{
       setValue2(30000000);
     }
+    if(JSON.parse(sessionStorage.getItem("objRange")) &&JSON.parse(sessionStorage.getItem("objRange"))!==[]){
+      setValue1(JSON.parse(sessionStorage.getItem("objRange")))
+    }
+    else{
+      setValue1([0,100]);
+    }
+    GetItemStorage("objRange");
+  
     GetItemStorage("objFilter");
-  }, []);
+  }
+  , []);
 
   return (ready === "ss") ? (
     <div className={style.FilterContainer}>
@@ -113,7 +125,7 @@ const Filter = (props) => {
               className={style.Slider}
               value={value1}
               onChange={(e)=>handleChangeRange(e)}
-              on
+              
             />
           </div>
         </div>

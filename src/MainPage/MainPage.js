@@ -33,6 +33,7 @@ class MainPage extends React.Component {
     var localisation = [];
     var objects = [];
     const obj = JSON.parse(sessionStorage.getItem("objFilter"));
+
     var objFilter = "";
 
     if (obj && obj.length > 0) {
@@ -112,8 +113,11 @@ class MainPage extends React.Component {
   };
 
   getDistFilter = (value,dist) =>{
-    if(value){
+    if(value && dist){
     this.setState({objects2:value, dist:dist})}
+    else if(value && !dist){
+      this.setState({objects2:value, dist:30000000})
+    }
   };
 
   OpenModal = (id) => {
@@ -211,6 +215,7 @@ class MainPage extends React.Component {
 
             mylocalisation={this.state.currentLoc}
             distance={JSON.parse(sessionStorage.getItem("objDistance"))}
+            range={JSON.parse(sessionStorage.getItem("objRange"))}
             objects = {this.state.objects}
             getDist={this.getDistFilter}
           />

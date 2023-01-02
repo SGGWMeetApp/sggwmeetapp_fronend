@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import icon from "../Assets/pin2.svg";
 import user from "../Assets/user.svg";
 import MapStyle from "./Mapstyle.js";
@@ -12,75 +12,104 @@ const SimpleMap = (props) => {
     googleMapsApiKey: process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     libraries,
   });
+  
   const google = window.google;
   const elements = props.objects;
   const dist = props.distance;
+  const range = props.range;
+  const [nelements, setN] = useState(elements);
   const center = { lat: 52.16351, lng: 21.04665 };
   const point = { x: 28, y: 48 };
-  let myPosition = props.mylocalisation;
+  //let myPosition = props.mylocalisation;
+  let myPosition = { lat: 52.16351, lng: 21.04665 };
   if (myPosition) {
     center.lat = myPosition.lat;
     center.lng = myPosition.lng;
   }
-  const [nelements, setN] = useState(elements);
-  
-  function distance() {
+
+
+
+  function filter() {
+    let objectRange = null;
     let objects = null;
     let distArray = null;
+    if (range) {
+      if (range !== []) {
+        objectRange = elements.filter(
+          (element) =>
+            element.reviewSummary.positivePercent >= range[0] &&
+            element.reviewSummary.positivePercent <= range[1]
+        );
+      }
+    } 
+    else 
+    {
+      objectRange = elements;
+    }
+
     if (myPosition) {
       if (dist !== []) {
-        objects=(
-          elements.filter(
-            (element) =>
-              dist >=
-              google.maps.geometry.spherical.computeDistanceBetween(
-                myPosition,
-                {
-                  lat: element.geolocation.latitude,
-                  lng: element.geolocation.longitude,
-                }
-              )
-          )
+        objects = objectRange.filter(
+          (element) =>
+            dist >=
+            google.maps.geometry.spherical.computeDistanceBetween(myPosition, {
+              lat: element.geolocation.latitude,
+              lng: element.geolocation.longitude,
+            })
         );
         setN(objects);
-      } else {
-        setN(elements);
-        objects=elements;
+      } 
+      else 
+      {
+        setN(objectRange);
+        objects = objectRange;
       }
-       distArray = objects.map((item) => {
+      distArray = objects.map((item) => {
         if (
           google.maps.geometry.spherical.computeDistanceBetween(myPosition, {
             lat: item.geolocation.latitude,
             lng: item.geolocation.longitude,
           }) > 6000
-        ) {
-          return(
-            google.maps.geometry.spherical.computeDistanceBetween(myPosition, {
-              lat: item.geolocation.latitude,
-              lng: item.geolocation.longitude,
-            }) / 1000
-          ).toFixed(2)+" km";
-        } else {
-          return (item, google.maps.geometry.spherical
-            .computeDistanceBetween(myPosition, {
-              lat: item.geolocation.latitude,
-              lng: item.geolocation.longitude,
-            })
-            .toFixed(1)+" m");
+        )
+         {
+          return (
+            (
+              google.maps.geometry.spherical.computeDistanceBetween(
+                myPosition,
+                {
+                  lat: item.geolocation.latitude,
+                  lng: item.geolocation.longitude,
+                }
+              ) / 1000
+            ).toFixed(2) + " km"
+          );
+        } 
+        else
+         {
+          return (
+            item,
+            google.maps.geometry.spherical
+              .computeDistanceBetween(myPosition, {
+                lat: item.geolocation.latitude,
+                lng: item.geolocation.longitude,
+              })
+              .toFixed(1) + " m"
+          );
         }
       });
-      
-    } else {
-      setN(elements);
+      props.getDist(objects, distArray);
     }
-    props.getDist(objects,distArray);
+     else 
+     {
+      setN(objectRange);
+      props.getDist(objectRange, distArray);
+    }
   }
   useEffect(() => {
     if (isLoaded) {
-      distance();
+      filter();
     }
-      
-  }, [dist, elements, myPosition]);
+  }, [dist, range[0], range[1],elements]);
   if (!isLoaded) {
     return <div>Loading...</div>;
   }
@@ -90,12 +119,15 @@ const SimpleMap = (props) => {
       center={{ lat: center.lat, lng: center.lng }}
       mapContainerClassName={style.map_container}
       options={{ styles: MapStyle }}
-      onLoad={distance}
+      onLoad={filter}
     >
       {nelements.map((marker, index) => (
         <Marker
           key={index}
-          position={{ lat: marker.geolocation.latitude, lng: marker.geolocation.longitude }}
+          position={{
+            lat: marker.geolocation.latitude,
+            lng: marker.geolocation.longitude,
+          }}
           icon={{ url: icon, labelOrigin: point }}
           label={{ text: marker.name }}
         ></Marker>

@@ -17,7 +17,7 @@ const EventsPage = () => {
   }, []);
 
   const getEvents = async () => {
-    const response = await axios.get(`http://3.68.195.28/api/events`, {
+    const response = await axios.get(`http://3.68.195.28/api/users/${id}/events`, {
       headers: {
         Authorization: `Bearer ${userToken}`,
       },
