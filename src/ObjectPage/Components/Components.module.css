@@ -254,6 +254,9 @@
     height: 45px;
     min-width: 190px;
 }
+.EventHeader>.SecondSection{
+    height: 100px;
+}
 
 .EventDescribe {
     width: 100%;
