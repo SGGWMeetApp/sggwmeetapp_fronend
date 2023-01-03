@@ -274,7 +274,7 @@ class MainPage extends React.Component {
         </div>
       </div>
     ) : (
-      <DualRingLoader />
+     <div>Loading...</div>
     );
   }
 }

@@ -5,6 +5,7 @@ import MapStyle from "./Mapstyle.js";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 import style from "./Map.module.css";
 import { useEffect } from "react";
+import { DualRingLoader } from '../Loaders/Loaders';
 
 const SimpleMap = (props) => {
   const [libraries, setLib] = useState(["geometry"]);
@@ -110,7 +111,7 @@ const SimpleMap = (props) => {
     }
   }, [dist, range[0], range[1],elements]);
   if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <DualRingLoader/>;
   }
   return nelements ? (
     <GoogleMap
@@ -140,7 +141,7 @@ const SimpleMap = (props) => {
       )}
     </GoogleMap>
   ) : (
-    <div>Loading map...</div>
+    <DualRingLoader/>
   );
 };
 
