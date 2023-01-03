@@ -20,8 +20,7 @@ const SimpleMap = (props) => {
   const [nelements, setN] = useState(elements);
   const center = { lat: 52.16351, lng: 21.04665 };
   const point = { x: 28, y: 48 };
-  //let myPosition = props.mylocalisation;
-  let myPosition = { lat: 52.16351, lng: 21.04665 };
+  let myPosition = props.mylocalisation;
   if (myPosition) {
     center.lat = myPosition.lat;
     center.lng = myPosition.lng;
@@ -48,7 +47,7 @@ const SimpleMap = (props) => {
     }
 
     if (myPosition) {
-      if (dist !== []) {
+      if ( dist && dist !== []) {
         objects = objectRange.filter(
           (element) =>
             dist >=
