@@ -7,6 +7,7 @@ import Filter from "./ModalWindows/Filter";
 import ModalWindow from "./ModalWindows/Modal";
 import SimpleMap from "./Map";
 import axios from "axios";
+import { DualRingLoader } from '../Loaders/Loaders';
 class MainPage extends React.Component {
   constructor() {
     let range = null;
@@ -169,7 +170,7 @@ class MainPage extends React.Component {
                 Filtruj
               </button>
             ) : (
-              <p>...</p>
+              <DualRingLoader />
             )}
           </div>
           <div className={style.ObjectListContainer}>
@@ -273,7 +274,7 @@ class MainPage extends React.Component {
         </div>
       </div>
     ) : (
-      <div>Loading...</div>
+      <DualRingLoader />
     );
   }
 }

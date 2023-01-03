@@ -7,6 +7,7 @@ import EditUser from './EditUserProfile';
 import EditAvatar from './EditUserAvatar.js'
 import { useState } from 'react';
 import axios from 'axios';
+import { DualRingLoader } from './../../Loaders/Loaders.js';
 
 const User = (props) => {
    let userData = JSON.parse(localStorage.getItem("user"));
@@ -111,7 +112,7 @@ const User = (props) => {
           >
             <EditAvatar CloseModalEditAvatar={()=>CloseModalEditAvatar() } getData={props.getData} avatar={avatarUrl} user={props.user} token={props.token} id={props.id}/>
           </ModalWindow>
-      </div>:<div>Loading...</div>
+      </div>:<DualRingLoader/>
    );
 };
 export default User;

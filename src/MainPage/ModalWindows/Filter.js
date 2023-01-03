@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react";
 import style from "./Modal.module.css";
 import Slider from "@mui/material/Slider";
 import { useState } from "react";
+import {DualRingLoader} from "../../Loaders/Loaders.js"
 const Filter = (props) => {
   const [ready, setReady] = useState(null);
   const [value1, setValue1] = useState(null);
@@ -192,7 +193,7 @@ const Filter = (props) => {
       </form>
     </div>
   ) : (
-    <div>Ładowanie...</div>
+    <DualRingLoader/>
   );
 };
 export default Filter;

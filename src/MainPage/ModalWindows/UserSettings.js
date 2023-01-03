@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import style from "./Modal.module.css";
 import axios from "axios";
+import {DualRingLoader} from "../../Loaders/Loaders.js"
 const Settings = (props) => {
   const id = props.id;
   const url = "http://3.68.195.28/api/";
@@ -240,7 +241,7 @@ const Settings = (props) => {
       </form>
     </div>
   ) : (
-    <div>Loading...</div>
+    <DualRingLoader/>
   );
 };
 export default Settings;
