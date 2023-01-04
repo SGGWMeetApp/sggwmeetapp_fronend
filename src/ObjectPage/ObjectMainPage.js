@@ -9,34 +9,33 @@ import Menu from "./Components/Menu";
 import TabContent from "./Components/TabContent";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-import { DualRingLoader } from '../Loaders/Loaders';
+import { DualRingLoader } from "../Loaders/Loaders";
 class ObjectPage extends React.Component {
   constructor(props) {
     let user = JSON.parse(localStorage.getItem("user"));
 
     super(props);
     this.state = {
-    acttiveTab: "describe",
-    id: undefined,
-    userToken:user.token,
-    describe:undefined,
-    name:undefined,
-    photo:undefined,
-    rating: undefined,
-    review: undefined,
-    location:undefined,
-    events:[],
-    loading:true,
-  }}
+      acttiveTab: "describe",
+      id: undefined,
+      userToken: user.token,
+      describe: undefined,
+      name: undefined,
+      photo: undefined,
+      rating: undefined,
+      reviews: undefined,
+      location: undefined,
+      events: [],
+      loading: true,
+    };
+  }
   handleActive(type) {
     this.setState({
       acttiveTab: type,
-      
-      
     });
   }
   componentDidMount() {
-    this.setState({ id: +window.location.pathname.split("/")[3] })
+    this.setState({ id: +window.location.pathname.split("/")[3] });
     this.getDetails(+window.location.pathname.split("/")[3]);
     this.getEvents(+window.location.pathname.split("/")[3]);
   }
@@ -46,56 +45,80 @@ class ObjectPage extends React.Component {
         Authorization: `Bearer ${this.state.userToken}`,
       },
     });
-    console.log(response.data)
-   this.setState({name:response.data.name, location:response.data.textLocation, describe:response.data.description, loading:false})
-   if(response.data.photoPath){
-    this.setState({photo:response.data.photoPath})
-   }
-
+    this.setState({
+      name: response.data.name,
+      location: response.data.textLocation,
+      describe: response.data.description,
+      rating: response.data.rating,
+      loading: false,
+      reviews: response.data.rating.reviews,
+    });
+    if (response.data.photoPath) {
+      this.setState({ photo: response.data.photoPath });
+    }
   };
   getEvents = async (id) => {
-    const response = await axios.get(`http://3.68.195.28/api/places/${id}/events`, {
-      headers: {
-        Authorization: `Bearer ${this.state.userToken}`,
-      },
-    });
-    if(response.data.events.length>0){
-      this.setState({events:response.data.events})
+    const response = await axios.get(
+      `http://3.68.195.28/api/places/${id}/events`,
+      {
+        headers: {
+          Authorization: `Bearer ${this.state.userToken}`,
+        },
+      }
+    );
+    if (response.data.events.length > 0) {
+      this.setState({ events: response.data.events });
     }
-   console.log(response.data)
-
   };
   render() {
     return (
       <div className={style.MainContainer}>
         <div className={style.ObjectContainer}>
-        {this.state.loading?(<DualRingLoader/>):(
-          <div className={style.MainBar}>
-          
-            <h1>{this.state.name}</h1>
-            <button className={styleGroup.BackMapBtn}>
-              <NavLink className={styleGroup.NavLinkBtn} to="/profile">
-                <Icon
-                  icon="akar-icons:arrow-left"
-                  color="#122c34"
-                  width="20"
-                  height="20"
-                />
-                Wróć do mapy
-              </NavLink>
-            </button>
-          </div>)}
-          <div className={style.SecondBar}>
-            <div className={style.Icon}>
-              <Icon icon="bx:star" />
+          {this.state.loading ? (
+            <DualRingLoader />
+          ) : (
+            <div className={style.MainBar}>
+              <h1>{this.state.name}</h1>
+              <button className={styleGroup.BackMapBtn}>
+                <NavLink className={styleGroup.NavLinkBtn} to="/profile">
+                  <Icon
+                    icon="akar-icons:arrow-left"
+                    color="#122c34"
+                    width="20"
+                    height="20"
+                  />
+                  Wróć do mapy
+                </NavLink>
+              </button>
             </div>
-            <div className={style.AVGNote}>4.8</div>
-            <div className={style.Opinions}>6 opinii</div>
-            <div className={style.Address}>{this.state.location}</div>
+          )}
+          <div className={style.SecondBar}>
+            {this.state.rating ? (
+              this.state.rating.positivePercent ? (
+                <div className={style.AVGNote}>
+                  {this.state.rating.positivePercent}% poleca miejsce
+                </div>
+              ) : (
+                <p style={{ width: "0" }}></p>
+              )
+            ) : (
+              <p></p>
+            )}
+            {this.state.reviews ? (
+              <div className={style.Opinions}>
+                {this.state.reviews.length} opini ogółem
+              </div>
+            ) : (
+              <p></p>
+            )}
           </div>
-          <div className={style.Fotos}>
-            <img  className={style.Fotos} src={this.state.photo} alt="Brak zdjęć dla tego miejsca"/>
-          </div>
+
+            <img
+              className={style.Fotos}
+              src={this.state.photo}
+              alt="Brak zdjęć dla tego miejsca"
+            />
+
           <div className={style.NaviComponents}>
             <ul className={style.NaviList}>
               <li
@@ -132,15 +155,15 @@ class ObjectPage extends React.Component {
               </li>
             </ul>
           </div>
-          <div>
+          <div style={{width:"100%"}}>
             <TabContent id="describe" activeTab={this.state.acttiveTab}>
               <Describe describe={this.state.describe} />
             </TabContent>
             <TabContent id="opinions" activeTab={this.state.acttiveTab}>
-              <Opinions />
+              <Opinions rating={this.state.rating} />
             </TabContent>
             <TabContent id="events" activeTab={this.state.acttiveTab}>
-              <Events events={this.state.events}/>
+              <Events events={this.state.events} />
             </TabContent>
             <TabContent id="menu" activeTab={this.state.acttiveTab}>
               <Menu />
