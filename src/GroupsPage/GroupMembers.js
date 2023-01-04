@@ -4,11 +4,10 @@ import { Icon } from "@iconify/react";
 import TableRow from "./TableRow";
 import { NavLink } from "react-router-dom";
 import ModalWindow from "../MainPage/ModalWindows/Modal";
-import User from "../MainPage/ModalWindows/UserProfile";
+import User from "./UserInfo.js";
 import axios from "axios";
 
 class GroupMemebers extends React.Component {
-
   constructor(props) {
     let user = JSON.parse(localStorage.getItem("user"));
 
@@ -18,14 +17,13 @@ class GroupMemebers extends React.Component {
       id: undefined,
       openModal: false,
       userToken: user.token,
-      members: []
+      members: [],
+      memberId: undefined,
     };
   }
 
-
-
   componentDidMount() {
-    this.setState({ id: +window.location.pathname.split("/")[3] })
+    this.setState({ id: +window.location.pathname.split("/")[3] });
     this.getMembers(+window.location.pathname.split("/")[3]);
   }
 
@@ -39,17 +37,23 @@ class GroupMemebers extends React.Component {
       openModal: false,
     });
   };
-
+  SetMemberId = (id) => {
+    this.setState({ memberId: id });
+    return id;
+    
+  };
   getMembers = async (id) => {
-    const response = await axios.get(`http://3.68.195.28/api/groups/${id}/users`, {
-      headers: {
-        Authorization: `Bearer ${this.state.userToken}`,
-      },
-    });
+    const response = await axios.get(
+      `http://3.68.195.28/api/groups/${id}/users`,
+      {
+        headers: {
+          Authorization: `Bearer ${this.state.userToken}`,
+        },
+      }
+    );
     if (response.data.users.length > 0) {
       this.setState({ members: response.data.users, name: response.data.name });
     }
-
   };
 
   render() {
@@ -89,7 +93,10 @@ class GroupMemebers extends React.Component {
                 </NavLink>
               </button>
               <button className={style.CreateGroupBtn}>
-                <NavLink className={style.NavLinkBtn + " " + style.UserAddLinkBtn} to={`/profile/groups/${this.state.id}/members/add`}>
+                <NavLink
+                  className={style.NavLinkBtn + " " + style.UserAddLinkBtn}
+                  to={`/profile/groups/${this.state.id}/members/add`}
+                >
                   <Icon
                     icon="ant-design:plus-outlined"
                     color="white"
@@ -106,17 +113,27 @@ class GroupMemebers extends React.Component {
               <thead>
                 <tr>
                   <th>Imię i nazwisko</th>
+                  <th>Data dołączenia</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                {this.state.members.length > 0 ? this.state.members.map(member =>
-                  <tr key={member.id}>
-                    <td>
-                      <input type="checkbox" /> {member.firstName + " " + member.lastName}
-                    </td>
-                    <TableRow id="members" OpenModal={this.OpenModal} />
-                  </tr>)
+                {this.state.members.length > 0
+                  ? this.state.members.map((member) => (
+                      <tr key={member.id}>
+                        <td>
+                          <input type="checkbox" />{" "}
+                          {member.firstName + " " + member.lastName}
+                        </td>
+                        <td>{member.registrationDate.slice(0, 10)}</td>
+                    <td><div onClick={() => this.SetMemberId(member.id)}> <TableRow
+                          id="members"
+                          OpenModal={this.OpenModal}
+                          
+                        ></TableRow></div></td>
+                       
+                      </tr>
+                    ))
                   : null}
               </tbody>
             </table>
@@ -124,7 +141,7 @@ class GroupMemebers extends React.Component {
               openModal={this.state.openModal}
               onClose={!this.state.openModal}
             >
-              <User CloseModal={this.CloseModal} />
+              <User CloseModal={this.CloseModal} id={this.state.memberId} />
             </ModalWindow>
           </div>
         </div>
