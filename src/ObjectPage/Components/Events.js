@@ -1,39 +1,55 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import style from "./Components.module.css";
+import TableStyle from "./../../GroupsPage/GroupsPage.module.css";
 
 const Events = (props) => {
   const events = props.events;
-  console.log(events)
   return (
     <div className={style.EventsContainer}>
       <div className={style.EventsHeader}>
-        <h1 className={style.EventHead}>{events.length} wydzrzeń w najbiższym czasie</h1>
-
+        <h1 className={style.EventHead}>
+          {events.length} wydzrzeń w najbiższym czasie
+        </h1>
       </div>
-      {events.length!==0?(
-        events.map((event)=><div className={style.EventsSection}>
-        <div key={event.id} className={style.Event}>
-          <div className={style.EventHeader}>
-            <div className={style.FirstSection}>
-              <p className={style.EventName}>{event.name}</p>
-              <p className={style.EventAuth}>Utowrzył(a) {event.author.firstName+" "+event.author.lastName}</p>
-            </div>
-            <div className={style.SecondSection}>
-              <p className={style.EventDate}>{event.startDate.slice(0,10)+" godz:"+event.startDate.slice(11,16)}</p>
-              <Icon
-                icon="ri:information-line"
-                width="24"
-                height="24"
-                color="#122c34"
-              />
-            </div>
-          </div>{event.description?(<p className={style.EventDescribe}>
-            {event.description}
-          </p>):(<p>Brak opisu</p>)}
+      {events.length !== 0 ? (
+        <div style={{ height: "300px", overflowY: "scroll" }}>
+          <table className={TableStyle.GroupsTable}>
+            <thead>
+              <tr >
+                <th>Nazwa</th>
+                <th>Data</th>
+                <th>Autor</th>
+                <th>Opis wydarzneia</th>
+              </tr>
+            </thead>
+            <tbody>
+              {events.map((event) => (
+                <tr key={event.id} className={style.Event}>
+                  <td style={{width:"300px"}}>{event.name}</td>
+                  <td>
+                    {event.startDate.slice(0, 10)+ " "+
+                    event.startDate.slice(11, 16)}
+                  </td>
+                  <td>
+                    {event.author.firstName + " " + event.author.lastName}
+                  </td>
+
+                  {event.description ? (
+                    <td style={{textAlign:"initial"}}>{event.description}</td>
+                  ) : (
+                    <td style={{textAlign:"initial"}}>Brak opisu</td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      </div>)
-      ):(<div className={style.SecondSection}>Aktualnie brak nadchodzących wydarzeń dla tego miejsca</div>)}
+      ) : (
+        <div className={style.SecondSection}>
+          
+        </div>
+      )}
     </div>
   );
 };
