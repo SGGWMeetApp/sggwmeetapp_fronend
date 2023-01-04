@@ -106,7 +106,6 @@ class GroupMemebers extends React.Component {
               <thead>
                 <tr>
                   <th>Imię i nazwisko</th>
-                  <th>Data dołączenia</th>
                   <th></th>
                 </tr>
               </thead>
@@ -116,7 +115,6 @@ class GroupMemebers extends React.Component {
                     <td>
                       <input type="checkbox" /> {member.firstName + " " + member.lastName}
                     </td>
-                    <td>Brak w kontraktach!!!!</td>
                     <TableRow id="members" OpenModal={this.OpenModal} />
                   </tr>)
                   : null}
