@@ -4,12 +4,13 @@
     align-items: flex-start;
     padding: 0px;
     width: 700px;
-    height: 289px;
+    min-height: 289px;
     background: #FFFFFF;
     box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
     margin-left: 20px;
     margin-top: 20px;
+    height: auto;
 }
 
 .UserHeader {
@@ -53,7 +54,7 @@
     flex-direction: row;
     align-items: flex-start;
 
-    height: 100%;
+    height: auto;
 }
 
 .UserInformation {
@@ -61,7 +62,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 0px 0px 0px 20px;
-    height: 156px;
+    
 }
 
 .UserInformationHeader {
@@ -132,7 +133,7 @@
     padding: 0px;
 
     width: 100%;
-    height: 48px;
+    height: auto;
 }
 
 .UserDescriptionText {
@@ -151,7 +152,7 @@
 .Modal {
     display: flex;
     width: 700px;
-    height: 289px;
+    min-height: 289px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
