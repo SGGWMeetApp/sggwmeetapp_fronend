@@ -41,16 +41,12 @@
     height: 20px;
 }
 
-.Icon {
-    width: 30px;
-}
-
 .AVGNote {
-    width: 50px;
+    width: 190px;
 }
 
 .Opinions {
-    width: 80px;
+    width: 180px;
 }
 
 .Address {
@@ -58,8 +54,7 @@
 }
 
 .Fotos {
-    height: 400px;
-    width: auto;
+    width: 100%;
 }
 
 .NaviComponents {
@@ -74,9 +69,6 @@
     display: flex;
     margin-left: 0px;
     padding:0;
-
-}
-.NaviBtn {
 
 }
 .NaviList>li{

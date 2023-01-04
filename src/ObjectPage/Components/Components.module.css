@@ -1,12 +1,13 @@
 .DescribeContainer {
     font-family: 'Roboto';
     font-style: normal;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 14px;
-    line-height: 100%;
+    line-height: 130%;
     letter-spacing: -0.02em;
     color: #000000;
     margin-bottom: 200px;
+    padding: 25px 0px;
 }
 
 .OpinionContainer {
@@ -76,8 +77,8 @@
 }
 
 .Avatar {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
 }
 
 .UserInfo {
@@ -86,7 +87,7 @@
     align-items: flex-start;
     padding: 0px;
 
-    min-width: 130px;
+    min-width: 150px;
     width: auto;
     height: 45px;
 }
@@ -119,7 +120,7 @@
     align-items: flex-start;
     padding: 0px 0px 0px 20px;
 
-    width: 284.5px;
+    width: 84.5px;
     height: 30px;
 }
 
@@ -143,7 +144,7 @@
     padding: 0px 0px 0px 20px;
     gap: 10px;
 
-    width: 284.5px;
+    width: 184.5px;
     height: 26px;
 }
 
@@ -196,6 +197,7 @@
 
 .Event {
     width: 100%;
+
 }
 
 .EventHeader {
@@ -213,13 +215,12 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
-    height: 45px;
-    width: 40%;
+    height: 50px;
     min-width: 190px;
 }
 
 .EventName {
-    height: 26px;
+    
     font-family: 'Roboto';
     font-style: normal;
     font-weight: bold;
@@ -228,6 +229,7 @@
     letter-spacing: 0.15px;
     margin: 0px;
     color: #000000;
+    width: 190px;
 }
 
 .EventAuth {
@@ -247,11 +249,12 @@
 
 .SecondSection {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 0px;
     width: 60%;
-    height: 45px;
+    height: 50px;
     min-width: 190px;
 }
 .EventHeader>.SecondSection{
@@ -270,11 +273,12 @@
 }
 
 .EventDate {
-    height: 38px;
+    display: flex;
+    margin: 0 ;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 160%;
     letter-spacing: 0.15px;
 
