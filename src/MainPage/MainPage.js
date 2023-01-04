@@ -187,6 +187,7 @@ class MainPage extends React.Component {
                           <div className={style.ObjectDescribe}>
                             <p className={style.ObjectName}>{obj.name}</p>
                             <p className={style.ObjectOpinions}>
+                              {console.log(obj)}
                               <Icon
                                 icon="majesticons:percent"
                                 color="#857E7B"
