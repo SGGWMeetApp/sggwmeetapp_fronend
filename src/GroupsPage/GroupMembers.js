@@ -2,10 +2,11 @@ import React from "react";
 import style from "./GroupsPage.module.css";
 import { Icon } from "@iconify/react";
 import TableRow from "./TableRow";
-import { NavLink } from "react-router-dom";
+import { NavLink, Route, Routes } from "react-router-dom";
 import ModalWindow from "../MainPage/ModalWindows/Modal";
 import User from "./UserInfo.js";
 import axios from "axios";
+import GroupsPage from "./GroupsPage.js";
 
 class GroupMemebers extends React.Component {
   constructor(props) {
@@ -19,6 +20,8 @@ class GroupMemebers extends React.Component {
       userToken: user.token,
       members: [],
       memberId: undefined,
+      admin: undefined,
+      myId: user.userData.id,
     };
   }
 
@@ -40,7 +43,6 @@ class GroupMemebers extends React.Component {
   SetMemberId = (id) => {
     this.setState({ memberId: id });
     return id;
-    
   };
   getMembers = async (id) => {
     const response = await axios.get(
@@ -52,10 +54,40 @@ class GroupMemebers extends React.Component {
       }
     );
     if (response.data.users.length > 0) {
-      this.setState({ members: response.data.users, name: response.data.name });
+      const data = response.data.users;
+      const admin = data.filter((user) => user.isAdmin === true);
+      this.setState({
+        members: response.data.users,
+        name: response.data.name,
+        admin: admin,
+      });
     }
   };
+  deleteUser = async () => {
+    if (this.state.admin[0].id === this.state.myId) {
+      await axios.delete(
+        `http://3.68.195.28/api/groups/${this.state.id}/users/${this.state.memberId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.state.userToken}`,
+          },
+        }
+      );
+      this.getMembers(this.state.id);
+    } else {
+      await axios.delete(
+        `http://3.68.195.28/api/groups/${this.state.id}/users`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.state.userToken}`,
+          },
+        }
+      )
 
+        window.location.replace("");
+
+    }
+  };
   render() {
     return (
       <div className={style.GroupContainer}>
@@ -126,12 +158,22 @@ class GroupMemebers extends React.Component {
                           {member.firstName + " " + member.lastName}
                         </td>
                         <td>{member.registrationDate.slice(0, 10)}</td>
-                    <td><div onClick={() => this.SetMemberId(member.id)}> <TableRow
-                          id="members"
-                          OpenModal={this.OpenModal}
-                          
-                        ></TableRow></div></td>
-                       
+                        <td>
+                          {(this.state.admin[0].id === this.state.myId &&
+                            this.state.admin[0].id !== member.id) ||
+                          (this.state.admin[0].id !== this.state.myId &&
+                            this.state.myId === member.id) ? (
+                            <div onClick={() => this.SetMemberId(member.id)}>
+                              <TableRow
+                                id="members"
+                                OpenModal={this.OpenModal}
+                                DeleteUser={this.deleteUser}
+                              ></TableRow>
+                            </div>
+                          ) : (
+                            <p></p>
+                          )}
+                        </td>
                       </tr>
                     ))
                   : null}

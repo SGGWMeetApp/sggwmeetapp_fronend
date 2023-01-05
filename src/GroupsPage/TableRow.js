@@ -38,6 +38,7 @@ class TableRow extends React.Component {
             visible={this.state.visible}
             handleShow={this.handleShow}
             OpenModal={this.props.OpenModal}
+            DeleteUser={this.props.DeleteUser}
           />
         )}
       </td>

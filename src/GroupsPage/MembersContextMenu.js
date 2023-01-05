@@ -16,14 +16,14 @@ const MenuMembers = (props) => {
       </div>
       <ul className={style.MenuList}>
         <li>
-          <button className={style.ActBtn}>
+          <button className={style.ActBtn} onClick={()=>props.DeleteUser()}>
             <Icon
               icon="carbon:close-filled"
               color="rgba(0, 0, 0, 0.54)"
               width="20"
               height="20"
             />
-            <p>Wyproś</p>
+            <p>Usuń z grupy</p>
           </button>
         </li>
         <li>
