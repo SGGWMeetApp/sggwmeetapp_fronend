@@ -2,11 +2,10 @@ import React from "react";
 import style from "./GroupsPage.module.css";
 import { Icon } from "@iconify/react";
 import TableRow from "./TableRow";
-import { NavLink, Route, Routes } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import ModalWindow from "../MainPage/ModalWindows/Modal";
 import User from "./UserInfo.js";
 import axios from "axios";
-import GroupsPage from "./GroupsPage.js";
 
 class GroupMemebers extends React.Component {
   constructor(props) {
