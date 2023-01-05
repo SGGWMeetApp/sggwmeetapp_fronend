@@ -5,7 +5,6 @@ import TableRow from "./TableRow";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 class GroupsPage extends React.Component {
-
   constructor(props) {
     let user = JSON.parse(localStorage.getItem("user"));
 
@@ -14,26 +13,42 @@ class GroupsPage extends React.Component {
       groups: [],
       userToken: user.token,
       error: null,
-      id:user.userData.id,
+      id: user.userData.id,
+      groupId:undefined,
     };
   }
 
   componentDidMount() {
     this.getGroups();
   }
-
+  SetGroupId = (id) => {
+    this.setState({ groupId: id });
+  };
   getGroups = async () => {
-    const response = await axios.get(`http://3.68.195.28/api/users/${this.state.id}/groups`, {
-      headers: {
-        Authorization: `Bearer ${this.state.userToken}`,
-      },
-    });
+    const response = await axios.get(
+      `http://3.68.195.28/api/users/${this.state.id}/groups`,
+      {
+        headers: {
+          Authorization: `Bearer ${this.state.userToken}`,
+        },
+      }
+    );
     if (response.data.groups.length > 0) {
       this.setState({ groups: response.data.groups });
+
     }
-
   };
-
+  deleteGroup = async () => {
+    await axios.delete(
+      `http://3.68.195.28/api/groups/${this.state.groupId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${this.state.userToken}`,
+        },
+      }
+    );
+    this.getGroups();
+  };
   render() {
     return (
       <div className={style.GroupContainer}>
@@ -53,7 +68,10 @@ class GroupsPage extends React.Component {
                 </NavLink>
               </button>
               <button className={style.CreateGroupBtn}>
-                <NavLink className={style.NavLinkBtn + " " + style.NavLinkBtnGroupAdd} to="/profile/groups/add">
+                <NavLink
+                  className={style.NavLinkBtn + " " + style.NavLinkBtnGroupAdd}
+                  to="/profile/groups/add"
+                >
                   <Icon
                     icon="ant-design:plus-outlined"
                     color="white"
@@ -77,24 +95,47 @@ class GroupsPage extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.groups.length > 0 ? this.state.groups.map(group =>
+                {this.state.groups.length > 0
+                  ? this.state.groups.map((group) => (
+                      <tr key={group.id}>
+                        <td>
+                          <input type="checkbox" />{" "}
+                          <NavLink
+                            to={`/profile/groups/${group.id}/members`}
+                            className={style.NavGroup}
+                          >
+                            {group.name}
+                          </NavLink>
+                        </td>
+                        <td>{group.memberCount}</td>
+                        <td>
+                          {group.adminData.firstName +
+                            " " +
+                            group.adminData.lastName}
+                        </td>
+                        <td>{group.incomingEventsCount}</td>
 
-                  <tr key={group.id}>
-                    <td>
-                      <input type="checkbox" /> <NavLink to={`/profile/groups/${group.id}/members`} className={style.NavGroup}>{group.name}</NavLink>
-                    </td>
-                    <td>{group.memberCount}</td>
-                    <td>{group.adminData.firstName + " " + group.adminData.lastName}</td>
-                    <td>{group.incomingEventsCount}</td>
-                    <TableRow id="groups" />
-                  </tr>
-
-                ) : null}
+                        <td>
+                          {group.adminData.isUserAdmin === true ? (
+                            <div onClick={() => this.SetGroupId(group.id)}>
+                              <TableRow
+                                id="groups"
+                                OpenModal={this.OpenModal}
+                                DeleteGroup={this.deleteGroup}
+                              ></TableRow>
+                            </div>
+                          ) : (
+                            <p></p>
+                          )}
+                        </td>
+                      </tr>
+                    ))
+                  : null}
               </tbody>
             </table>
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 }

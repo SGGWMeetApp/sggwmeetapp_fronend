@@ -25,7 +25,11 @@ class TableRow extends React.Component {
           </button>
         )}
         {this.state.visible && this.props.id === "groups" && (
-          <Menu visible={this.state.visible} handleShow={this.handleShow} />
+          <Menu
+            visible={this.state.visible}
+            handleShow={this.handleShow}
+            DeleteGroup={this.props.DeleteGroup}
+          />
         )}
         {this.state.visible && this.props.id === "events" && (
           <MenuEvents
