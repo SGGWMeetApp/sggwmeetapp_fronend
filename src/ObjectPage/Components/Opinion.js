@@ -1,33 +1,52 @@
-import React, {useState, useEffect} from "react";
+import React, { useState } from "react";
 import style from "./Components.module.css";
 import { Icon } from "@iconify/react";
 import UserAvatar from "../../Assets/User-avatar.svg";
 import ModalWindow from "../../MainPage/ModalWindows/Modal";
 import AddOpinion from "../AddOpinion";
 import EditOpinion from "../EditOpinion";
+import axios from "axios";
 const Opinions = (props) => {
   let rating = props.rating;
   const user = JSON.parse(localStorage.getItem("user"));
   const [openModalOpinion, setOpenModalOpinion] = useState(false);
   const [openModalEditOpinion, setOpenModalEditOpinion] = useState(false);
-  const [reviewId,setReviewId]=useState();
-  const [comment,setComment] = useState("");
-  const [isPositive, setIsPositive] = useState(true)
-  function OpenModal(){
-    setOpenModalOpinion(!openModalOpinion)
-  } 
-  function CloseModal(){
-    setOpenModalOpinion(false)
+  const [reviewId, setReviewId] = useState(null);
+  const [comment, setComment] = useState("");
+  const [isPositive, setIsPositive] = useState(true);
+  function OpenModal() {
+    setOpenModalOpinion(!openModalOpinion);
   }
-  function OpenModalEdit(review){
+  function CloseModal() {
+    setOpenModalOpinion(false);
+  }
+  function OpenModalEdit(review) {
     setIsPositive(review.isPositive);
-    setComment(review.comment)
-    setReviewId(review.id)
-    setOpenModalEditOpinion(!openModalOpinion)
+    setComment(review.comment);
+    setReviewId(review.id);
+    setOpenModalEditOpinion(!openModalOpinion);
   }
-  function CloseModalEdit(){
-    setOpenModalEditOpinion(false)
+  function CloseModalEdit() {
+    setOpenModalEditOpinion(false);
   }
+  const onMark = async (review,isHelpful) => {
+    setReviewId(review.id);
+    if(reviewId!==null && review.author.email!==user.userData.email){
+    const possitive = isHelpful;
+
+    await axios
+      .post(
+        `http://3.68.195.28/api/places/${props.objId}/reviews/${reviewId}/votes`,
+        {
+          isPositive: possitive
+        },
+        {
+          headers: { Authorization: `Bearer ${user.token}` },
+        }
+      )
+      .then(props.getDetails);
+    }
+  };
   return (
     <div className={style.OpinionContainer}>
       <div className={style.OpinionsHeader}>
@@ -66,12 +85,7 @@ const Opinions = (props) => {
                     alt="Avatar"
                   />
                 ) : (
-                  <img
-                    className={style.Avatar}
-                    src={UserAvatar}
-                    alt="Avatar"
-                  />
-                  
+                  <img className={style.Avatar} src={UserAvatar} alt="Avatar" />
                 )}
 
                 <div className={style.UserInfo}>
@@ -100,37 +114,61 @@ const Opinions = (props) => {
 
                 <div className={style.ReviewRating}>
                   <div className={style.Positive}>
-                    <Icon
-                      icon="ant-design:like-filled"
-                      color="rgba(18, 44, 52, 0.5)"
-                      width="20"
-                      height="20"
-                    />
+                    <button onClick={()=>onMark(review,true)}
+                      style={{
+                        background: "white",
+                        border: "none",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <Icon
+                        icon="ant-design:like-filled"
+                        color="#85c9b9"
+                        width="20"
+                        height="20"
+                      />
+                    </button>
                     <p className={style.PositiveNumber}>{review.upvoteCount}</p>
                   </div>
                   <div className={style.Negative}>
-                    <Icon
-                      icon="ant-design:dislike-filled"
-                      color="rgba(18, 44, 52, 0.5)"
-                      width="20"
-                      height="20"
-                    />
+                    <button onClick={()=>onMark(review,false)}
+                      style={{
+                        background: "white",
+                        border: "none",
+                        cursor: "pointer",
+                        
+                      }}
+                    >
+                      <Icon
+                        icon="ant-design:dislike-filled"
+                        color="#f54a4a"
+                        width="20"
+                        height="20"
+                      />
+                    </button>
                     <p className={style.NegativeNumber}>
                       {review.downvoteCount}
                     </p>
                   </div>
                 </div>
               </div>
-              {user.userData.email===review.author.email?(<button className={style.EditBtn} onClick={()=>OpenModalEdit(review)}>
-                     <Icon
-                        className={style.EditIcon}
-                        icon="material-symbols:edit"
-                        color="#1976d2"
-                        width="22"
-                        height="22"
-                     />
-                  </button>):(<p></p>)}
-              
+              {user.userData.email === review.author.email ? (
+                <button
+                  className={style.EditBtn}
+                  onClick={() => OpenModalEdit(review)}
+                >
+                  <Icon
+                    className={style.EditIcon}
+                    icon="material-symbols:edit"
+                    color="#1976d2"
+                    width="22"
+                    height="22"
+                  />
+                </button>
+              ) : (
+                <p></p>
+              )}
+
               {review.comment === null ? (
                 <p>Brak opini</p>
               ) : (
@@ -142,29 +180,26 @@ const Opinions = (props) => {
           <p></p>
         )}
       </div>
+      <ModalWindow openModal={openModalOpinion} onClose={!openModalOpinion}>
+        <AddOpinion
+          CloseModal={CloseModal}
+          objectId={props.objId}
+          getDetails={props.getDetails}
+        />
+      </ModalWindow>
       <ModalWindow
-          openModal={openModalOpinion}
-          onClose={!openModalOpinion}
-        >
-          <AddOpinion
-            CloseModal={CloseModal}
-            objectId={props.objId}
-            getDetails={props.getDetails}
-          />
-          </ModalWindow>
-          <ModalWindow
-          openModal={openModalEditOpinion}
-          onClose={!openModalEditOpinion}
-        >
-          <EditOpinion
-            CloseModal={CloseModalEdit}
-            objectId={props.objId}
-            reviewId={reviewId}
-            getDetails={props.getDetails}
-            comment={comment}
-            isPositive={isPositive}
-          />
-          </ModalWindow>
+        openModal={openModalEditOpinion}
+        onClose={!openModalEditOpinion}
+      >
+        <EditOpinion
+          CloseModal={CloseModalEdit}
+          objectId={props.objId}
+          reviewId={reviewId}
+          getDetails={props.getDetails}
+          comment={comment}
+          isPositive={isPositive}
+        />
+      </ModalWindow>
     </div>
   );
 };

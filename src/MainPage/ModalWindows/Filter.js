@@ -160,7 +160,7 @@ const Filter = (props) => {
             ))}
           </div>
           <div className={style.DistanceContainer}>
-            <p className={style.DistanceText}>Odległość:</p>
+            <p className={style.DistanceText}>Odległość(m):</p>
             <Slider
               aria-label="Custom marks"
               step={10}
