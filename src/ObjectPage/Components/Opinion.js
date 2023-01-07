@@ -1,10 +1,33 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import style from "./Components.module.css";
 import { Icon } from "@iconify/react";
 import UserAvatar from "../../Assets/User-avatar.svg";
+import ModalWindow from "../../MainPage/ModalWindows/Modal";
+import AddOpinion from "../AddOpinion";
+import EditOpinion from "../EditOpinion";
 const Opinions = (props) => {
-  const rating = props.rating;
-
+  let rating = props.rating;
+  const user = JSON.parse(localStorage.getItem("user"));
+  const [openModalOpinion, setOpenModalOpinion] = useState(false);
+  const [openModalEditOpinion, setOpenModalEditOpinion] = useState(false);
+  const [reviewId,setReviewId]=useState();
+  const [comment,setComment] = useState("");
+  const [isPositive, setIsPositive] = useState(true)
+  function OpenModal(){
+    setOpenModalOpinion(!openModalOpinion)
+  } 
+  function CloseModal(){
+    setOpenModalOpinion(false)
+  }
+  function OpenModalEdit(review){
+    setIsPositive(review.isPositive);
+    setComment(review.comment)
+    setReviewId(review.id)
+    setOpenModalEditOpinion(!openModalOpinion)
+  }
+  function CloseModalEdit(){
+    setOpenModalEditOpinion(false)
+  }
   return (
     <div className={style.OpinionContainer}>
       <div className={style.OpinionsHeader}>
@@ -21,7 +44,7 @@ const Opinions = (props) => {
         ) : (
           <p>To miejsce nie otrzymało jeszcze opini</p>
         )}
-        <button className={style.AddOpinion}>
+        <button className={style.AddOpinion} onClick={() => OpenModal()}>
           <Icon
             icon="ant-design:plus-outlined"
             color="white"
@@ -48,6 +71,7 @@ const Opinions = (props) => {
                     src={UserAvatar}
                     alt="Avatar"
                   />
+                  
                 )}
 
                 <div className={style.UserInfo}>
@@ -97,6 +121,16 @@ const Opinions = (props) => {
                   </div>
                 </div>
               </div>
+              {user.userData.email===review.author.email?(<button className={style.EditBtn} onClick={()=>OpenModalEdit(review)}>
+                     <Icon
+                        className={style.EditIcon}
+                        icon="material-symbols:edit"
+                        color="#1976d2"
+                        width="22"
+                        height="22"
+                     />
+                  </button>):(<p></p>)}
+              
               {review.comment === null ? (
                 <p>Brak opini</p>
               ) : (
@@ -108,6 +142,29 @@ const Opinions = (props) => {
           <p></p>
         )}
       </div>
+      <ModalWindow
+          openModal={openModalOpinion}
+          onClose={!openModalOpinion}
+        >
+          <AddOpinion
+            CloseModal={CloseModal}
+            objectId={props.objId}
+            getDetails={props.getDetails}
+          />
+          </ModalWindow>
+          <ModalWindow
+          openModal={openModalEditOpinion}
+          onClose={!openModalEditOpinion}
+        >
+          <EditOpinion
+            CloseModal={CloseModalEdit}
+            objectId={props.objId}
+            reviewId={reviewId}
+            getDetails={props.getDetails}
+            comment={comment}
+            isPositive={isPositive}
+          />
+          </ModalWindow>
     </div>
   );
 };

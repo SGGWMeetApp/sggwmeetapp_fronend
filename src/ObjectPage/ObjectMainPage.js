@@ -36,10 +36,11 @@ class ObjectPage extends React.Component {
   }
   componentDidMount() {
     this.setState({ id: +window.location.pathname.split("/")[3] });
-    this.getDetails(+window.location.pathname.split("/")[3]);
+    this.getDetails();
     this.getEvents(+window.location.pathname.split("/")[3]);
   }
-  getDetails = async (id) => {
+  getDetails = async () => {
+    const id= +window.location.pathname.split("/")[3]
     const response = await axios.get(`http://3.68.195.28/api/places/${id}/`, {
       headers: {
         Authorization: `Bearer ${this.state.userToken}`,
@@ -113,11 +114,11 @@ class ObjectPage extends React.Component {
             )}
           </div>
 
-            <img
-              className={style.Fotos}
-              src={this.state.photo}
-              alt="Brak zdjęć dla tego miejsca"
-            />
+          <img
+            className={style.Fotos}
+            src={this.state.photo}
+            alt="Brak zdjęć dla tego miejsca"
+          />
 
           <div className={style.NaviComponents}>
             <ul className={style.NaviList}>
@@ -155,12 +156,12 @@ class ObjectPage extends React.Component {
               </li>
             </ul>
           </div>
-          <div style={{width:"100%"}}>
+          <div style={{ width: "100%" }}>
             <TabContent id="describe" activeTab={this.state.acttiveTab}>
               <Describe describe={this.state.describe} />
             </TabContent>
             <TabContent id="opinions" activeTab={this.state.acttiveTab}>
-              <Opinions rating={this.state.rating} />
+              <Opinions rating={this.state.rating} objId={this.state.id} getDetails={this.getDetails}/>
             </TabContent>
             <TabContent id="events" activeTab={this.state.acttiveTab}>
               <Events events={this.state.events} />
