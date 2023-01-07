@@ -62,7 +62,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 0px 0px 0px 20px;
-    
+
 }
 
 .UserInformationHeader {
@@ -188,9 +188,11 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 4px 4px 0px 0px;
 }
+
 .SettingContainer, .SettingHeader {
     width: 500px;
 }
+
 .FilterHeaderText, .SettingHeaderText {
     font-family: 'Roboto';
     font-style: normal;
@@ -309,7 +311,7 @@
     color: rgba(0, 0, 0, 0.87);
 }
 
-.GraduateTextLeft{
+.GraduateTextLeft {
     margin-bottom: 40px;
     margin-left: 15px;
     font-family: 'Roboto';
@@ -324,7 +326,7 @@
     color: rgba(0, 0, 0, 0.87);
 }
 
-.GraduateText{
+.GraduateText {
     height: 50px;
 }
 
@@ -344,7 +346,7 @@
     flex-direction: column;
     overflow-y: scroll;
     width: 100%;
-    height:182px;
+    height: 182px;
 }
 
 .PlacesContainer {
@@ -464,7 +466,8 @@
     margin-right: auto;
     border: 1px solid #122C34;
 }
-.EditTextLabel{
+
+.EditTextLabel {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -480,30 +483,36 @@
     text-align: center;
     padding: 0 10px;
 }
-.FormContainerHeader{
+
+.FormContainerHeader {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
 }
+
 #SaveChange, #Back {
     width: 200px;
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;
 }
-#EditNumber{
+
+#EditNumber {
     left: 270px;
 }
-.FormContainerButtons{
+
+.FormContainerButtons {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
 }
-#FileUploadLabel{
+
+#FileUploadLabel {
     width: 350px;
     max-width: 100%;
     color: #444;
     background: #fff;
 
 }
+
 input[type=file]::file-selector-button {
     margin-right: 20px;
     border: none;
@@ -513,17 +522,19 @@ input[type=file]::file-selector-button {
     color: rgba(0, 0, 0, 0.6);
     cursor: pointer;
     transition: background .2s ease-in-out;
-  }
-  
-  input[type=file]::file-selector-button:hover {
+}
+
+input[type=file]::file-selector-button:hover {
     background: #19414d;
     color: #fff;
-  }
-  .FileGroup{
+}
+
+.FileGroup {
     display: flex;
     flex-direction: column;
-  }
-  .EditFoto{
+}
+
+.EditFoto {
     display: flex;
     padding: 0px;
     align-items: center;
@@ -542,11 +553,33 @@ input[type=file]::file-selector-button {
 
     letter-spacing: 0.4px;
     color: #122C34;
-  }
-  .EditBtn:hover{
+}
+
+.EditBtn:hover {
     cursor: pointer;
-  }
-  .preview{
+}
+
+.preview {
     width: 80px;
-    height:80px;
-  }
+    height: 80px;
+}
+.PositiveContainer{
+    margin-bottom:30px
+}
+.isPositive {
+    appearance: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+
+    border: 2px solid #999;
+    transition: 0.2s all linear;
+    margin-right: 5px;
+
+    position: relative;
+    top: 4px;
+}
+
+.isPositive:checked {
+    border:5px solid #85C9B9;
+}
