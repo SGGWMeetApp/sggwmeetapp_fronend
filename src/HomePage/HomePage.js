@@ -19,10 +19,10 @@ class HomePage extends React.Component {
               </div>
               <ul className={style.NavList}>
                 <li className={style.NavListElement}>
-                  <NavLink className={style.NavLink}>Miejsca</NavLink>
+                  <NavLink className={style.NavLink} to="/login">Miejsca</NavLink>
                 </li>
                 <li className={style.NavListElement}>
-                  <NavLink className={style.NavLink}>Wydarzenia</NavLink>
+                  <NavLink className={style.NavLink} to="/login">Wydarzenia</NavLink>
                 </li>
                 <li className={style.NavListElement}>
                   <NavLink className={style.NavLink} to="/login">
