@@ -31,12 +31,12 @@ const Opinions = (props) => {
   }
   const onMark = async (review,isHelpful) => {
     setReviewId(review.id);
-    if(reviewId!==null && review.author.email!==user.userData.email){
+    if(review.id!==null && review.author.email!==user.userData.email){
     const possitive = isHelpful;
 
     await axios
       .post(
-        `http://3.68.195.28/api/places/${props.objId}/reviews/${reviewId}/votes`,
+        `http://3.68.195.28/api/places/${props.objId}/reviews/${review.id}/votes`,
         {
           isPositive: possitive
         },
@@ -76,7 +76,7 @@ const Opinions = (props) => {
       <div className={style.Opinions}>
         {rating.reviews.length !== 0 ? (
           rating.reviews.map((review) => (
-            <div className={style.Opinion}>
+            <div className={style.Opinion} key={review.id}>
               <div key={review.id} className={style.OpinionHeader}>
                 {review.author.avatarUrl ? (
                   <img
