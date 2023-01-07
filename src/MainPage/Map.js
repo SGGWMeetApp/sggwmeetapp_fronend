@@ -1,19 +1,30 @@
-import React, { useCallback, useState } from "react";
+import React, {  useState } from "react";
 import icon from "../Assets/pin2.svg";
 import user from "../Assets/user.svg";
 import MapStyle from "./Mapstyle.js";
-import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  Marker,
+  useLoadScript,
+} from "@react-google-maps/api";
 import style from "./Map.module.css";
 import { useEffect } from "react";
-import { DualRingLoader } from '../Loaders/Loaders';
+import { DualRingLoader } from "../Loaders/Loaders";
+import { useNavigate } from "react-router-dom";
 
 const SimpleMap = (props) => {
+  const navi =useNavigate();
   const [libraries, setLib] = useState(["geometry"]);
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
     libraries,
   });
   
+
+ const show=(id)=>{
+ navi(`/profile/object/${id}/details`)
+
+ }
   const google = window.google;
   const elements = props.objects;
   const dist = props.distance;
@@ -27,8 +38,6 @@ const SimpleMap = (props) => {
     center.lng = myPosition.lng;
   }
 
-
-
   function filter() {
     let objectRange = null;
     let objects = null;
@@ -41,14 +50,12 @@ const SimpleMap = (props) => {
             element.reviewSummary.positivePercent <= range[1]
         );
       }
-    } 
-    else 
-    {
+    } else {
       objectRange = elements;
     }
 
     if (myPosition) {
-      if ( dist && dist !== []) {
+      if (dist && dist !== []) {
         objects = objectRange.filter(
           (element) =>
             dist >=
@@ -58,9 +65,7 @@ const SimpleMap = (props) => {
             })
         );
         setN(objects);
-      } 
-      else 
-      {
+      } else {
         setN(objectRange);
         objects = objectRange;
       }
@@ -70,8 +75,7 @@ const SimpleMap = (props) => {
             lat: item.geolocation.latitude,
             lng: item.geolocation.longitude,
           }) > 6000
-        )
-         {
+        ) {
           return (
             (
               google.maps.geometry.spherical.computeDistanceBetween(
@@ -83,9 +87,7 @@ const SimpleMap = (props) => {
               ) / 1000
             ).toFixed(2) + " km"
           );
-        } 
-        else
-         {
+        } else {
           return (
             item,
             google.maps.geometry.spherical
@@ -98,9 +100,7 @@ const SimpleMap = (props) => {
         }
       });
       props.getDist(objects, distArray);
-    }
-     else 
-     {
+    } else {
       setN(objectRange);
       props.getDist(objectRange, distArray);
     }
@@ -109,9 +109,9 @@ const SimpleMap = (props) => {
     if (isLoaded) {
       filter();
     }
-  }, [dist, range[0], range[1],elements]);
+  }, [dist, range[0], range[1], elements]);
   if (!isLoaded) {
-    return <DualRingLoader/>;
+    return <DualRingLoader />;
   }
   return nelements ? (
     <GoogleMap
@@ -120,6 +120,7 @@ const SimpleMap = (props) => {
       mapContainerClassName={style.map_container}
       options={{ styles: MapStyle }}
       onLoad={filter}
+      onClick
     >
       {nelements.map((marker, index) => (
         <Marker
@@ -130,8 +131,13 @@ const SimpleMap = (props) => {
           }}
           icon={{ url: icon, labelOrigin: point }}
           label={{ text: marker.name }}
+          onClick={() => {
+            show(marker.id);
+          }}
         ></Marker>
+        
       ))}
+
       {myPosition && (
         <Marker
           position={{ lat: myPosition.lat, lng: myPosition.lng }}
@@ -139,9 +145,11 @@ const SimpleMap = (props) => {
           label="Moja  lokalizacja"
         ></Marker>
       )}
+
     </GoogleMap>
+    
   ) : (
-    <DualRingLoader/>
+    <DualRingLoader />
   );
 };
 
