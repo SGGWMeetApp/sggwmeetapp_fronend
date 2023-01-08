@@ -56,7 +56,7 @@ const AddOpinion = (props) => {
         </div>
         <div className={style.PositiveContainer}>
           <legend className={style.FilterPlaceType}>
-            Polecasz tom miejsce?{" "}
+            Polecasz to miejsce?{" "}
           </legend>
           <input
             id="nr1"
