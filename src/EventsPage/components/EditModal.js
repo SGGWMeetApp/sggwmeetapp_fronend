@@ -15,21 +15,22 @@ const EDIT_URL = 'http://3.68.195.28/api/events';
 const EditModal = ({ setDisplayEditModal }) => {
    const { user } = useAuthContext();
    const { eventId, selectedEventData } = useEventsContext();
-   const [startDate, setStartDate] = useState(null);
    const [formData, setFormData] = useState({
       name: selectedEventData.name,
       locationId: selectedEventData.locationData.id,
       description: selectedEventData.description,
+      startDate:selectedEventData.startDate.slice(0,19), 
    });
+   
    const [loading, setLoading] = useState(true);
-   const { name, locationId, description } = formData;
+   const { name, locationId, description, startDate } = formData;
    const [placesData, setPlacesData] = useState(null);
 
    const fetchPlacesData = async () => {
       const response = await fetch(PLACES_URL, {
          headers: { Authorization: `Bearer ${user.token}` },
       });
-
+      console.log(selectedEventData)
       const result = await response.json();
       if (response.ok) {
          setPlacesData(result.places);
@@ -47,7 +48,7 @@ const EditModal = ({ setDisplayEditModal }) => {
    };
 
    const handleChangeDate = e => {
-      setStartDate(new Date(e.target.value).toISOString());
+      setFormData({startDate:new Date(e.target.value).toISOString()});
    };
 
    const handleSubmit = async e => {
@@ -135,11 +136,13 @@ const EditModal = ({ setDisplayEditModal }) => {
                   ></input>
                </div>
                <div className={ModalStyle.InputWrap}>
+                  {console.log(startDate)}
                   <label htmlFor="startDate">Data rozpoczęcia</label>
                   <input
                      type="datetime-local"
                      name="startDate"
                      id="startDate"
+                     value={startDate}
                      onChange={handleChangeDate}
                      required
                   ></input>

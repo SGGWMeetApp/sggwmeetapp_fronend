@@ -38,7 +38,7 @@ const AllEvents = ({ user, events, loading, setLoading, handleFetch }) => {
                   <td>
                      <input type="checkbox" />
                   </td>
-                  <TableRow id="events" />
+
                </tr>
             ))
          )}
