@@ -163,7 +163,48 @@
 .EventsContainer, .MenuContainer {
     width: 100%;
 }
-
+.MenuContainer {
+    width: 70vw;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+ }
+.MenuNotAvailable {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    font-family: 'Open Sans', 'Lato', 'Roboto', sans-serif;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 5px;
+    gap: 10px;
+ }
+ 
+ .MenuAlertIcon {
+    width: 80px;
+    height: 80px;
+    color: rgb(223, 219, 0);
+ }
+ 
+ .MenuAlertWrapper {
+    flex-direction: column;
+    text-align: center;
+ }
+ 
+ .MenuNotAvailable h1 {
+    font-size: 24px;
+    padding-bottom: 6px;
+ }
+ 
+ .MenuNotAvailable h1,
+ h2 {
+    margin: 0;
+ }
+ 
+ .MenuNotAvailable h2 {
+    font-size: 16px;
+ }
 .EventsHeader {
     display: flex;
     flex-direction: row;
@@ -186,7 +227,7 @@
     color: rgba(0, 0, 0, 0.87);
 }
 
-.EventsSection, .MenuSection {
+.EventsSection{
     display: grid;
     grid-template-columns: 50% 50%;
     padding: 10px 0px;
@@ -194,7 +235,16 @@
     width: 100%;
     min-height: 264px;
 }
-
+.MenuWrapper {
+    width: 60vw;
+ }
+ .MenuSection {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: auto;
+    gap: 12px;
+ }
 .Event {
     width: 100%;
 
@@ -286,7 +336,11 @@
 }
 
 .MenuHeader {
+    display: flex;
     width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .MenuHeader>h1 {
@@ -300,15 +354,57 @@
     letter-spacing: 0.15px;
     color: rgba(0, 0, 0, 0.87);
 }
-
-.MenuDishHeader {
+.MenuDish {
     display: flex;
+    position: relative;
     flex-direction: row;
-    align-items: center;
-    padding: 10px 0px;
-    gap: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    gap: 20px;
+    border: 1px solid rgba(221, 221, 221, 0.6);
+    box-shadow: 0 0 10px 0 rgba(221, 221, 221, 0);
+    transition: all 0.2s linear;
+    box-sizing: border-box;
+ }
+ 
+ .MenuDish:hover {
+    box-shadow: 0 0 10px 0 rgba(221, 221, 221, 1);
+ }
+ 
+ .MenuDishImage {
+    box-sizing: border-box;
+    min-width: 260px;
+    width: 20%;
+ }
+ 
+ .MenuDishImage img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+    box-sizing: border-box;
+ }
+ 
+ .MenuDishData {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+ }
+.MenuDishHeader {
+    position: relative;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    letter-spacing: 0.15px;
+    color: rgba(0, 0, 0, 0.87);
+    margin: 30px 0 10px 0;
+    padding: 2px 0;
 }
-
+.MenuSectionDescribe {
+    font-family: 'Lato', sans-serif;
+ }
 .FirstContainer {
     display: flex;
     flex-direction: column;
@@ -320,20 +416,18 @@
 }
 
 .DishName {
-    height: 26px;
-    margin: 0px;
+    margin: 0;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: bold;
-    font-size: 16px;
-    line-height: 160%;
+    font-size: 18px;
     letter-spacing: 0.15px;
-
+    width: 100%;
     color: #000000;
 }
 
 .DishAmount {
-    margin-top: -60px;
+    margin: 0;
     height: 19px;
     font-family: 'Roboto';
     font-style: normal;
@@ -355,15 +449,36 @@
     height: 38px;
 }
 
-.DishPrice {
-    height: 38px;
-
+.DishPriceWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+ }
+ 
+ .DishPrice {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: bold;
-    font-size: 24px;
-    line-height: 160%;
+    font-size: 17px;
     letter-spacing: 0.15px;
-
-    color: #000000;
-}
+    color: #333333;
+    width: 60px;
+ }
+ 
+ .DishIconVegan {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 6px 6px 0 0;
+    width: 20px;
+    height: 20px;
+    color: rgb(5, 163, 31);
+    opacity: 0.6;
+    transition: opacity 0.2s linear;
+ }
+ 
+ .DishIconVegan:hover {
+    opacity: 1;
+ }
+ 

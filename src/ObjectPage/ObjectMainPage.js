@@ -27,6 +27,7 @@ class ObjectPage extends React.Component {
       location: undefined,
       events: [],
       loading: true,
+      menu_url: null,
     };
   }
   handleActive(type) {
@@ -53,6 +54,7 @@ class ObjectPage extends React.Component {
       rating: response.data.rating,
       loading: false,
       reviews: response.data.rating.reviews,
+      menu_url: response.data.menuPath,
     });
     if (response.data.photoPath) {
       this.setState({ photo: response.data.photoPath });
@@ -167,7 +169,7 @@ class ObjectPage extends React.Component {
               <Events events={this.state.events} />
             </TabContent>
             <TabContent id="menu" activeTab={this.state.acttiveTab}>
-              <Menu />
+              <Menu menu_url={this.state.menu_url} />
             </TabContent>
           </div>
         </div>

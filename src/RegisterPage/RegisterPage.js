@@ -202,18 +202,6 @@ class RegisterPage extends React.Component {
                            onChange={e => this.getUserData(e)}
                         ></input>
                      </div>
-                     <div className={style.LabelGroup}>
-                        <label className={style.TextInputLabel}>
-                           Dodatkowe informacje{' '}
-                        </label>
-                        <input
-                           className={style.TextInput}
-                           value={this.state.userData.description}
-                           type="text"
-                           name="description"
-                           onChange={e => this.getUserData(e)}
-                        ></input>
-                     </div>
                      <label className={style.CheckInputLabel}>
                         <input
                            className={style.CheckInput}
