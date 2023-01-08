@@ -16,6 +16,7 @@ const User = (props) => {
    const [id] = useState(userData.userData.id)
    const [token]= useState(userData.token)
    const [user, setUser]= useState();
+   const [user2, setUser2]= useState();
    const [avatarUrl,setAvatar]= useState(UserAvatar);
    const  OnClick =()=>{
       setOpenEdit(true);
@@ -43,7 +44,9 @@ const User = (props) => {
             Authorization: `Bearer ${token}`,
           },
         })
-        setUser(response.data.userData)
+        console.log(response.data)
+        setUser(response.data);
+        setUser2(response.data.userData)
         if(response.data.userData.avatarUrl){
          setAvatar( response.data.userData.avatarUrl+'?'+val);
       }
@@ -73,7 +76,7 @@ const User = (props) => {
             <img src={avatarUrl}  alt="User foto"></img>
             <div className={style.UserInformation}>
                <div className={style.UserInformationHeader}>
-                  <p className={style.UserName}>{user.firstName} {user.lastName}</p>
+                  <p className={style.UserName}>{user.userData.firstName} {user.userData.lastName}</p>
                   <div>
                   <button className={style.EditBtn} onClick={()=>OnClick()}>
                      <Icon
@@ -91,11 +94,11 @@ const User = (props) => {
                </div>
                <div className={style.UserContact}>
                   <p className={style.Mail}>Email: {user.email}</p>
-                  <p className={style.PhoneNumber}>Telefon: {user.phoneNumberPrefix} {user.phoneNumber}</p>
+                  <p className={style.PhoneNumber}>Telefon: {user.userData.phoneNumberPrefix} {user.userData.phoneNumber}</p>
                </div>
                <div className={style.UserDescription}>
                   <p className={style.UserDescriptionText}>
-                     {user.description}
+                     {user.userData.description}
                   </p>
                </div>
             </div>
