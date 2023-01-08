@@ -35,11 +35,11 @@ class ObjectPage extends React.Component {
       acttiveTab: type,
     });
   }
-  componentDidMount() {
-    this.setState({ id: +window.location.pathname.split("/")[3] });
-    this.getDetails();
-    this.getEvents(+window.location.pathname.split("/")[3]);
-  }
+componentDidMount() {
+      this.setState({ id: +window.location.pathname.split('/')[3] });
+      this.getDetails(+window.location.pathname.split('/')[3]);
+      this.getEvents(+window.location.pathname.split('/')[3]);
+   }
   getDetails = async () => {
     const id= +window.location.pathname.split("/")[3]
     const response = await axios.get(`http://3.68.195.28/api/places/${id}/`, {
