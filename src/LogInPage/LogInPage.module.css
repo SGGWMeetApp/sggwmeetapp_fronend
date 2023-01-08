@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Open+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
 .NaviBar {
    position: absolute;
    display: flex;
@@ -134,6 +136,7 @@
    background: url('../Assets/section3_bg.png') no-repeat;
    transform: matrix(-1, 0, 0, -1, 0, 0);
    background-size: 100% 100%;
+   font-family: 'Roboto', 'Lato', 'Open Sans', sans-serif;
 }
 
 .LogInBack {
@@ -208,7 +211,7 @@
    align-items: flex-start;
    padding: 0px 12px;
    isolation: isolate;
-   width: 400px;
+   width: 450px;
    height: 40px;
    border: 1px solid rgba(0, 0, 0, 0.23);
    border-radius: 4px;
@@ -250,8 +253,8 @@
    flex-direction: column;
    justify-content: center;
    align-items: center;
+   box-sizing: border-box;
    padding: 0px;
-
    width: 450px;
    height: 42px;
    background: #122c34;
