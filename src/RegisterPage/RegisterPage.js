@@ -57,7 +57,6 @@ class RegisterPage extends React.Component {
          !this.state.userData.firstName ||
          !this.state.userData.lastName ||
          !this.state.userData.phoneNumber ||
-         !this.state.userData.description ||
          !this.state.userData.phoneNumberPrefix
       ) {
          this.setState({ error: 'Uzupełnij wszystkie pola' });
