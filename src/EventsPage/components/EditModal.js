@@ -1,35 +1,29 @@
 import { useState, useRef, useEffect } from 'react';
-import menuStyles from './EventMenu.module.css';
-import './EventMenu.module.css';
-import { FaTimes } from 'react-icons/fa';
+import ModalStyle from './ModalStyle.module.css';
 
 // components
-import { LoadingSkeletonLine } from '../Loaders/Loaders';
+import { LoadingSkeletonLine } from '../../Loaders/Loaders';
 
 // context
-import { useAuthContext } from '../context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
+import { useEventsContext } from '../../context/EventsContext';
 
 // routes
 const PLACES_URL = 'http://3.68.195.28/api/places';
-const NEW_EVENT_URL = 'http://3.68.195.28/api/events';
+const EDIT_URL = 'http://3.68.195.28/api/events';
 
-const NewEventMenu = ({ showMenu, setShowMenu }) => {
+const EditModal = ({ setDisplayEditModal }) => {
    const { user } = useAuthContext();
-   const [formData, setFormData] = useState({
-      name: '',
-      locationId: '',
-      description: '',
-   });
+   const { eventId, selectedEventData } = useEventsContext();
    const [startDate, setStartDate] = useState(null);
-   const [displayMenu, setDisplayMenu] = useState(false);
-   const [placesData, setPlacesData] = useState(null);
+   const [formData, setFormData] = useState({
+      name: selectedEventData.name,
+      locationId: selectedEventData.locationData.id,
+      description: selectedEventData.description,
+   });
    const [loading, setLoading] = useState(true);
    const { name, locationId, description } = formData;
-
-   const newEventContainer = useRef(null);
-   const formContainerRef = useRef(null);
-   const closeButtonRef = useRef(null);
-   const dateInputRef = useRef(null);
+   const [placesData, setPlacesData] = useState(null);
 
    const fetchPlacesData = async () => {
       const response = await fetch(PLACES_URL, {
@@ -45,11 +39,21 @@ const NewEventMenu = ({ showMenu, setShowMenu }) => {
       }
    };
 
+   const getFormData = e => {
+      setFormData(prev => ({
+         ...prev,
+         [e.target.name]: e.target.value,
+      }));
+   };
+
+   const handleChangeDate = e => {
+      setStartDate(new Date(e.target.value).toISOString());
+   };
+
    const handleSubmit = async e => {
       e.preventDefault();
-
-      const response = await fetch(NEW_EVENT_URL, {
-         method: 'POST',
+      const response = await fetch(`${EDIT_URL}/${eventId}`, {
+         method: 'PUT',
          headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${user.token}`,
@@ -65,7 +69,7 @@ const NewEventMenu = ({ showMenu, setShowMenu }) => {
       const result = await response.json();
 
       if (response.ok) {
-         resetForm();
+         setDisplayEditModal(false);
       }
       if (!response.ok) {
          console.error(result.message);
@@ -73,67 +77,18 @@ const NewEventMenu = ({ showMenu, setShowMenu }) => {
       }
    };
 
-   const getFormData = e => {
-      setFormData(prev => ({
-         ...prev,
-         [e.target.name]: e.target.value,
-      }));
-   };
-
-   const handleChangeDate = e => {
-      setStartDate(new Date(e.target.value).toISOString());
-   };
-
-   const handleCloseMenu = e => {
-      if (closeButtonRef.current.contains(e.target)) {
-         setShowMenu(false);
-      }
-      if (displayMenu && !formContainerRef.current.contains(e.target)) {
-         setDisplayMenu(false);
-         setShowMenu(false);
-      }
-   };
-
-   const handleClose = e => {
-      if (e.key === 'Escape') {
-         setDisplayMenu(false);
-         setShowMenu(false);
-      }
-   };
-
-   const resetForm = () => {
-      setFormData({ name: '', locationId: '', description: '' });
-      setStartDate(null);
-      dateInputRef.current.value = null;
-   };
-
    useEffect(() => {
-      setDisplayMenu(true);
       if (user) {
          fetchPlacesData();
       }
    }, [user]);
 
-   useEffect(() => {
-      if (displayMenu) {
-         window.addEventListener('click', handleCloseMenu);
-         window.addEventListener('keydown', handleClose);
-      } else {
-         window.removeEventListener('click', handleCloseMenu);
-         window.removeEventListener('keydown', handleClose);
-      }
-
-      return () => {
-         window.removeEventListener('click', handleCloseMenu);
-         window.removeEventListener('keydown', handleClose);
-      };
-   }, [showMenu, setShowMenu, displayMenu, setDisplayMenu]);
-
    return (
-      <section className={menuStyles.NewEventContainer}>
-         <div className={menuStyles.EventFormContainer} ref={formContainerRef}>
-            <form onSubmit={handleSubmit} className={menuStyles.EventForm}>
-               <div className={menuStyles.InputWrap}>
+      <div className={ModalStyle.ModalContainer}>
+         <div className={ModalStyle.EditModalContainer}>
+            <h1 className={ModalStyle.EditFormHeader}>Edytuj wydarzenie</h1>
+            <form className={ModalStyle.EventForm}>
+               <div className={ModalStyle.InputWrap}>
                   <label htmlFor="name">Nazwa wydarzenia</label>
                   <input
                      type="text"
@@ -145,7 +100,7 @@ const NewEventMenu = ({ showMenu, setShowMenu }) => {
                   ></input>
                </div>
 
-               <div className={menuStyles.InputWrap}>
+               <div className={ModalStyle.InputWrap}>
                   <label htmlFor="locationId">Miejsce wydarzenia</label>
                   {loading ? (
                      <LoadingSkeletonLine />
@@ -168,7 +123,7 @@ const NewEventMenu = ({ showMenu, setShowMenu }) => {
                      </select>
                   )}
                </div>
-               <div className={menuStyles.InputWrap}>
+               <div className={ModalStyle.InputWrap}>
                   <label htmlFor="description">Opis wydarzenia</label>
                   <input
                      type="text"
@@ -179,29 +134,34 @@ const NewEventMenu = ({ showMenu, setShowMenu }) => {
                      required
                   ></input>
                </div>
-               <div className={menuStyles.InputWrap}>
+               <div className={ModalStyle.InputWrap}>
                   <label htmlFor="startDate">Data rozpoczęcia</label>
                   <input
                      type="datetime-local"
                      name="startDate"
                      id="startDate"
-                     ref={dateInputRef}
                      onChange={handleChangeDate}
                      required
                   ></input>
                </div>
-               <button>Dodaj wydarzenie</button>
+               <div className={ModalStyle.ButtonWrapper}>
+                  <button
+                     onClick={e => handleSubmit(e)}
+                     className={ModalStyle.EditBtn}
+                  >
+                     Zapisz zmiany
+                  </button>
+                  <button
+                     onClick={() => setDisplayEditModal(false)}
+                     className={ModalStyle.CloseBtn}
+                  >
+                     Anuluj
+                  </button>
+               </div>
             </form>
-            <button
-               className={menuStyles.CloseButton}
-               onClick={handleCloseMenu}
-               ref={closeButtonRef}
-            >
-               <FaTimes className={menuStyles.CloseIcon} />
-            </button>
          </div>
-      </section>
+      </div>
    );
 };
 
-export default NewEventMenu;
+export default EditModal;

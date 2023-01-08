@@ -1,11 +1,17 @@
 import { useState, useEffect } from 'react';
 import style from '../GroupsPage/GroupsPage.module.css';
+import './components/ModalStyle.module.css';
+import eventsStyle from './EventsPage.module.css';
 import { Icon } from '@iconify/react';
 import TableRow from '../GroupsPage/TableRow';
 import { NavLink } from 'react-router-dom';
 import NewEventMenu from './NewEventMenu';
-import { DualRingLoader } from '../Loaders/Loaders';
 import moment from 'moment';
+import { DualRingLoader } from '../Loaders/Loaders';
+import AllEvents from './AllEvents';
+import MyEvents from './MyEvents';
+import EditModal from './components/EditModal';
+import DeleteModal from './components/DeleteModal';
 
 // context
 import { useAuthContext } from '../context/AuthContext';
@@ -15,8 +21,11 @@ const PUBLIC_EVENTS_URL = 'http://3.68.195.28/api/events';
 const EventsPage = () => {
    const { user } = useAuthContext();
    const [displayEventMenu, setDisplayEventMenu] = useState(false);
-   const [loading, setLoading] = useState(true);
    const [events, setEvents] = useState(null);
+   const [loading, setLoading] = useState(true);
+   const [activeTab, setActiveTab] = useState('all-events');
+   const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
+   const [displayEditModal, setDisplayEditModal] = useState(false);
 
    const handleFetch = async () => {
       const response = await fetch(PUBLIC_EVENTS_URL, {
@@ -35,16 +44,38 @@ const EventsPage = () => {
    };
 
    useEffect(() => {
+      setLoading(true);
+   }, []);
+
+   useEffect(() => {
       if (user) {
          handleFetch();
       }
-   }, [displayEventMenu]);
+   }, [displayDeleteModal, displayEventMenu]);
 
    return (
       <div className={style.GroupContainer}>
          <div className={style.GroupsSection}>
             <div className={style.GroupsHeader}>
-               <h2 className={style.Header}>Twoje Wydarzenia</h2>
+               <div className={eventsStyle.EventsTabSelect}>
+                  <button
+                     className={`${eventsStyle.BtnEventsAll} ${
+                        activeTab === 'all-events' &&
+                        eventsStyle.activeEventsTab
+                     }`}
+                     onClick={() => setActiveTab('all-events')}
+                  >
+                     Wszystkie wydarzenia
+                  </button>
+                  <button
+                     className={`${eventsStyle.BtnEventsAuthor} ${
+                        activeTab === 'my-events' && eventsStyle.activeEventsTab
+                     }`}
+                     onClick={() => setActiveTab('my-events')}
+                  >
+                     Twoje Wydarzenia
+                  </button>
+               </div>
                <div className={style.BtnContainer}>
                   <button className={style.BackMapBtn}>
                      <NavLink className={style.NavLinkBtn} to="/profile">
@@ -86,35 +117,26 @@ const EventsPage = () => {
                         <th></th>
                      </tr>
                   </thead>
-                  <tbody>
-                     {loading ? (
-                        <DualRingLoader />
-                     ) : (
-                        events.map(el => (
-                           <tr key={el.id}>
-                              <td
-                                 style={{
-                                    display: 'flex',
-                                    gap: '4px',
-                                    lineHeight: '32px',
-                                 }}
-                              >
-                                 <input type="checkbox" />
-                                 <p>{el.name}</p>
-                              </td>
-                              <td style={{ minWidth: '130px' }}>
-                                 {moment(el.startDate).format('D.M.YYYY H:mm')}
-                              </td>
-                              <td>{el.locationData.name}</td>
-                              <td>{el.description}</td>
-                              <td>
-                                 <input type="checkbox" />
-                              </td>
-                              <TableRow id="events" />
-                           </tr>
-                        ))
-                     )}
-                  </tbody>
+                  {activeTab === 'all-events' ? (
+                     <AllEvents
+                        user={user}
+                        loading={loading}
+                        setLoading={setLoading}
+                        events={events}
+                        handleFetch={handleFetch}
+                     />
+                  ) : (
+                     <MyEvents
+                        user={user}
+                        loading={loading}
+                        setLoading={setLoading}
+                        events={events}
+                        handleFetch={handleFetch}
+                        displayEditModal={displayEditModal}
+                        setDisplayDeleteModal={setDisplayDeleteModal}
+                        setDisplayEditModal={setDisplayEditModal}
+                     />
+                  )}
                </table>
             </div>
          </div>
@@ -123,6 +145,12 @@ const EventsPage = () => {
                showMenu={displayEventMenu}
                setShowMenu={setDisplayEventMenu}
             />
+         )}
+         {displayDeleteModal && (
+            <DeleteModal setDisplayDeleteModal={setDisplayDeleteModal} />
+         )}
+         {displayEditModal && (
+            <EditModal setDisplayEditModal={setDisplayEditModal} />
          )}
       </div>
    );
