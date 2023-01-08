@@ -1,267 +1,267 @@
 .GroupsSection {
-  position: relative;
-  top: 44px;
-  width: 80%;
-  height: 85%;
-  display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 24px 0px;
-  gap: 24px;
+   position: relative;
+   top: 44px;
+   width: 80%;
+   height: 85%;
+   display: flex;
+   flex-direction: column;
+   margin-left: auto;
+   margin-right: auto;
+   padding: 24px 0px;
+   gap: 24px;
 }
 
 .GroupsHeader {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 0px;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-between;
+   padding: 8px 0px;
 
-  width: 100%;
-  height: 52px;
+   width: 100%;
+   height: 52px;
 }
 
 .Header {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 160%;
-  letter-spacing: 0.15px;
-  color: rgba(0, 0, 0, 0.87);
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 20px;
+   line-height: 160%;
+   letter-spacing: 0.15px;
+   color: rgba(0, 0, 0, 0.87);
 }
 
 .BtnContainer {
-  display: flex;
+   display: flex;
 }
 
 .BackMapBtn {
-  align-items: center;
-  justify-content: space-around;
-  padding: 0px;
-  width: 150px;
-  height: 36px;
-  background: #ffffff;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
+   align-items: center;
+   justify-content: space-around;
+   padding: 0px;
+   width: 150px;
+   height: 36px;
+   background: #ffffff;
+   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+   border-radius: 4px;
 
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 0.4px;
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 14px;
+   line-height: 24px;
+   letter-spacing: 0.4px;
 }
 
 .NavLinkBtn {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  color: #122c34;
-  text-decoration: none;
-  margin-left: 20px;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   color: #122c34;
+   text-decoration: none;
+   margin-left: 20px;
 }
 
 .UserAddLinkBtn {
-  color: #ffffff;
+   color: #ffffff;
 }
 
 .NavLinkBtnGroupAdd {
-  color: #ffffff;
+   color: #ffffff;
 }
 
 .CreateGroupBtn {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin-left: 15px;
-  padding: 0px;
-  width: 156px;
-  height: 36px;
-  background: #122c34;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   margin-left: 15px;
+   padding: 0px;
+   width: 156px;
+   height: 36px;
+   background: #122c34;
+   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+   border-radius: 4px;
 
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 0.4px;
-  color: #ffffff;
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 14px;
+   line-height: 24px;
+   letter-spacing: 0.4px;
+   color: #ffffff;
 }
 
 .CreateGroupBtn:hover,
 .BackMapBtn:hover {
-  cursor: pointer;
+   cursor: pointer;
 }
 
 .MoreBtn {
-  background: white;
-  border: none;
+   background: white;
+   border: none;
 }
 
 .MoreBtn:hover {
-  cursor: pointer;
+   cursor: pointer;
 }
 
 .GroupsTable {
-  width: 100%;
+   width: 100%;
 }
 
 .GroupsTable > thead {
-  height: 56px;
-  background: rgba(255, 255, 255, 0.003);
-  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
+   height: 56px;
+   background: rgba(255, 255, 255, 0.003);
+   box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
 }
 
 .GroupsTable > thead > tr > th {
-  text-align: initial;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 0.17px;
-  color: rgba(0, 0, 0, 0.87);
+   text-align: initial;
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: bold;
+   font-size: 14px;
+   line-height: 24px;
+   letter-spacing: 0.17px;
+   color: rgba(0, 0, 0, 0.87);
 }
 
 .GroupsTable > tbody > tr {
-  height: 64px;
+   height: 64px;
 
-  background: rgba(255, 255, 255, 0.003);
-  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
+   background: rgba(255, 255, 255, 0.003);
+   box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
 }
 
 .GroupsTable > tbody > tr > td {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 143%;
-  letter-spacing: 0.17px;
-  color: rgba(0, 0, 0, 0.87);
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 143%;
+   letter-spacing: 0.17px;
+   color: rgba(0, 0, 0, 0.87);
+   flex: none;
+   order: 0;
+   flex-grow: 0;
 }
 .GroupsTable > tbody > tr > :last-child {
-  text-align: end;
+   text-align: end;
 }
-input[type="checkbox"] {
-  accent-color: #85c9b9;
+input[type='checkbox'] {
+   accent-color: #85c9b9;
 }
 
 .NavGroup {
-  color: rgba(0, 0, 0, 0.87);
-  text-decoration: none;
+   color: rgba(0, 0, 0, 0.87);
+   text-decoration: none;
 }
 
 .active,
 .inactive {
-  margin-right: 10px;
-  font-family: "Montserrat";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 100%;
-  letter-spacing: -0.02em;
-  color: #122c34;
-  text-decoration: none;
+   margin-right: 10px;
+   font-family: 'Montserrat';
+   font-style: normal;
+   font-weight: 600;
+   font-size: 16px;
+   line-height: 100%;
+   letter-spacing: -0.02em;
+   color: #122c34;
+   text-decoration: none;
 }
 .active {
-  text-decoration: underline;
-  text-decoration-color: #85c9b9;
+   text-decoration: underline;
+   text-decoration-color: #85c9b9;
 }
 
 .LabelGroup {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
-  width: 400px;
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
-  padding: 13px 0;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   padding: 0px;
+   width: 400px;
+   flex: none;
+   order: 0;
+   align-self: stretch;
+   flex-grow: 0;
+   padding: 13px 0;
 }
 
 .TextInputLabel {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  left: 50px;
-  letter-spacing: 0.15px;
-  color: rgba(0, 0, 0, 0.6);
-  background: white;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 2px;
-  z-index: 1;
-  text-align: center;
-  padding: 0 10px;
+   position: absolute;
+   display: flex;
+   flex-direction: column;
+   left: 50px;
+   letter-spacing: 0.15px;
+   color: rgba(0, 0, 0, 0.6);
+   background: white;
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 12px;
+   line-height: 2px;
+   z-index: 1;
+   text-align: center;
+   padding: 0 10px;
 }
 
 .TextInput {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0px 12px;
-  isolation: isolate;
-  width: 400px;
-  height: 40px;
-  border: 1px solid rgba(0, 0, 0, 0.23);
-  border-radius: 4px;
-  flex: none;
-  order: 0;
-  align-self: stretch;
-  flex-grow: 0;
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   padding: 0px 12px;
+   isolation: isolate;
+   width: 400px;
+   height: 40px;
+   border: 1px solid rgba(0, 0, 0, 0.23);
+   border-radius: 4px;
+   flex: none;
+   order: 0;
+   align-self: stretch;
+   flex-grow: 0;
 }
 
 .TextInput:focus {
-  outline: none;
+   outline: none;
 }
 
 .FormSubmitButton {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: 0px;
 
-  width: 450px;
-  height: 42px;
-  background: #122c34;
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 26px;
+   width: 450px;
+   height: 42px;
+   background: #122c34;
+   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
+   border-radius: 4px;
+   font-family: 'Roboto';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 15px;
+   line-height: 26px;
 
-  color: #f5edf0;
-  letter-spacing: 0.46px;
+   color: #f5edf0;
+   letter-spacing: 0.46px;
 }
 
 .EmptyRow {
-  display: flex;
-  margin-top: 2.5rem;
-  font-weight: bold;
-  justify-content: center;
+   display: flex;
+   margin-top: 2.5rem;
+   font-weight: bold;
+   justify-content: center;
 }
 
 .AddButtonRow {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  height: inherit;
+   display: flex;
+   justify-content: end;
+   align-items: center;
+   height: inherit;
 }
