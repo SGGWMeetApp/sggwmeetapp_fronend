@@ -38,9 +38,9 @@ const App = () => {
           }
         />
         <Route
-          path="/newpassword/*"
+          path="/newpassword"
           element={
-            !user ? <PassChange /> : <Navigate to="/newpassword/*" />
+            !user ? <PassChange /> : <Navigate to="/newpassword" />
           }
         />
         <Route

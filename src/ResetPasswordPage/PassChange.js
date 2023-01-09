@@ -4,25 +4,19 @@ import styleRegister from "./ResetPasswordPage.module.css";
 import { Icon } from "@iconify/react";
 import { Navigate, NavLink } from "react-router-dom";
 import styleHome from "../HomePage/HomePage.module.css";
-import { SmallDualRingLoader } from "../Loaders/Loaders";
-
-const REGISTER_URL = window.location.href;
 
 class PassChange extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      passwordOld: "",
       password1: "",
       password2: "",
       error: null,
       checked: false,
-      loading: false,
       redirect: false,
       message: "",
     };
   }
-
   getFormData(e) {
     this.setState((prevState) => ({
       ...prevState,
@@ -31,55 +25,30 @@ class PassChange extends React.Component {
     }));
   }
 
-  getUserData(e) {
-    this.setState((prevState) => ({
-      userData: {
-        ...prevState.userData,
-        [e.target.name]: e.target.value,
-      },
-      error: null,
-    }));
-  }
-
-  async handleSubmit(e) {
-    e.preventDefault();
+  handleClick= async()=> {
+    const queryParams = new URLSearchParams(window.location.search);
+    const token = queryParams.get("token");
     if (
-      !this.state.passwordOld ||
+
       !this.state.password1 ||
       !this.state.password2
     ) {
       this.setState({ error: "Uzupełnij wszystkie pola" });
     } else if (this.state.password1 !== this.state.password2) {
-      this.setState({ error: "Pola nowe hasło i powtórz nowe hasło różnią się od siebie" });
-    } else {
-      this.setState({ message: "Hasło zostało zmienione" });
-      this.handleRegister();
-    }
-  }
-
-  async handleRegister() {
-    this.setState({ loading: true });
-
-    const response = await fetch(REGISTER_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        password: this.state.passwordOld,
-        first: this.state.password1,
-        second: this.state.password2
-      }),
-    });
-
-    const json = await response.json();
-    if (response.ok) {
-      this.setState({ loading: false, redirect: true });
-      localStorage.setItem("user", JSON.stringify(json));
-    }
-    if (!response.ok) {
       this.setState({
-        error: json.message,
-        loading: false,
+        error: "Pola nowe hasło i powtórz nowe hasło różnią się od siebie",
       });
+    } else if(token!=="") {
+
+      const response = await fetch(`http://3.68.195.28/reset_password/handle/${token}`, { method: 'POST',
+    
+    body: JSON.stringify({
+          password:{ 
+          first: this.state.password1,
+          second: this.state.password2}})
+        })
+        .then(this.setState({ message: "Hasło zostało zmienione" }));
+
     }
   }
 
@@ -89,7 +58,7 @@ class PassChange extends React.Component {
         className={style.LogInContainer}
         id={styleRegister.RegisterContainer}
       >
-        {console.log(window.location.href)}
+      
         <div className={style.LogInBack} id={styleRegister.RegisterInBack}>
           <div className={style.LogInWindow} id={styleRegister.RegisterWindow}>
             <div className={styleHome.Logo}>
@@ -104,17 +73,7 @@ class PassChange extends React.Component {
                 <p className={styleRegister.Message}>{this.state.message}</p>
               )}
             </div>
-            <form onSubmit={(e) => this.handleSubmit(e)}>
-              <div className={style.LabelGroup}>
-                <label className={style.TextInputLabel}>Stare hasło</label>
-                <input
-                  className={style.TextInput}
-                  type="password"
-                  name="passwordOld"
-                  value={this.state.passwordOld}
-                  onChange={(e) => this.getFormData(e)}
-                ></input>
-              </div>
+            <form onSubmit={(e) => e.preventDefault()}>
               <div className={style.LabelGroup}>
                 <label className={style.TextInputLabel}>Nowe hasło</label>
                 <input
@@ -137,18 +96,20 @@ class PassChange extends React.Component {
                   onChange={(e) => this.getFormData(e)}
                 ></input>
               </div>
-              <button className={style.FormLogInButton} id={style.Reset}>
-                {(this.state.loading && <SmallDualRingLoader />) ||
-                  "Resetuj hasło"}
+              <button className={style.FormLogInButton} id={style.Reset} onClick={()=>{this.handleClick()}}>
+                Resetuj hasło
               </button>
-              <NavLink to="/login" style={{border:"none", textDecoration:"none"}}>
-              <button
-                type="button"
-                className={style.FormLogInButton}
-                id={style.Back}
+              <NavLink
+                to="/login"
+                style={{ border: "none", textDecoration: "none" }}
               >
-                Anuluj
-              </button>
+                <button
+                  type="button"
+                  className={style.FormLogInButton}
+                  id={style.Back}
+                >
+                  Anuluj
+                </button>
               </NavLink>
             </form>
           </div>
