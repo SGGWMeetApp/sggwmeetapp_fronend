@@ -5,7 +5,8 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import moment from 'moment';
 import EventsTableRow from "../EventsPage/components/EventsTableRow";
-import DeleteModal from "../EventsPage/components/DeleteModal";
+import DeleteGroupEventModal from "./components/DeleteGroupEventModal";
+import AddNewGroupEvent from "./components/AddNewGroupEvent";
 
 class GroupEvents extends React.Component {
 
@@ -19,7 +20,7 @@ class GroupEvents extends React.Component {
       openModal: false,
       userToken: user.token,
       events: [],
-      displayEventMenu: false,
+      displayNewEventMenu: false,
       displayDeleteModal: false
     };
   }
@@ -35,6 +36,13 @@ class GroupEvents extends React.Component {
     });
     this.getEvents(+window.location.pathname.split("/")[3]);
   };
+
+  setDisplayEventMenu = (value) => {
+    this.setState({
+      displayNewEventMenu: value
+    });
+    this.getEvents(+window.location.pathname.split("/")[3]);
+  }
 
   getEvents = async (id) => {
     const response = await axios.get(`http://3.68.195.28/api/groups/${id}/events`, {
@@ -83,7 +91,9 @@ class GroupEvents extends React.Component {
                     Wróć do grup
                   </NavLink>
                 </button>
-                <button className={style.CreateGroupBtn}>
+                <button
+                    className={style.CreateGroupBtn}
+                    onClick={ e => {this.setDisplayEventMenu(true)} }>
                   <Icon
                       icon="ant-design:plus-outlined"
                       color="white"
@@ -129,8 +139,16 @@ class GroupEvents extends React.Component {
               </table>
             </div>
           </div>
+          {this.state.displayNewEventMenu && (
+              <AddNewGroupEvent
+                  showMenu={this.state.displayNewEventMenu}
+                  setShowMenu={this.setDisplayEventMenu}
+                  groupId={this.state.id}/>
+          )}
           {this.state.displayDeleteModal && (
-              <DeleteModal setDisplayDeleteModal={this.setDisplayDeleteModal} />
+              <DeleteGroupEventModal
+                  setDisplayDeleteModal={this.setDisplayDeleteModal}
+                  groupId={this.state.id}/>
           )}
         </div>
     );

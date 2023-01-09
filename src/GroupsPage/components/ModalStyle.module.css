@@ -1,0 +1,180 @@
+.ModalContainer {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    font-family: 'Roboto', sans-serif;
+}
+
+.DeleteModalContainer {
+    background-color: #fafafa;
+    border-radius: 10px;
+    padding: 30px 20px;
+    box-shadow: 0 0 10px 0 rgba(224, 0, 0, 0.5);
+}
+
+.DeleteModalContainer h1 {
+    font-size: 28px;
+}
+
+.DeleteModalContainer p {
+    font-size: 18px;
+    color: rgb(206, 0, 0);
+}
+
+.DeleteModalContainer .ButtonWrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.DeleteModalContainer button {
+    box-sizing: border-box;
+    margin: 0;
+    cursor: pointer;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background-color: transparent;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.DeleteModalContainer button:nth-child(1) {
+    border: 2px solid rgb(218, 1, 1);
+    color: rgb(218, 1, 1);
+}
+
+.DeleteModalContainer button:nth-child(1):hover {
+    color: #fafafa;
+    background-color: rgb(218, 1, 1);
+}
+
+.DeleteModalContainer button:nth-child(2) {
+    border: 2px solid rgb(0, 141, 12);
+    color: rgb(0, 141, 12);
+}
+
+.DeleteModalContainer button:nth-child(2):hover {
+    color: #fafafa;
+    background-color: rgb(0, 141, 12);
+}
+
+.delete-modal-enter {
+    opacity: 0;
+    transition: all 400ms linear;
+}
+
+.delete-modal-enter-active {
+    opacity: 1;
+    transition: all 400ms linear;
+}
+
+.delete-modal-exit {
+    opacity: 1;
+    transition: all 400ms linear;
+}
+
+.delete-modal-exit-active {
+    opacity: 0;
+    transition: all 400ms linear;
+}
+
+.EditModalContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #fafafa;
+    border-radius: 10px;
+}
+
+.EditFormHeader {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+    padding: 16px 0 10px 0;
+}
+
+.EventForm {
+    width: 600px;
+    padding: 0 20px 30px 20px;
+}
+
+.InputWrap {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0 4px 0;
+}
+
+.InputWrap label {
+    font-size: 14px;
+}
+
+.InputWrap input {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    padding: 6px 3px;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid rgb(192, 192, 192);
+}
+
+.InputWrap select {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    padding: 6px 3px;
+}
+
+.ButtonWrapper {
+    display: flex;
+    align-items: center;
+    padding: 10px 0 0 0;
+    gap: 8px;
+}
+
+.EditBtn,
+.CloseBtn {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    padding: 8px 10px;
+    border-radius: 7px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s linear;
+    color: rgb(18, 44, 52);
+}
+
+.EditBtn {
+    border: 1px solid rgb(18, 44, 52);
+    background-color: transparent;
+}
+
+.EditBtn:hover {
+    color: #fafafa;
+    background-color: rgb(18, 44, 52);
+}
+
+.CloseBtn {
+    background-color: transparent;
+    border: 1px solid rgb(177, 177, 177);
+}
+
+.CloseBtn:hover {
+    background-color: rgb(177, 177, 177);
+}
