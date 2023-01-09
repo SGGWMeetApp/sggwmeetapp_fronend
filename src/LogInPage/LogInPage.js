@@ -96,6 +96,15 @@ class LogInPage extends React.Component {
                               zarejestruj
                            </NavLink>{' '}
                         </p>
+                        <p className={style.RegisterParagraph}>
+                           Zapomniałeś hasła -{' '}
+                           <NavLink
+                              to="/passchange"
+                              className={style.RegisterLink}
+                           >
+                              zresetuj hasło
+                           </NavLink>{' '}
+                        </p>
                      </div>
                      <button className={style.FormLogInButton}>Zaloguj</button>
                   </form>

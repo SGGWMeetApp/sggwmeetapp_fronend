@@ -4,6 +4,7 @@ import UserAvatar from "../../Assets/User-avatar.svg";
 import style from './Modal.module.css';
 import ModalWindow from './Modal';
 import EditUser from './EditUserProfile';
+import PassChange from './PassChange';
 import EditAvatar from './EditUserAvatar.js'
 import { useState } from 'react';
 import axios from 'axios';
@@ -13,6 +14,7 @@ const User = (props) => {
    let userData = JSON.parse(localStorage.getItem("user"));
    const [openEdit, setOpenEdit] = useState(false);
    const [openEditAvatar, setOpenEditAvatar] = useState(false);
+   const [openPassChange, setOpenPassChange] = useState(false);
    const [id] = useState(userData.userData.id)
    const [token]= useState(userData.token)
    const [user, setUser]= useState();
@@ -20,6 +22,10 @@ const User = (props) => {
    const [avatarUrl,setAvatar]= useState(UserAvatar);
    const  OnClick =()=>{
       setOpenEdit(true);
+      
+   }
+   const  OpenPassChange =()=>{
+      setOpenPassChange(true);
       
    }
    const  OpenEditAvatar =()=>{
@@ -90,6 +96,9 @@ const User = (props) => {
                   <button className={style.EditFoto} onClick={()=>OpenEditAvatar()}>
                      Edytuj zdjęcie
                   </button>
+                  <button className={style.changePass} onClick={()=>OpenPassChange()}>
+                     Zmień hasło
+                  </button>
                   </div>
                </div>
                <div className={style.UserContact}>
@@ -108,6 +117,12 @@ const User = (props) => {
             onClose={!openEdit}
           >
             <EditUser CloseModal={()=>CloseModal() } getData={props.getData} user={props.user} token={props.token} id={props.id}/>
+          </ModalWindow>
+          <ModalWindow
+            openModal={openPassChange}
+            onClose={!openPassChange}
+          >
+            <PassChange CloseModal={()=>CloseModal() } getData={props.getData} user={props.user} token={props.token} id={props.id}/>
           </ModalWindow>
           <ModalWindow
             openModal={openEditAvatar}

@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import HomePage from "./HomePage/HomePage.js";
 import LogInPage from "./LogInPage/LogInPage.js";
+import ResetPasswordPage from "./ResetPasswordPage/ResetPasswordPage.js";
 import RegisterPage from "./RegisterPage/RegisterPage.js";
 import MainPage from "./MainPage/MainPage.js";
 import GroupsPage from "./GroupsPage/GroupsPage.js";
@@ -28,6 +29,10 @@ const App = () => {
           <Route
               path="/login"
               element={!user ? <LogInPage /> : <Navigate to="/profile" />}
+          />
+          <Route
+              path="/passchange"
+              element={!user ? <ResetPasswordPage /> : <Navigate to="/passchange" />}
           />
           <Route
               path="/register"
