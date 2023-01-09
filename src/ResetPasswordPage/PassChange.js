@@ -2,23 +2,24 @@ import React from "react";
 import style from "../LogInPage/LogInPage.module.css";
 import styleRegister from "./ResetPasswordPage.module.css";
 import { Icon } from "@iconify/react";
-import { NavLink, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import styleHome from "../HomePage/HomePage.module.css";
-import Navigation from "../LogInPage/Navigatio";
 import { SmallDualRingLoader } from "../Loaders/Loaders";
 
-const REGISTER_URL = "http://3.68.195.28/reset_password";
+const REGISTER_URL = window.location.href;
 
 class ResetPasswordPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
+      passwordOld: "",
+      password1: "",
+      password2: "",
       error: null,
       checked: false,
       loading: false,
       redirect: false,
-      message:""
+      message: "",
     };
   }
 
@@ -42,10 +43,16 @@ class ResetPasswordPage extends React.Component {
 
   async handleSubmit(e) {
     e.preventDefault();
-    if (!this.state.email) {
+    if (
+      !this.state.passwordOld ||
+      !this.state.password1 ||
+      !this.state.password2
+    ) {
       this.setState({ error: "Uzupełnij wszystkie pola" });
+    } else if (this.state.password1 !== this.state.password2) {
+      this.setState({ error: "Pola nowe hasło i powtórz nowe hasło różnią się od siebie" });
     } else {
-      this.setState({message:"Na Twoją skrzynkę mailową został wysłany link do zmiany hasła"})
+      this.setState({ message: "Hasło zostało zmienione" });
       this.handleRegister();
     }
   }
@@ -57,7 +64,9 @@ class ResetPasswordPage extends React.Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: this.state.email,
+        password: this.state.passwordOld,
+        first: this.state.password1,
+        second: this.state.password2
       }),
     });
 
@@ -80,17 +89,13 @@ class ResetPasswordPage extends React.Component {
         className={style.LogInContainer}
         id={styleRegister.RegisterContainer}
       >
+        {console.log(window.location.href)}
         <div className={style.LogInBack} id={styleRegister.RegisterInBack}>
-          <Navigation />
           <div className={style.LogInWindow} id={styleRegister.RegisterWindow}>
             <div className={styleHome.Logo}>
               SGGW MeetApp <Icon icon="bxs:book-reader" color="#85c9b9" />
             </div>
             <h2 className={style.Header}>Zresetuj hasło</h2>
-            <h3 className={style.Header}>
-              Podaj adres email, na który zostanie wysłany formularz resetowania
-              hasła.
-            </h3>
             <div className={styleRegister.ErrorContainer}>
               {this.state.error && (
                 <p className={styleRegister.ErrorMessage}>{this.state.error}</p>
@@ -101,12 +106,34 @@ class ResetPasswordPage extends React.Component {
             </div>
             <form onSubmit={(e) => this.handleSubmit(e)}>
               <div className={style.LabelGroup}>
-                <label className={style.TextInputLabel}>Email</label>
+                <label className={style.TextInputLabel}>Stare hasło</label>
                 <input
                   className={style.TextInput}
-                  type="email"
-                  name="email"
-                  value={this.state.email}
+                  type="passwordOld"
+                  name="password"
+                  value={this.state.passwordOld}
+                  onChange={(e) => this.getFormData(e)}
+                ></input>
+              </div>
+              <div className={style.LabelGroup}>
+                <label className={style.TextInputLabel}>Nowe hasło</label>
+                <input
+                  className={style.TextInput}
+                  type="password1"
+                  name="password"
+                  value={this.state.password1}
+                  onChange={(e) => this.getFormData(e)}
+                ></input>
+              </div>
+              <div className={style.LabelGroup}>
+                <label className={style.TextInputLabel}>
+                  Powtórz nowe hasło
+                </label>
+                <input
+                  className={style.TextInput}
+                  type="password2"
+                  name="password"
+                  value={this.state.password2}
                   onChange={(e) => this.getFormData(e)}
                 ></input>
               </div>
@@ -114,9 +141,18 @@ class ResetPasswordPage extends React.Component {
                 {(this.state.loading && <SmallDualRingLoader />) ||
                   "Resetuj hasło"}
               </button>
+              <button
+                type="button"
+                className={style.FormLogInButton}
+                id={style.Back}
+                onClick={() => this.props.CloseModal()}
+              >
+                Anuluj
+              </button>
             </form>
           </div>
         </div>
+        {this.state.redirect && <Navigate to="/login" replace={true} />}
       </div>
     );
   }

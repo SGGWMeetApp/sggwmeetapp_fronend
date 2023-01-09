@@ -4,7 +4,7 @@ import UserAvatar from "../../Assets/User-avatar.svg";
 import style from './Modal.module.css';
 import ModalWindow from './Modal';
 import EditUser from './EditUserProfile';
-import PassChange from './PassChange';
+import PassChange from '../../ResetPasswordPage/PassChange';
 import EditAvatar from './EditUserAvatar.js'
 import { useState } from 'react';
 import axios from 'axios';
