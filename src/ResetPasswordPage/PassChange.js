@@ -2,13 +2,13 @@ import React from "react";
 import style from "../LogInPage/LogInPage.module.css";
 import styleRegister from "./ResetPasswordPage.module.css";
 import { Icon } from "@iconify/react";
-import { Navigate } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import styleHome from "../HomePage/HomePage.module.css";
 import { SmallDualRingLoader } from "../Loaders/Loaders";
 
 const REGISTER_URL = window.location.href;
 
-class ResetPasswordPage extends React.Component {
+class PassChange extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -109,8 +109,8 @@ class ResetPasswordPage extends React.Component {
                 <label className={style.TextInputLabel}>Stare hasło</label>
                 <input
                   className={style.TextInput}
-                  type="passwordOld"
-                  name="password"
+                  type="password"
+                  name="passwordOld"
                   value={this.state.passwordOld}
                   onChange={(e) => this.getFormData(e)}
                 ></input>
@@ -119,8 +119,8 @@ class ResetPasswordPage extends React.Component {
                 <label className={style.TextInputLabel}>Nowe hasło</label>
                 <input
                   className={style.TextInput}
-                  type="password1"
-                  name="password"
+                  type="password"
+                  name="password1"
                   value={this.state.password1}
                   onChange={(e) => this.getFormData(e)}
                 ></input>
@@ -131,8 +131,8 @@ class ResetPasswordPage extends React.Component {
                 </label>
                 <input
                   className={style.TextInput}
-                  type="password2"
-                  name="password"
+                  type="password"
+                  name="password2"
                   value={this.state.password2}
                   onChange={(e) => this.getFormData(e)}
                 ></input>
@@ -141,14 +141,15 @@ class ResetPasswordPage extends React.Component {
                 {(this.state.loading && <SmallDualRingLoader />) ||
                   "Resetuj hasło"}
               </button>
+              <NavLink to="/login" style={{border:"none", textDecoration:"none"}}>
               <button
                 type="button"
                 className={style.FormLogInButton}
                 id={style.Back}
-                onClick={() => this.props.CloseModal()}
               >
                 Anuluj
               </button>
+              </NavLink>
             </form>
           </div>
         </div>
@@ -157,4 +158,4 @@ class ResetPasswordPage extends React.Component {
     );
   }
 }
-export default ResetPasswordPage;
+export default PassChange;

@@ -2,7 +2,6 @@ import React from "react";
 import style from "../LogInPage/LogInPage.module.css";
 import styleRegister from "./ResetPasswordPage.module.css";
 import { Icon } from "@iconify/react";
-import { NavLink, Navigate } from "react-router-dom";
 import styleHome from "../HomePage/HomePage.module.css";
 import Navigation from "../LogInPage/Navigatio";
 import { SmallDualRingLoader } from "../Loaders/Loaders";
