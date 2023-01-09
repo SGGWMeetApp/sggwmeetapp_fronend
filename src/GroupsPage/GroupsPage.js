@@ -127,6 +127,7 @@ class GroupsPage extends React.Component {
                                 id="groups"
                                 OpenModal={this.OpenModal}
                                 groupId={this.state.groupId}
+                                visible={this.state.visible}
                               ></TableRow>
                             </div>
                           ) : (
