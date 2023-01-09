@@ -28,6 +28,7 @@ class ObjectPage extends React.Component {
       events: [],
       loading: true,
       menu_url: null,
+      category: [0],
     };
   }
   handleActive(type) {
@@ -35,18 +36,19 @@ class ObjectPage extends React.Component {
       acttiveTab: type,
     });
   }
-componentDidMount() {
-      this.setState({ id: +window.location.pathname.split('/')[3] });
-      this.getDetails(+window.location.pathname.split('/')[3]);
-      this.getEvents(+window.location.pathname.split('/')[3]);
-   }
+  componentDidMount() {
+    this.setState({ id: +window.location.pathname.split("/")[3] });
+    this.getDetails(+window.location.pathname.split("/")[3]);
+    this.getEvents(+window.location.pathname.split("/")[3]);
+  }
   getDetails = async () => {
-    const id= +window.location.pathname.split("/")[3]
+    const id = +window.location.pathname.split("/")[3];
     const response = await axios.get(`http://3.68.195.28/api/places/${id}/`, {
       headers: {
         Authorization: `Bearer ${this.state.userToken}`,
       },
     });
+
     this.setState({
       name: response.data.name,
       location: response.data.textLocation,
@@ -55,6 +57,7 @@ componentDidMount() {
       loading: false,
       reviews: response.data.rating.reviews,
       menu_url: response.data.menuPath,
+      category: response.data.locationCategoryCodes,
     });
     if (response.data.photoPath) {
       this.setState({ photo: response.data.photoPath });
@@ -148,14 +151,20 @@ componentDidMount() {
               >
                 Wydarzenia
               </li>
-              <li
-                onClick={this.handleActive.bind(this, "menu")}
-                className={
-                  this.state.acttiveTab === "menu" ? `${style.active}` : ``
-                }
-              >
-                Menu
-              </li>
+              {this.state.category.includes("PUB") ||
+              this.state.category.includes("RESTAURANT") ||
+              this.state.category.includes("BAR") ? (
+                <li
+                  onClick={this.handleActive.bind(this, "menu")}
+                  className={
+                    this.state.acttiveTab === "menu" ? `${style.active}` : ``
+                  }
+                >
+                  Menu
+                </li>
+              ) : (
+                <p></p>
+              )}
             </ul>
           </div>
           <div style={{ width: "100%" }}>
@@ -163,7 +172,11 @@ componentDidMount() {
               <Describe describe={this.state.describe} />
             </TabContent>
             <TabContent id="opinions" activeTab={this.state.acttiveTab}>
-              <Opinions rating={this.state.rating} objId={this.state.id} getDetails={this.getDetails}/>
+              <Opinions
+                rating={this.state.rating}
+                objId={this.state.id}
+                getDetails={this.getDetails}
+              />
             </TabContent>
             <TabContent id="events" activeTab={this.state.acttiveTab}>
               <Events events={this.state.events} />
