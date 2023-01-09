@@ -274,6 +274,7 @@
    color: #ffffff;
    text-decoration: none;
    width: 450px;
+   cursor: pointer;
 }
 
 .Register {
@@ -293,4 +294,19 @@
 
 .RegisterLink {
    color: rgba(0, 0, 0, 0.87);
+}
+#Back {
+   border: none;
+   background: #ffffff;
+
+   padding: 0px;
+   cursor: pointer;
+   width: 100%;
+   height: 36px;
+   color: #4b4949;
+   border-radius: 4px;
+
+}
+#Reset{
+   cursor: pointer;
 }

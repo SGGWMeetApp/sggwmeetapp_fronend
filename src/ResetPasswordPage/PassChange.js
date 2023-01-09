@@ -137,7 +137,7 @@ class PassChange extends React.Component {
                   onChange={(e) => this.getFormData(e)}
                 ></input>
               </div>
-              <button className={style.FormLogInButton}>
+              <button className={style.FormLogInButton} id={style.Reset}>
                 {(this.state.loading && <SmallDualRingLoader />) ||
                   "Resetuj hasło"}
               </button>

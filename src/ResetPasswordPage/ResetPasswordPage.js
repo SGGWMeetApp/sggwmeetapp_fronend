@@ -26,6 +26,7 @@ class ResetPasswordPage extends React.Component {
       ...prevState,
       [e.target.name]: e.target.value,
       error: null,
+      message:null,
     }));
   }
 
@@ -94,7 +95,7 @@ class ResetPasswordPage extends React.Component {
               {this.state.error && (
                 <p className={styleRegister.ErrorMessage}>{this.state.error}</p>
               )}
-              {this.state.message && (
+              {!this.state.error && this.state.message &&  (
                 <p className={styleRegister.Message}>{this.state.message}</p>
               )}
             </div>
