@@ -28,6 +28,8 @@ class TableRow extends React.Component {
                <Menu
                   visible={this.state.visible}
                   handleShow={this.handleShow}
+                  groupId={this.props.groupId}
+                  OpenModal={this.props.OpenModal}
                />
             )}
             {this.state.visible && this.props.id === 'events' && (

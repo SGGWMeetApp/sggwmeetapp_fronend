@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./ContextMenu.module.css";
 import { Icon } from "@iconify/react";
 const Menu = (props) => {
+
   return (
     <div className={style.MenuContainer}>
       <div className={style.MenuHeader}>
@@ -16,7 +17,7 @@ const Menu = (props) => {
       </div>
       <ul className={style.MenuList}>
         <li>
-          <button className={style.ActBtn} onClick={()=>props.DeleteGroup()}>
+          <button className={style.ActBtn} onClick={()=>props.OpenModal()}>
             <Icon
               icon="carbon:close-filled"
               color="rgba(0, 0, 0, 0.54)"
@@ -38,6 +39,7 @@ const Menu = (props) => {
           </button>
         </li>
       </ul>
+      
     </div>
   );
 };

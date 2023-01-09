@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 import TableRow from "./TableRow";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import DeleteGroup from "./DeleteGroupMenu";
 class GroupsPage extends React.Component {
   constructor(props) {
     let user = JSON.parse(localStorage.getItem("user"));
@@ -15,6 +16,7 @@ class GroupsPage extends React.Component {
       error: null,
       id: user.userData.id,
       groupId:undefined,
+      show:false,
     };
   }
 
@@ -24,6 +26,9 @@ class GroupsPage extends React.Component {
   SetGroupId = (id) => {
     this.setState({ groupId: id });
   };
+  OpenModal =()=>{
+    this.setState({show:!this.state.show})
+  }
   getGroups = async () => {
     const response = await axios.get(
       `http://3.68.195.28/api/users/${this.state.id}/groups`,
@@ -121,7 +126,7 @@ class GroupsPage extends React.Component {
                               <TableRow
                                 id="groups"
                                 OpenModal={this.OpenModal}
-                                DeleteGroup={this.deleteGroup}
+                                groupId={this.state.groupId}
                               ></TableRow>
                             </div>
                           ) : (
@@ -134,7 +139,8 @@ class GroupsPage extends React.Component {
               </tbody>
             </table>
           </div>
-        </div>
+        </div>{this.state.show&&
+        <DeleteGroup getGroups={this.getGroups} OpenModal={this.OpenModal} groupId={this.state.groupId}/>}
       </div>
     );
   }

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import TableRow from '../GroupsPage/TableRow';
 import EventsTableRow from './components/EventsTableRow';
 import { DualRingLoader } from '../Loaders/Loaders';
 import moment from 'moment';
