@@ -65,6 +65,7 @@ const AddNewGroupEvent = ({ showMenu, setShowMenu, groupId }) => {
 
         if (response.ok) {
             resetForm();
+            fetchPlacesData();
         }
         if (!response.ok) {
             console.error(result.message);
