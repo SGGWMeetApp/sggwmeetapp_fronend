@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import moment from 'moment';
-import EventsTableRow from "../EventsPage/components/EventsTableRow";
+import EventsTableRow from "../EventsPage/components/EventsTableRow2";
 import DeleteGroupEventModal from "./components/DeleteGroupEventModal";
 import AddNewGroupEvent from "./components/AddNewGroupEvent";
 
