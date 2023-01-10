@@ -17,7 +17,7 @@ const Menu = (props) => {
       </div>
       <ul className={style.MenuList}>
         <li>
-          <button className={style.ActBtn} onClick={()=>props.OpenModal()}>
+          <button className={style.ActBtn} onClick={()=>{props.OpenModal(); props.handleShow()}}>
             <Icon
               icon="carbon:close-filled"
               color="rgba(0, 0, 0, 0.54)"

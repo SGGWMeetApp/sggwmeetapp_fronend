@@ -16,7 +16,7 @@ const MenuMembers = (props) => {
       </div>
       <ul className={style.MenuList}>
         <li>
-          <button className={style.ActBtn} onClick={()=>props.DeleteUser()}>
+          <button className={style.ActBtn} onClick={()=>{props.DeleteUser();props.handleShow()}}>
             <Icon
               icon="carbon:close-filled"
               color="rgba(0, 0, 0, 0.54)"
@@ -27,7 +27,7 @@ const MenuMembers = (props) => {
           </button>
         </li>
         <li>
-          <button className={style.ActBtn} onClick={() => props.OpenModal()}>
+          <button className={style.ActBtn} onClick={() => {props.OpenModal(); props.handleShow()}}>
             <Icon
               icon="carbon:user-avatar-filled"
               color="rgba(0, 0, 0, 0.54)"
